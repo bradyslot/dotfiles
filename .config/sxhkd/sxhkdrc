@@ -1,0 +1,41 @@
+# media controls
+alt + equal
+	pulsemixer --change-volume +5
+
+alt + minus
+	pulsemixer --change-volume -5
+
+alt + period
+	~/bin/sp next
+
+alt + comma
+	~/bin/sp prev
+	
+alt + slash
+	~/bin/sp play
+
+# open programs
+alt + e
+	$BROWSER
+
+alt + r
+	$TERMINAL ranger	
+
+alt + v
+	$TERMINAL nvim 
+
+# system shortcuts
+Print
+	scrot pic/scrot/screenshot-$(date '+%F-%H-%M-%S').png
+
+alt + Print
+	scrot -s pic/scrot/screengrab-$(date '+%F-%H-%M-%S').png
+
+alt + Escape
+	prompt 'Leave Xorg?' 'killall Xorg'
+
+alt + Delete
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+
+alt + BackSpace
+	prompt "Reboot computer?" "sudo -A reboot"
