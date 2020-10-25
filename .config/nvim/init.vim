@@ -25,6 +25,7 @@ set updatetime=50
 set shortmess+=c
 set colorcolumn=80
 set cmdheight=2
+set buftype=help
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " avoid issues with nvim's shada file

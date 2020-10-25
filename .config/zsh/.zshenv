@@ -31,6 +31,11 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export GOPATH="$XDG_DATA_HOME"/go
+prefix=${XDG_DATA_HOME}/npm
+cache=${XDG_CACHE_HOME}/npm
+tmp=${XDG_RUNTIME_DIR}/npm
+#init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
 
 # colorize things
 export LESS=-R
