@@ -10,7 +10,7 @@
 export PATH="~/bin:$PATH"
 export VISUAL=nvim
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=brave
 export TERMINAL=kitty
 
 # clean up home directory
@@ -24,8 +24,6 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-export "VIMINIT=let \$MYVIMRC=\"$HOME/.vimrc\" | source \$MYVIMRC"
 
 # enable base16 shell colors 
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -66,6 +64,7 @@ alias ls='ls -lahF --g --color=auto'
 
 # mine
 alias vim='nvim'
+alias ssh='TERM=xterm-color ssh'
 alias cat='bat'
 alias dp='xrandr --output DisplayPort-0 --preferred'
 alias kitty-xcolorgen="xrdb -query | grep '\*color\|\*foreground\|\*background\|\*cursorColor' | tr -d '*:' | sed 's/cursorColor/cursor/' > ~/.config/kitty/color.conf"

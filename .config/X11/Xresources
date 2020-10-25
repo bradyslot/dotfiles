@@ -56,7 +56,7 @@
 *dwm.normbordercolor: base00
 *dwm.normbgcolor: base00
 *dwm.normfgcolor: base05
-*dwm.selbordercolor: base0F
+*dwm.selbordercolor: base05 
 *dwm.selbgcolor: base03
 *dwm.selfgcolor: base05
 *dmenu.font: Hack Nerd Font Mono:size=12

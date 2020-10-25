@@ -1,15 +1,18 @@
 #!/bin/sh
 
+xrandr -r 75 &
+uncluttler -idle 0 &
+xcalib ~/.config/xcalib/q3279vwf.icm &
+xset s off -dpms 2> /dev/null &
+xset r rate 240 40 &
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
 xrdb ~/.config/X11/Xresources &
-feh --no-fehbg --bg-fill ~/pic/josuke-wallpaper.png &
+feh --no-fehbg --bg-fill ~/Pictures/shapes-wallpaper.jpg &
 dwmblocks &
-picom -f -l 3 -t 2 -r 5 -o 0.60 &
+picom --no-fading-openclose &
 sxhkd &
 dunst &
-xrandr -r 75 
-xcalib ~/.config/xcalib/q3279vwf.icm
 
 while true; do 
-	dbus-launch dwm 2> /dev/null
+	dbus-launch dwm 2> /dev/null 
 done
