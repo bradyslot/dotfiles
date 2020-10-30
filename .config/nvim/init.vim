@@ -17,21 +17,11 @@ set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 set clipboard=unnamedplus
-set undodir=~/.vim/undo//
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-let $MYVIMRC="~/.vimrc"
 set updatetime=50
 set shortmess+=c
 set colorcolumn=80
 set cmdheight=2
-set buftype=help
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-" avoid issues with nvim's shada file
-if !has('nvim')
-    set viminfo+=n~/.vim/viminfo
-endif
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -40,11 +30,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'mbbill/undotree'
 Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -79,38 +69,54 @@ let g:floaterm_keymap_toggle='<F12>'
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 
-" fzf configuration
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" FZF configuration
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.5 }}
 
-" improve tabbing 
-let g:airline#extensions#tabline#enabled = 1
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+" Bind "//" to a fzf-powered buffer search
+nmap // :BLines<CR>
 
-" key bindings 
+" Bind "??" to a fzf-powered project search
+nmap ?? :Rg<CR>
+
+" Bind "<C-p>" to a fzf-powered filename search
+nmap <C-p> :Files<CR>
+
+" Bind "cc" to a fzf-powered command search
+nmap cc :Commands<CR>
+
+" leader keymaps
 let g:mapleader = " "
-nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :FloatermNew lazygit<CR>
 nnoremap <leader>r :FloatermNew ranger<CR>
-nnoremap <leader><Tab> :bd<CR>
+nnoremap <leader>x :bd<CR>
 nnoremap <leader>s :w<CR>
 vnoremap <leader>p "_dP
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+" comment line or visual selection
 noremap <C-_> :Commentary<CR>
+
+" indenting line or visual selection
 vnoremap > >gv
 vnoremap < <gv
+
+" Coc jumping
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" buffer navigation
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+noremap <S-l> :bnext <CR>
+noremap <S-h> :bprev <CR>
+
+" tab navigation
+noremap <C-Left> :tabprevious<CR>
+noremap <C-Right> :tabnext<CR>

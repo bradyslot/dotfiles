@@ -160,6 +160,8 @@ alias sxhkdrc='$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc'
 alias dunstrc='$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc'
 alias reflect-mirrors='sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk'
 
 # pacman
 alias pac='sudo pacman -S'     	 # install
