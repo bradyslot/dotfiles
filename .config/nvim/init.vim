@@ -1,5 +1,8 @@
 syntax enable 
 filetype plugin on
+set relativenumber
+set mouse=a
+set showcmd
 set guicursor=
 set nohlsearch
 set hidden
@@ -15,29 +18,121 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
-set completeopt=menuone,noinsert,noselect
 set clipboard=unnamedplus
-set updatetime=50
-set shortmess+=c
 set colorcolumn=80
-set cmdheight=2
+set cmdheight=1
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" remove trailing white spaces on write
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'glts/vim-magnum'
+Plug 'glts/vim-radical'
+Plug 'neovim/nvim-lspconfig'
+Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'terryma/vim-expand-region'
+Plug 'rust-lang/rust.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
 
 call plug#end()
 
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+" Configure LSP
+" https://github.com/neovim/nvim-lspconfig#rust_analyzer
+lua <<EOF
+
+-- nvim_lsp object
+local nvim_lsp = require'nvim_lsp'
+
+-- function to attach completion and diagnostics
+-- when setting up lsp
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+
+-- Enable rust_analyzer
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+
+EOF
+
+" Trigger completion with <Tab>
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ completion#trigger_completion()
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Code navigation shortcuts
+nnoremap <silent> <c-j> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" Visualize diagnostics
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_trimmed_virtual_text = '40'
+
+" Don't show diagnostics while in insert mode
+let g:diagnostic_insert_delay = 1
+
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=50
+
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
+nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
+
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" Enable type inlay hints
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
+
+" set colorscheme
 let base16colorspace=256 
 colorscheme base16-snazzy
 let g:airline_theme='base16_snazzy'
@@ -66,57 +161,65 @@ let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_keymap_toggle='<F12>'
-nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent><F12> :FloatermToggle<CR>
+tnoremap <silent><F12> <C-\><C-n>:FloatermToggle<CR>
 
 " FZF configuration
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS='--layout=reverse'
-let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.5 }}
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 }}
 
-" Bind "//" to a fzf-powered buffer search
-nmap // :BLines<CR>
+" buffer search
+nnoremap // :BLines<CR>
 
-" Bind "??" to a fzf-powered project search
-nmap ?? :Rg<CR>
+" project search
+nnoremap <Leader>p <cmd>lua require'telescope.builtin'.git_files{}<CR>
 
-" Bind "<C-p>" to a fzf-powered filename search
-nmap <C-p> :Files<CR>
+" file search
+nnoremap <C-p> <cmd>lua require'telescope.builtin'.find_files{}<CR>
 
-" Bind "cc" to a fzf-powered command search
-nmap cc :Commands<CR>
+" lsp references search
+nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
 
 " leader keymaps
 let g:mapleader = " "
 nnoremap <leader>g :FloatermNew lazygit<CR>
 nnoremap <leader>r :FloatermNew ranger<CR>
+nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
-nnoremap <leader>s :w<CR>
-vnoremap <leader>p "_dP
+
+" move between windows
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
-" comment line or visual selection
-noremap <C-_> :Commentary<CR>
+" move visual selection around 
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
 
 " indenting line or visual selection
 vnoremap > >gv
-vnoremap < <gv
+vnoremap < <gv 
+
+" pressing v multiple times to expand selection
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" comment line or visual selection
+nnoremap <C-_> :Commentary<CR>
+vnoremap <C-_> :Commentary<CR>
 
 " Coc jumping
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 " buffer navigation
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-noremap <S-l> :bnext <CR>
-noremap <S-h> :bprev <CR>
-
-" tab navigation
-noremap <C-Left> :tabprevious<CR>
-noremap <C-Right> :tabnext<CR>
+nnoremap L :bnext <CR>
+nnoremap H :bprev <CR>

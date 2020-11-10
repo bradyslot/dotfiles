@@ -5,8 +5,8 @@
 autoload -U colors && colors
 
 # History in cache directory:
-HISTSIZE=9999
-SAVEHIST=9999
+HISTSIZE=1000
+SAVEHIST=1000
 HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
@@ -88,15 +88,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Load zsh-syntax-highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-# Suggest aliases for commands
-source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh 2>/dev/null
-
-# Search repos for programs that can't be found
-source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
-
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_CHAR_SYMBOL=❯
@@ -141,27 +132,28 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias ip='ip --color=auto'
-alias ls='ls -lahFvg --group-directories-first --color=auto'
+alias ls='exa -lahFg --group-directories-first --git'
 
 # mine
 alias vim='nvim'
 alias ssh='TERM=xterm-color ssh'
 alias cat='bat'
-alias dp='xrandr --output DisplayPort-0 --preferred'
 alias kitty-xcolorgen="xrdb -query | grep '\*color\|\*foreground\|\*background\|\*cursorColor' | tr -d '*:' | sed 's/cursorColor/cursor/' > ~/.config/kitty/color.conf"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias rank-mirror='sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
 alias xinitrc='$EDITOR $XDG_CONFIG_HOME/X11/xinitrc'
-alias vimrc='$EDITOR ~/.vimrc'
+alias vimrc='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
 alias bashrc='$EDITOR ~/.bashrc'
+alias zshrc='$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc'
 alias xresources='$EDITOR $XDG_CONFIG_HOME/X11/Xresources'
 alias sxhkdrc='$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc'
 alias dunstrc='$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc'
 alias reflect-mirrors='sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk'
+alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
+alias tmux='TERM=screen-256color tmux'
 
 # pacman
 alias pac='sudo pacman -S'     	 # install
@@ -173,14 +165,6 @@ alias paclo='sudo pacman -Qdt'   # list orphans
 alias pacro='pacman -Qdt && sudo pacman -Rns $(pacman -Qtdq)' # remove orphans
 alias pacc='sudo pacman -Scc'    # clean cache
 alias paclf='sudo pacman -Ql'    # list files
-
-# alias chmod commands 
-alias mx='chmod a+x'
-alias 000='chmod -R 000'
-alias 644='chmod -R 644'
-alias 666='chmod -R 666'
-alias 755='chmod -R 755'
-alias 777='chmod -R 777'
 
 # search command line history
 alias h="history | grep "
@@ -196,3 +180,20 @@ alias mkzip='zip -r'
 
 # show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f | bat --paging=never -l log"
+
+#######################################
+# Plugins
+#######################################
+
+# Load extract function
+source ~/.config/zsh/extract.zsh 2>/dev/null
+
+# Load universal archive function
+source ~/.config/zsh/archive.zsh 2>/dev/null
+
+# Load zsh-autosuggestions
+source ~/.config/zsh/zsh-autosuggestions.zsh 2>/dev/null
+
+# Load zsh-syntax-highlighting
+source ~/.config/zsh/zsh-syntax-highlighting.zsh 2>/dev/null
+

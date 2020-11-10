@@ -7,7 +7,7 @@ export PATH
 export VISUAL=nvim
 export EDITOR=nvim
 export BROWSER=brave
-export TERMINAL=kitty
+export TERMINAL=alacritty
 export WM=dwm
 export PAGER=less
 export VIDEO=vlc
@@ -36,6 +36,9 @@ prefix=${XDG_DATA_HOME}/npm
 cache=${XDG_CACHE_HOME}/npm
 tmp=${XDG_RUNTIME_DIR}/npm
 #init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+
+# program env variables
+export CM_LAUNCHER='dmenu_run'
 
 # colorize things
 export LESS=-R

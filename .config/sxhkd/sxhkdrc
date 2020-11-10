@@ -6,30 +6,20 @@ alt + minus
 	pulsemixer --change-volume -5
 
 alt + period
-	~/bin/sp next
+	playerctl next
 
 alt + comma
-	~/bin/sp prev
+	playerctl previous
 	
 alt + slash
-	~/bin/sp play
-
-# open programs
-alt + e
-	$BROWSER
-
-alt + r
-	$TERMINAL ranger	
-
-alt + v
-	$TERMINAL nvim 
+	playerctl play-pause
 
 # system shortcuts
 Print
-	scrot pic/scrot/screenshot-$(date '+%F-%H-%M-%S').png
+	scrot Pictures/scrot/screenshot-$(date '+%F-%H-%M-%S').png
 
 alt + Print
-	scrot -s pic/scrot/screengrab-$(date '+%F-%H-%M-%S').png
+	scrot -s Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
 
 alt + Escape
 	prompt 'Leave Xorg?' 'killall Xorg'
@@ -39,3 +29,9 @@ alt + Delete
 
 alt + BackSpace
 	prompt "Reboot computer?" "sudo -A reboot"
+
+alt + backslash
+	clipmenu 
+
+alt + shift + x
+	killandnotify "sxhkd" "Config reloaded" && sxhkd &

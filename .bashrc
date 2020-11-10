@@ -190,8 +190,8 @@ set menu-complete-display-prefix on
 #bind '"\e[Z": menu-complete-backward'
 
 # up and down arrows search history with characters before the cursor
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+#bind '"\e[A": history-search-backward'
+#bind '"\e[B": history-search-forward'
 
 # enable colors in tab completion
 set colored-stats on
