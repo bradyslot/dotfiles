@@ -3,7 +3,6 @@ filetype plugin on
 set relativenumber
 set mouse=a
 set showcmd
-set guicursor=
 set nohlsearch
 set hidden
 set noerrorbells
@@ -28,31 +27,47 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 
 call plug#begin(stdpath('data') . '/plugged')
 
-Plug 'connorholyday/vim-snazzy'
+" colors and themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sheerun/vim-polyglot'
 Plug 'chriskempson/base16-vim'
+Plug 'sheerun/vim-polyglot'
+
+" floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
+
+" quality of life improvements
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
-Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
+
+" neovim lsp requirements
 Plug 'neovim/nvim-lspconfig'
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'terryma/vim-expand-region'
+
+" language extensions
 Plug 'rust-lang/rust.vim'
+
+" telescope fzf powered search window
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
+ 
+" ranger file manager
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 call plug#end()
+
+" open ranger when vim opens a directory
+let g:ranger_replace_netrw = 1
+let g:ranger_map_keys = 0
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -184,7 +199,7 @@ nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
 " leader keymaps
 let g:mapleader = " "
 nnoremap <leader>g :FloatermNew lazygit<CR>
-nnoremap <leader>r :FloatermNew ranger<CR>
+nnoremap <leader>r :Ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
 
