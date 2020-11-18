@@ -32,6 +32,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'arcticicestudio/nord-vim'
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
@@ -148,9 +149,10 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 " set colorscheme
-let base16colorspace=256 
-colorscheme base16-snazzy
-let g:airline_theme='base16_snazzy'
+" let base16colorspace=256 
+" colorscheme base16-nord
+let g:airline_theme='nord'
+colorscheme nord
 
 " --- vim go (polyglot) settings.
 let g:go_highlight_build_constraints = 1
@@ -169,13 +171,19 @@ let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
 " floaterm config
+let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
 let g:floaterm_width=0.8
 let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
-let g:floaterm_keymap_toggle='<F12>'
+nnoremap <silent><F9>  :FloatermNew<CR>
+tnoremap <silent><F9>  <C-\><C-n>:FloatermNew<CR>
+nnoremap <silent><F10>  :FloatermPrev<CR>
+tnoremap <silent><F10>  <C-\><C-n>:FloatermPrev<CR>
+nnoremap <silent><F11>  :FloatermNext<CR>
+tnoremap <silent><F11>  <C-\><C-n>:FloatermNext<CR>
 nnoremap <silent><F12> :FloatermToggle<CR>
 tnoremap <silent><F12> <C-\><C-n>:FloatermToggle<CR>
 
@@ -238,3 +246,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 nnoremap L :bnext <CR>
 nnoremap H :bprev <CR>
+
+" write using sudo with w!!
+cmap w!! w !sudo tee > /dev/null %

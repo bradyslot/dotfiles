@@ -51,26 +51,33 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="base16-snazzy"
+export BAT_THEME="Nord"
+# export HIGHLIGHT_STYLE="nord"
 
-# Base16 Snazzy theme for FZF
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# Base16 Nord FZF
 gen_fzf_default_opts() {
-local color00='#282a36'
-local color01='#34353e'
-local color02='#43454f'
-local color03='#78787e'
-local color04='#a5a5a9'
-local color05='#e2e4e5'
-local color06='#eff0eb'
-local color07='#f1f1f0'
-local color08='#ff5c57'
-local color09='#ff9f43'
-local color0A='#f3f99d'
-local color0B='#5af78e'
-local color0C='#9aedfe'
-local color0D='#57c7ff'
-local color0E='#ff6ac1'
-local color0F='#b2643c'
+local color00='#2E3440'
+local color01='#3B4252'
+local color02='#434C5E'
+local color03='#4C566A'
+local color04='#D8DEE9'
+local color05='#E5E9F0'
+local color06='#ECEFF4'
+local color07='#8FBCBB'
+local color08='#BF616A'
+local color09='#D08770'
+local color0A='#EBCB8B'
+local color0B='#A3BE8C'
+local color0C='#88C0D0'
+local color0D='#81A1C1'
+local color0E='#B48EAD'
+local color0F='#5E81AC'
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\

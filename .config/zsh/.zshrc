@@ -74,7 +74,7 @@ alias ssh='TERM=xterm-color ssh'
 alias cat='bat'
 alias kitty-xcolorgen="xrdb -query | grep '\*color\|\*foreground\|\*background\|\*cursorColor' | tr -d '*:' | sed 's/cursorColor/cursor/' > ~/.config/kitty/color.conf"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-alias rank-mirror='sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist'
+alias rank-mirror='sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
 alias xinitrc='$EDITOR $XDG_CONFIG_HOME/X11/xinitrc'
 alias vimrc='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
@@ -87,33 +87,6 @@ alias reflect-mirrors='sudo reflector --verbose --latest 10 --sort rate --save /
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
-alias tmux='TERM=screen-256color tmux'
-
-# pacman
-alias pac='sudo pacman -S'     	 # install
-alias pacu='sudo pacman -Syu' 	 # update, add 'a' to the list of letters to update AUR packages if you use yaourt
-alias pacr='sudo pacman -Rs'  	 # remove
-alias pacs='yay -Ss'     # search
-alias paci='sudo pacman -Si'     # info
-alias paclo='sudo pacman -Qdt'   # list orphans
-alias pacro='pacman -Qdt && sudo pacman -Rns $(pacman -Qtdq)' # remove orphans
-alias pacc='sudo pacman -Scc'    # clean cache
-alias paclf='sudo pacman -Ql'    # list files
-
-# search command line history
-alias h="history | grep "
-
-# search running processes
-alias p="ps aux | grep "
-
-# easily create archives
-alias mktar='tar -cvf'
-alias mkbz2='tar -cvjf'
-alias mkgz='tar -cvzf'
-alias mkzip='zip -r'
-
-# show all logs in /var/log
-alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f | bat --paging=never -l log"
 
 #######################################
 # Plugins
