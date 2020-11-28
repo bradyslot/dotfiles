@@ -87,6 +87,7 @@ alias reflect-mirrors='sudo reflector --verbose --latest 10 --sort rate --save /
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
+alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 
 #######################################
 # Plugins

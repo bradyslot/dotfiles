@@ -15,7 +15,7 @@ set nowrap
 set smartcase
 set incsearch
 set termguicolors
-set scrolloff=8
+set scrolloff=999
 set noshowmode
 set clipboard=unnamedplus
 set colorcolumn=80
@@ -33,6 +33,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'arcticicestudio/nord-vim'
+Plug 'junegunn/limelight.vim'
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
