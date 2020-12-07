@@ -20,10 +20,10 @@ set noshowmode
 set clipboard=unnamedplus
 set colorcolumn=80
 set cmdheight=1
+set shortmess+=c
+set updatetime=50
+set completeopt=menuone,noinsert,noselect
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-" remove trailing white spaces on write
-autocmd BufWritePre *.py :%s/\s\+$//e
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -45,21 +45,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'glts/vim-magnum'
 Plug 'glts/vim-radical'
-
-" neovim lsp requirements
-Plug 'neovim/nvim-lspconfig'
-Plug 'tjdevries/lsp_extensions.nvim'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'terryma/vim-expand-region'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " language extensions
 Plug 'rust-lang/rust.vim'
-
-" telescope fzf powered search window
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'
  
 " ranger file manager
 Plug 'rbgrouleff/bclose.vim'
@@ -71,35 +62,6 @@ call plug#end()
 let g:ranger_replace_netrw = 1
 let g:ranger_map_keys = 0
 
-" Set completeopt to have a better completion experience
-" :help completeopt
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing extra messages when using completion
-set shortmess+=c
-
-" Configure LSP
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
-lua <<EOF
-
--- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
-
--- function to attach completion and diagnostics
--- when setting up lsp
-local on_attach = function(client)
-    require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
-end
-
--- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
-
-EOF
-
 " Trigger completion with <Tab>
 inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
@@ -110,44 +72,6 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-
-" Code navigation shortcuts
-nnoremap <silent> <c-j> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-
-" Visualize diagnostics
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_trimmed_virtual_text = '40'
-
-" Don't show diagnostics while in insert mode
-let g:diagnostic_insert_delay = 1
-
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=50
-
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
-
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
-nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
-
-" have a fixed column for the diagnostics to appear in
-" this removes the jitter when warnings/errors flow in
-set signcolumn=yes
-
-" Enable type inlay hints
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 " set colorscheme
 " let base16colorspace=256 
@@ -197,13 +121,10 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 }}
 nnoremap // :BLines<CR>
 
 " project search
-nnoremap <Leader>p <cmd>lua require'telescope.builtin'.git_files{}<CR>
+nnoremap <Leader>p :GFiles<CR>
 
 " file search
-nnoremap <C-p> <cmd>lua require'telescope.builtin'.find_files{}<CR>
-
-" lsp references search
-nnoremap <silent> gr <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
+nnoremap <C-p> :Files<CR>
 
 " leader keymaps
 let g:mapleader = " "
