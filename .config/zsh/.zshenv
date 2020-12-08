@@ -3,6 +3,9 @@ typeset -U PATH path
 path=("$HOME/bin" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
 export PATH
 
+# locale
+export LANG=en_AU.UTF-8
+
 # default apps
 export VISUAL=nvim
 export EDITOR=nvim
