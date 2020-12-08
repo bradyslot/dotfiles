@@ -39,6 +39,7 @@ tmp=${XDG_RUNTIME_DIR}/npm
 
 # program env variables
 export CM_LAUNCHER='dmenu_run'
+export ZSH_CUSTOM=$HOME/.config/zsh/custom
 
 # colorize things
 export LESS=-R

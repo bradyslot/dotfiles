@@ -22,6 +22,10 @@ _comp_options+=(globdots)		# Include hidden files.
 
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# Spaceship Prompt
+source ~/.config/zsh/custom/themes/spaceship-prompt/spaceship.zsh
+ZSH_THEME="spaceship"
+
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_CHAR_SYMBOL=❯
@@ -51,10 +55,6 @@ SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_JOBS_SHOW=false
-
-# Spaceship Prompt
-autoload -U promptinit; promptinit
-prompt spaceship
 
 #######################################
 # Aliases

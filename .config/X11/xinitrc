@@ -1,14 +1,10 @@
 #!/bin/sh
 
-xrandr -r 75 &
-clipmenud &
 uncluttler -idle 0 &
-xcalib ~/.config/xcalib/q3279vwf.icm &
 xset s off -dpms 2> /dev/null &
 xset r rate 240 40 &
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
 xrdb ~/.config/X11/Xresources &
-feh --no-fehbg --bg-fill ~/Pictures/killua-flat-wallpaper.png &
 dwmblocks &
 picom --no-fading-openclose &
 sxhkd &
