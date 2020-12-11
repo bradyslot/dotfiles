@@ -1,4 +1,4 @@
-# path 
+# path
 typeset -U PATH path
 path=("$HOME/bin" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
 export PATH

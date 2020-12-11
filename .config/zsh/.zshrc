@@ -8,6 +8,7 @@ autoload -U colors && colors
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.cache/zsh/history
+[[ ! -e ~/.cache/zsh/history ]] && touch ~/.cache/zsh/history
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -89,6 +90,7 @@ alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | grep -i"
+alias pkglist-update="yay -Qe | awk '{print $1}' > ~/.config/pkglist"
 
 #######################################
 # Plugins
