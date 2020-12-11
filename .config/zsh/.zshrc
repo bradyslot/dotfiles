@@ -67,7 +67,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias ip='ip --color=auto'
-alias ls='exa -lahFg --group-directories-first --git'
+alias ls='ls -lahv --color=auto --group-directories-first'
 
 # mine
 alias vim='nvim'
