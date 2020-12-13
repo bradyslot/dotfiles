@@ -23,6 +23,13 @@ _comp_options+=(globdots)		# Include hidden files.
 
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+#######################################
+# Command Prompt
+#######################################
+
+autoload -U promptinit; promptinit
+prompt spaceship
+
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_CHAR_SYMBOL=❯
@@ -53,10 +60,6 @@ SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_JOBS_SHOW=false
 
-# Spaceship Prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
 #######################################
 # Aliases
 #######################################
@@ -71,26 +74,17 @@ alias ls='ls -lahv --color=auto --group-directories-first'
 
 # mine
 alias vim='nvim'
+alias vi='nvim'
 alias ssh='TERM=xterm-color ssh'
 alias cat='bat'
-alias kitty-xcolorgen="xrdb -query | grep '\*color\|\*foreground\|\*background\|\*cursorColor' | tr -d '*:' | sed 's/cursorColor/cursor/' > ~/.config/kitty/color.conf"
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-alias rank-mirror='sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
-alias xinitrc='$EDITOR $XDG_CONFIG_HOME/X11/xinitrc'
-alias vimrc='$EDITOR $XDG_CONFIG_HOME/nvim/init.vim'
-alias bashrc='$EDITOR ~/.bashrc'
-alias zshrc='$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc'
-alias xresources='$EDITOR $XDG_CONFIG_HOME/X11/Xresources'
-alias sxhkdrc='$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc'
-alias dunstrc='$EDITOR $XDG_CONFIG_HOME/dunst/dunstrc'
-alias reflect-mirrors='sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | grep -i"
-alias pkglist-update="yay -Qe | awk '{print $1}' > ~/.config/pkglist"
+alias wiki="awman"
 
 #######################################
 # Plugins

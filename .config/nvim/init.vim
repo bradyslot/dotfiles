@@ -26,6 +26,7 @@ set completeopt=menuone,noinsert,noselect
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " ===================================================================== PLUGINS
+
 call plug#begin(stdpath('data') . '/plugged')
 
 " colors and themes
@@ -53,6 +54,7 @@ Plug 'neoclide/coc.nvim'
 call plug#end()
 
 " ========================================================================= COC
+
 " coc completion with Tab and S-Tab
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -112,6 +114,7 @@ augroup mygroup
 augroup end
 
 " ================================================================= COLORSCHEME
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -139,11 +142,13 @@ if has('nvim')
 endif
 
 " ====================================================================== RANGER
+
 " open ranger when vim opens a directory
 let g:ranger_replace_netrw = 1
 let g:ranger_map_keys = 0
 
 " ==================================================================== POLYGLOT
+
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -160,11 +165,12 @@ let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
 " ==================================================================== FLOATERM
+
 let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
+let g:floaterm_width=0.85
+let g:floaterm_height=0.5
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_keymap_new    = '<F7>'
@@ -173,6 +179,7 @@ let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 
 " ========================================================================= FZF
+
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 }}
@@ -185,6 +192,7 @@ nnoremap <Leader>p :GFiles<CR>
 nnoremap <C-p> :Files<CR>
 
 " ====================================================================== LEADER
+
 let g:mapleader = " "
 nnoremap <leader>g :FloatermNew lazygit<CR>
 nnoremap <leader>r :FloatermNew ranger<CR>
@@ -198,6 +206,7 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 " ====================================================================== REMAPS
+
 " move visual selection around
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
@@ -228,11 +237,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 nnoremap H :bprev <CR>
 nnoremap L :bnext <CR>
 
+" ==================================================================== COMMANDS
+
 " write using sudo with w!!
 cmap w!! w !sudo tee > /dev/null %
-
-" remove trailing whitespaces
-function TrimWhiteSpace()
-    %s/\s*$//
-    ''
-endfunction

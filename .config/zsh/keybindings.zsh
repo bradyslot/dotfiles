@@ -8,7 +8,7 @@ function zle-line-init {
 zle -N zle-line-init
 
 function select-char-right {
-    if (( $marking != 1 )) 
+    if (( $marking != 1 ))
     then
         marking=1
         zle set-mark-command
@@ -18,7 +18,7 @@ function select-char-right {
 zle -N select-char-right
 
 function select-char-left {
-    if (( $marking != 1 )) 
+    if (( $marking != 1 ))
     then
         marking=1
         zle set-mark-command
@@ -28,7 +28,7 @@ function select-char-left {
 zle -N select-char-left
 
 function select-word-right {
-    if (( $marking != 1 )) 
+    if (( $marking != 1 ))
     then
         marking=1
         zle set-mark-command
@@ -38,7 +38,7 @@ function select-word-right {
 zle -N select-word-right
 
 function select-word-left {
-    if (( $marking != 1 )) 
+    if (( $marking != 1 ))
     then
         marking=1
         zle set-mark-command

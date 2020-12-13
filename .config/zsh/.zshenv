@@ -49,7 +49,7 @@ export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-
+export PATH="/home/drauk/.local/share/cargo/bin:$PATH"
 
 # program env variables
 export CM_LAUNCHER='dmenu_run'
