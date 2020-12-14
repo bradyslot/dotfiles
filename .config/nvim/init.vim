@@ -118,27 +118,28 @@ augroup end
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_theme='base16_nord'
+let g:airline_theme='base16'
 let g:airline_symbols.maxlinenr=''
-colorscheme base16-nord
-" nord colorsheme
+colorscheme base16-solarflare
+
+" solarflare theme
 if has('nvim')
-    let g:terminal_color_0  = '#3b4252'
-    let g:terminal_color_1  = '#bf616a'
-    let g:terminal_color_2  = '#a3be8c'
-    let g:terminal_color_3  = '#ebcb8b'
-    let g:terminal_color_4  = '#81a1c1'
-    let g:terminal_color_5  = '#b48ead'
-    let g:terminal_color_6  = '#88c0d0'
-    let g:terminal_color_7  = '#e5e9f0'
-    let g:terminal_color_8  = '#4c566a'
-    let g:terminal_color_9  = '#bf616a'
-    let g:terminal_color_10  = '#a3be8c'
-    let g:terminal_color_11  = '#ebcb8b'
-    let g:terminal_color_12  = '#81a1c1'
-    let g:terminal_color_13  = '#b48ead'
-    let g:terminal_color_14  = '#8fbcbb'
-    let g:terminal_color_15  = '#eceff4'
+    let g:terminal_color_0  = '#18262f'
+    let g:terminal_color_1  = '#ef5253'
+    let g:terminal_color_2  = '#7cc844'
+    let g:terminal_color_3  = '#e4b51c'
+    let g:terminal_color_4  = '#33b5e1'
+    let g:terminal_color_5  = '#a363d5'
+    let g:terminal_color_6  = '#52cbb0'
+    let g:terminal_color_7  = '#a6afb8'
+    let g:terminal_color_8  = '#667581'
+    let g:terminal_color_9  = '#ef5253'
+    let g:terminal_color_10 = '#7cc844'
+    let g:terminal_color_11 = '#e4b51c'
+    let g:terminal_color_12 = '#33b5e1'
+    let g:terminal_color_13 = '#a363d5'
+    let g:terminal_color_14 = '#52cbb0'
+    let g:terminal_color_15 = '#f5f7fa'
 endif
 
 " ====================================================================== RANGER
@@ -198,6 +199,7 @@ nnoremap <leader>g :FloatermNew lazygit<CR>
 nnoremap <leader>r :FloatermNew ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
+nnoremap <leader>c :Colors<CR>
 
 " move between windows
 nnoremap <leader>h :wincmd h<CR>
