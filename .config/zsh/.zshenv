@@ -1,4 +1,4 @@
-# path 
+# path
 typeset -U PATH path
 path=("$HOME/bin" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
 export PATH
@@ -38,7 +38,18 @@ export GOPATH="$XDG_DATA_HOME"/go
 prefix=${XDG_DATA_HOME}/npm
 cache=${XDG_CACHE_HOME}/npm
 tmp=${XDG_RUNTIME_DIR}/npm
-#init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js 2>/dev/null
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android/
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/androidmodule=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export PATH="/home/drauk/.local/share/cargo/bin:$PATH"
 
 # program env variables
 export CM_LAUNCHER='dmenu_run'
