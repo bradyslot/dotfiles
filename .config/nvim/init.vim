@@ -236,8 +236,12 @@ nnoremap <silent> gr <Plug>(coc-references)
 " buffer navigation
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-nnoremap H :bprev <CR>
-nnoremap L :bnext <CR>
+nnoremap <C-h> :bprev <CR>
+nnoremap <C-l> :bnext <CR>
+
+" jump to begining and end of line
+nnoremap <S-h> ^
+nnoremap <S-l> $
 
 " ==================================================================== COMMANDS
 
