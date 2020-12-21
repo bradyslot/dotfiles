@@ -29,7 +29,7 @@ prompt spaceship
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_CHAR_SYMBOL=">"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_HG_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
@@ -82,10 +82,13 @@ alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/U
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | grep -i"
 alias wiki="awman"
+alias virtualbox="GTK2_RC_FILES='' virtualbox"
 
 #######################################
 # Plugins
 #######################################
+# Load Completions Scripts
+fpath=(~/.config/zsh/completions $fpath)
 
 # Load Custom Keybindings
 source ~/.config/zsh/keybindings.zsh 2>/dev/null
