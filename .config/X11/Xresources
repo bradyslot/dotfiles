@@ -57,7 +57,7 @@ URxvt*font:xft:xos4 Terminus:size=16
 *dmenu.font:xos4 Terminus:size=16
 
 *dwm.normbordercolor: base00
-*dwm.normbgcolor: #2C1C3B
+*dwm.normbgcolor: base00
 *dwm.normfgcolor: base05
 *dwm.selbordercolor: base0C
 *dwm.selbgcolor: base0C
