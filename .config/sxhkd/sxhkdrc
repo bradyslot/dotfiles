@@ -10,7 +10,7 @@ alt + period
 
 alt + comma
 	playerctl previous
-	
+
 alt + slash
 	playerctl play-pause
 
@@ -18,20 +18,11 @@ alt + slash
 Print
 	scrot Pictures/scrot/screenshot-$(date '+%F-%H-%M-%S').png
 
-alt + Print
-	scrot -s Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
-
-alt + Escape
-	prompt 'Leave Xorg?' 'killall Xorg'
-
-alt + Delete
-	prompt "Shutdown computer?" "sudo -A shutdown -h now"
-
-alt + BackSpace
-	prompt "Reboot computer?" "sudo -A reboot"
-
-alt + backslash
-	clipmenu 
-
 alt + shift + x
-	killandnotify "sxhkd" "Config reloaded" && sxhkd &
+	pkill sxhkd && $(sxhkd &)
+
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
