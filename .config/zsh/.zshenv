@@ -14,7 +14,7 @@ export TERMINAL=alacritty
 export WM=dwm
 export PAGER=less
 export VIDEO=vlc
-export IMAGE=sxiv
+export IMAGE=nomacs
 export OPENER=xdg-open
 
 # clean up home directory
@@ -65,8 +65,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="Nord"
-# export HIGHLIGHT_STYLE="nord"
+export BAT_THEME="base16"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
