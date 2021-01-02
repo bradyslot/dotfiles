@@ -1,12 +1,13 @@
 configuration {
     modi: "window,drun,ssh,combi";
-    font: "Terminus 12";
+    font: "Terminus 14";
     combi-modi: "window,drun,ssh";
     theme: "base16-solarflare";
     width: 30;
     lines: 15;
     padding: 5;
     columns: 1;
+    drun-display-format: "{name} [<span weight='light' size='small'>({generic})</span>]";
 /*    bw: 1;*/
 /*    location: 0;*/
 /*    yoffset: 0;*/
@@ -25,7 +26,6 @@ configuration {
 /*    drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*    drun-categories: ;*/
 /*    drun-show-actions: false;*/
-/*    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 /*    drun-url-launcher: "xdg-open";*/
 /*    disable-history: false;*/
 /*    ignored-prefixes: "";*/

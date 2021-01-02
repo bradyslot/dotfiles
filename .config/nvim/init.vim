@@ -48,14 +48,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
 " language extensions
-Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim'
 
 call plug#end()
 
 " ========================================================================= COC
 
-" coc completion with Tab and S-Tab
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -67,14 +65,15 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" use <c-space> to trigger completion
+" Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" <CR> selects first item and formats
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -105,14 +104,6 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 " ================================================================= COLORSCHEME
 
 if !exists('g:airline_symbols')
@@ -120,6 +111,8 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_theme='base16'
 let g:airline_symbols.maxlinenr=''
+let g:airline_symbols.linenr=''
+let g:airline_section_y=''
 colorscheme base16-solarflare
 
 " solarflare theme
