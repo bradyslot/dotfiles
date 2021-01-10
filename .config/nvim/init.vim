@@ -34,6 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'chrisbra/Colorizer'
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
@@ -42,13 +43,14 @@ Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
 " language extensions
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -106,34 +108,17 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ================================================================= COLORSCHEME
 
+" system wide colorscheme is handled by Flavours, :colorscheme looks into the
+" runtime path 'colors/{name}.vim'
+" airline detects the colorscheme from g:colors_name declared in theme.vim
+colorscheme theme
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_theme='base16'
 let g:airline_symbols.maxlinenr=''
 let g:airline_symbols.linenr=''
 let g:airline_section_y=''
-colorscheme base16-solarflare
-
-" solarflare theme
-if has('nvim')
-    let g:terminal_color_0  = '#18262f'
-    let g:terminal_color_1  = '#ef5253'
-    let g:terminal_color_2  = '#7cc844'
-    let g:terminal_color_3  = '#e4b51c'
-    let g:terminal_color_4  = '#33b5e1'
-    let g:terminal_color_5  = '#a363d5'
-    let g:terminal_color_6  = '#52cbb0'
-    let g:terminal_color_7  = '#a6afb8'
-    let g:terminal_color_8  = '#667581'
-    let g:terminal_color_9  = '#ef5253'
-    let g:terminal_color_10 = '#7cc844'
-    let g:terminal_color_11 = '#e4b51c'
-    let g:terminal_color_12 = '#33b5e1'
-    let g:terminal_color_13 = '#a363d5'
-    let g:terminal_color_14 = '#52cbb0'
-    let g:terminal_color_15 = '#f5f7fa'
-endif
 
 " ====================================================================== RANGER
 
@@ -240,3 +225,6 @@ nnoremap <S-l> $
 
 " write using sudo with w!!
 cmap w!! w !sudo tee > /dev/null %
+
+" enable vim-repeat support on mappings
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)

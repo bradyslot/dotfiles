@@ -15,7 +15,7 @@ sort = yes
 separator_color = "#e2e4e5"
 
 # TEXT
-font = Hack Nerd Font Mono:size=12
+font = xos4 Terminus 10
 line_height = 0
 format = "<b>%s</b>\n%b"
 alignment = left
@@ -23,7 +23,7 @@ vertical_alignment = center
 show_age_threshold = 60
 word_wrap = yes
 ignore_newline = no
-stack_duplicates = no 
+stack_duplicates = no
 show_indicators = yes
 
 # ICONS
@@ -35,18 +35,22 @@ mouse_left_click = close_current
 mouse_middle_click = do_action, close_current
 mouse_right_click = close_all
 
-[urgency_low]
-    background = "#282a36"
-    foreground = "#e2e4e5"
-    timeout = 5 
+# Start Flavours
+frame_color = "#A6AFB8"
+separator_color = "#A6AFB8"
 
-[urgency_normal]
-    background = "#282a36"
-    foreground = "#e2e4e5"
-    timeout = 5 
+[base16_low]
+    msg_urgency = low
+    background = "#222E38"
+    foreground = "#667581"
 
-[urgency_critical]
-    background = "#282a36"
-    foreground = "#e2e4e5"
-    frame_color = "#5af78e"
-    timeout = 0
+[base16_normal]
+    msg_urgency = normal
+    background = "#586875"
+    foreground = "#A6AFB8"
+
+[base16_critical]
+    msg_urgency = critical
+    background = "#EF5253"
+    foreground = "#E8E9ED"
+# End Flavours

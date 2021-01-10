@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Source Environment
+source ~/.config/zsh/.zshenv
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 
@@ -71,8 +74,10 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias ip='ip --color=auto'
 alias ls='ls -lahv --color=auto --group-directories-first'
+alias tree='tree -C'
 
 # mine
+alias nvim='nvim'
 alias vim='nvim'
 alias vi='nvim'
 alias ssh='TERM=xterm-color ssh'
