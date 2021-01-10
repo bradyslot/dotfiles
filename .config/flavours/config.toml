@@ -1,0 +1,68 @@
+# [[item]]
+# file = '~/.config/example' (file to inject to, supports tilde and env var expansion. required)
+# template = 'example' (template to use. required)
+# subtemplate = 'default' (subtemplate to use)
+# rewrite = false (should we rewrite the entire file?)
+# start = '# Start flavours' (if not rewriting, where to start replacing)
+# end = '# End flavours' (if not rewriting, where to stop replacing)
+# hook = '' (command to execute after injecting)
+
+[[item]]
+file = '~/.config/alacritty/alacritty.yml'
+template = 'alacritty'
+subtemplate = 'default-256'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+
+[[item]]
+file = '~/.config/X11/Xresources'
+template = 'xresources'
+subtemplate = 'default-256'
+rewrite = false
+start = '! Start Flavours'
+end = '! End Flavours'
+hook = 'bash -c "xrdb -load ~/.config/X11/Xresources && xdotool key alt+F5"'
+
+[[item]]
+file = '~/.config/rofi/colors.rasi'
+template = 'rofi'
+subtemplate = 'default'
+rewrite = true
+
+[[item]]
+file = '~/.config/zsh/.zshenv'
+template = 'fzf'
+subtemplate = 'default'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+hook = 'source ~/.config/zsh/.zshrc'
+
+[[item]]
+file = '~/.config/dunst/dunstrc'
+template = 'dunst'
+subtemplate = 'default'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+
+[[item]]
+file = '~/.config/nvim/colors/theme.vim'
+template = 'vim'
+subtemplate = 'default'
+rewrite = true
+hook = 'nvr --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
+
+[[item]]
+file = '~/.themes/FlatColor/colors2'
+template = 'gtk-flatcolor'
+subtemplate = 'gtk-2'
+rewrite = true
+
+[[item]]
+file = '~/.themes/FlatColor/colors3'
+template = 'gtk-flatcolor'
+subtemplate = 'gtk-3'
+rewrite = true
+hook = 'bash -c "killall xsettingsd && xsettingsd &"'
