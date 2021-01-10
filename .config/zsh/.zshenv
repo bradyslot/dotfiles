@@ -49,15 +49,12 @@ export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
-<<<<<<< HEAD
 # program env variables
 export CM_LAUNCHER='dmenu_run'
 export ZSH_CUSTOM=$HOME/.config/zsh/custom
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export GDK_BACKEND=wayland
 
-=======
->>>>>>> 35a628b (switch to i3wm and polybar)
 # colorize things
 export LESS=-R
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
