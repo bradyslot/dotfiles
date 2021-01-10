@@ -2,7 +2,7 @@ configuration {
     modi: "window,drun,ssh,combi";
     font: "Terminus 14";
     combi-modi: "window,drun,ssh";
-    theme: "base16-solarflare";
+    theme: "colors";
     width: 30;
     lines: 15;
     padding: 5;
