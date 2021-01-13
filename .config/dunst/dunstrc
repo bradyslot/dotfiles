@@ -34,21 +34,21 @@ mouse_middle_click = do_action, close_current
 mouse_right_click = close_all
 
 # Start Flavours
-frame_color = "#A6AFB8"
-separator_color = "#A6AFB8"
+frame_color = "#8b9cbe"
+separator_color = "#8b9cbe"
 
 [base16_low]
     msg_urgency = low
-    background = "#222E38"
-    foreground = "#667581"
+    background = "#23262C"
+    foreground = "#3A3F49"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#586875"
-    foreground = "#A6AFB8"
+    background = "#313040"
+    foreground = "#8b9cbe"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#EF5253"
-    foreground = "#E8E9ED"
+    background = "#ff9cff"
+    foreground = "#B2BFD9"
 # End Flavours

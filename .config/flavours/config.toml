@@ -33,6 +33,15 @@ end = '# End Flavours'
 hook = 'i3 restart'
 
 [[item]]
+file = '~/.config/sway/config'
+template = 'sway'
+subtemplate = 'colors'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+hook = 'sway reload'
+
+[[item]]
 file = '~/.config/alacritty/alacritty.yml'
 template = 'alacritty'
 subtemplate = 'default-256'
