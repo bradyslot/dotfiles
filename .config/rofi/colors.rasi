@@ -1,19 +1,19 @@
 /**
- * Base16 Solar Flare ROFI Color theme
+ * Base16 vice ROFI Color theme
  *
  * Authors
- *  Scheme: Chuck Harmston (https://chuck.harmston.ch)
+ *  Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 239, 82, 83, 100 % );
-    blue:                        rgba ( 51, 181, 225, 100 % );
-    lightfg:                     rgba ( 232, 233, 237, 100 % );
-    lightbg:                     rgba ( 34, 46, 56, 100 % );
-    foreground:                  rgba ( 166, 175, 184, 100 % );
-    background:                  rgba ( 24, 38, 47, 100 % );
-    background-color:            rgba ( 24, 38, 47, 0 % );
+    red:                         rgba ( 255, 156, 255, 100 % );
+    blue:                        rgba ( 0, 202, 255, 100 % );
+    lightfg:                     rgba ( 178, 191, 217, 100 % );
+    lightbg:                     rgba ( 35, 38, 44, 100 % );
+    foreground:                  rgba ( 139, 156, 190, 100 % );
+    background:                  rgba ( 31, 32, 35, 100 % );
+    background-color:            rgba ( 31, 32, 35, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;

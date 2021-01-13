@@ -8,6 +8,15 @@
 # hook = '' (command to execute after injecting)
 
 [[item]]
+file = '~/.config/sway/config'
+template = 'sway'
+subtemplate = 'colors'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+hook = 'sway reload'
+
+[[item]]
 file = '~/.config/alacritty/alacritty.yml'
 template = 'alacritty'
 subtemplate = 'default-256'
@@ -37,7 +46,7 @@ subtemplate = 'default'
 rewrite = false
 start = '# Start Flavours'
 end = '# End Flavours'
-hook = 'source ~/.config/zsh/.zshrc'
+hook = 'zsh -c "source ~/.config/zsh/.zshrc"'
 
 [[item]]
 file = '~/.config/dunst/dunstrc'
@@ -65,4 +74,4 @@ file = '~/.themes/FlatColor/colors3'
 template = 'gtk-flatcolor'
 subtemplate = 'gtk-3'
 rewrite = true
-hook = 'bash -c "killall xsettingsd && xsettingsd &"'
+hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"'
