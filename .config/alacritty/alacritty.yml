@@ -117,48 +117,48 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Start Flavours
-# Base16 Solar Flare 256 - alacritty color config
-# Chuck Harmston (https://chuck.harmston.ch)
+# Base16 vice 256 - alacritty color config
+# Thomas Leon Highbaugh thighbaugh@zoho.com
 colors:
   # Default colors
   primary:
-    background: '0x18262F'
-    foreground: '0xA6AFB8'
+    background: '0x1F2023'
+    foreground: '0x8b9cbe'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x18262F'
-    cursor: '0xA6AFB8'
+    text: '0x1F2023'
+    cursor: '0x8b9cbe'
 
   # Normal colors
   normal:
-    black:   '0x18262F'
-    red:     '0xEF5253'
-    green:   '0x7CC844'
-    yellow:  '0xE4B51C'
-    blue:    '0x33B5E1'
-    magenta: '0xA363D5'
-    cyan:    '0x52CBB0'
-    white:   '0xA6AFB8'
+    black:   '0x1F2023'
+    red:     '0xff9cff'
+    green:   '0x6c71c4'
+    yellow:  '0xf0ee6e'
+    blue:    '0x00caff'
+    magenta: '0x61aeee'
+    cyan:    '0x00eaff'
+    white:   '0x8b9cbe'
 
   # Bright colors
   bright:
-    black:   '0x667581'
-    red:     '0xEF5253'
-    green:   '0x7CC844'
-    yellow:  '0xE4B51C'
-    blue:    '0x33B5E1'
-    magenta: '0xA363D5'
-    cyan:    '0x52CBB0'
-    white:   '0xF5F7FA'
+    black:   '0x3A3F49'
+    red:     '0xff9cff'
+    green:   '0x6c71c4'
+    yellow:  '0xf0ee6e'
+    blue:    '0x00caff'
+    magenta: '0x61aeee'
+    cyan:    '0x00eaff'
+    white:   '0xe9efff'
 
   indexed_colors:
-    - { index: 16, color: '0xE66B2B' }
-    - { index: 17, color: '0xD73C9A' }
-    - { index: 18, color: '0x222E38' }
-    - { index: 19, color: '0x586875' }
-    - { index: 20, color: '0x85939E' }
-    - { index: 21, color: '0xE8E9ED' }
+    - { index: 16, color: '0x796af5' }
+    - { index: 17, color: '0xfc29a8' }
+    - { index: 18, color: '0x23262C' }
+    - { index: 19, color: '0x313040' }
+    - { index: 20, color: '0x525d73' }
+    - { index: 21, color: '0xB2BFD9' }
 # End Flavours
 
 # Visual Bell

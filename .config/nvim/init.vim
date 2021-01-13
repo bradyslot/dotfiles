@@ -12,7 +12,6 @@ set expandtab
 set smartindent
 set nu
 set nowrap
-set smartcase
 set incsearch
 set termguicolors
 set scrolloff=999
