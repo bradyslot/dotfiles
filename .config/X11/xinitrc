@@ -9,13 +9,15 @@ xcalib ~/.config/xcalib/q3279vwf.icm &
 xset s off -dpms 2> /dev/null &
 xset r rate 350 40 &
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
+numlockx &
 xrdb ~/.config/X11/Xresources &
-feh --no-fehbg --bg-fill ~/Pictures/motoko-kusanagi-0-wallpaper.png &
-dwmblocks &
-picom --no-fading-openclose -m 1.0 &
+feh --no-fehbg --bg-fill ~/Pictures/fluffy-galaxy-wallpaper.png &
+# dwmblocks &
+picom -f -D 5 -i 1.0 -c &
 sxhkd &
 dunst &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 while true; do
-	dbus-launch dwm 2> /dev/null
+	exec i3
 done

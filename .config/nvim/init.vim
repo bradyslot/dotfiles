@@ -148,7 +148,7 @@ let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
 let g:floaterm_width=0.85
-let g:floaterm_height=0.5
+let g:floaterm_height=0.7
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_keymap_new    = '<F7>'
@@ -177,6 +177,7 @@ nnoremap <leader>r :FloatermNew ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
 nnoremap <leader>c :Colors<CR>
+nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
 
 " move between windows
 nnoremap <leader>h :wincmd h<CR>

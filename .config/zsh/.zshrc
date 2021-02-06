@@ -74,9 +74,9 @@ alias ls='ls -lahv --color=auto --group-directories-first'
 alias tree='tree -C'
 
 # mine
-alias nvim='nvim'
-alias vim='nvim'
-alias vi='nvim'
+alias nvim='nvim --listen localhost:6666'
+alias vim='nvim --listen localhost:6666'
+alias vi='nvim --listen localhost:6666'
 alias ssh='TERM=xterm-color ssh'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
