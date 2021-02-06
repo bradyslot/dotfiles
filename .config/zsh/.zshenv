@@ -75,27 +75,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 vice
-# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
+# Base16 Hardcore
+# Author: Chris Caller
 
 _gen_fzf_default_opts() {
 
-local color00='#1F2023'
-local color01='#23262C'
-local color02='#313040'
-local color03='#3A3F49'
-local color04='#525d73'
-local color05='#8b9cbe'
-local color06='#B2BFD9'
-local color07='#e9efff'
-local color08='#ff9cff'
-local color09='#796af5'
-local color0A='#f0ee6e'
-local color0B='#6c71c4'
-local color0C='#00eaff'
-local color0D='#00caff'
-local color0E='#61aeee'
-local color0F='#fc29a8'
+local color00='#212121'
+local color01='#303030'
+local color02='#353535'
+local color03='#4A4A4A'
+local color04='#707070'
+local color05='#cdcdcd'
+local color06='#e5e5e5'
+local color07='#ffffff'
+local color08='#f92672'
+local color09='#fd971f'
+local color0A='#e6db74'
+local color0B='#a6e22e'
+local color0C='#708387'
+local color0D='#66d9ef'
+local color0E='#9e6ffe'
+local color0F='#e8b882'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
