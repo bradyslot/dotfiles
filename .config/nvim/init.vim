@@ -177,6 +177,7 @@ nnoremap <leader>r :FloatermNew ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
 nnoremap <leader>c :Colors<CR>
+nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
 
 " move between windows
 nnoremap <leader>h :wincmd h<CR>

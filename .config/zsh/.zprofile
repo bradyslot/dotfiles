@@ -1,3 +1,3 @@
 if [[ "$(tty)" = "/dev/tty1" ]]; then
-    sway
+    startx ~/.config/X11/xinitrc
 fi
