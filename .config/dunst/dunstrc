@@ -2,23 +2,21 @@
 [global]
 monitor = 0
 follow = mouse
-geometry = "300x200-15+15"
+geometry = "0-10+28"
 indicate_hidden = no
 shrink = no-
 notification_height = 0
 separator_height = 5
 padding = 5
 horizontal_padding = 5
-frame_width = 3
-frame_color = "#282a36"
+frame_width = 2
 sort = yes
-separator_color = "#e2e4e5"
 
 # TEXT
-font = xos4 Terminus 10
+font = Terminus 10
 line_height = 0
 format = "<b>%s</b>\n%b"
-alignment = left
+alignment = center
 vertical_alignment = center
 show_age_threshold = 60
 word_wrap = yes
@@ -36,21 +34,21 @@ mouse_middle_click = do_action, close_current
 mouse_right_click = close_all
 
 # Start Flavours
-frame_color = "#8b9cbe"
-separator_color = "#8b9cbe"
+frame_color = "#cdcdcd"
+separator_color = "#cdcdcd"
 
 [base16_low]
     msg_urgency = low
-    background = "#23262C"
-    foreground = "#3A3F49"
+    background = "#303030"
+    foreground = "#4A4A4A"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#313040"
-    foreground = "#8b9cbe"
+    background = "#353535"
+    foreground = "#cdcdcd"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#ff9cff"
-    foreground = "#B2BFD9"
+    background = "#f92672"
+    foreground = "#e5e5e5"
 # End Flavours
