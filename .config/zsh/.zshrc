@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Source Environment
+source ~/.config/zsh/.zshenv
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 
@@ -29,7 +32,7 @@ prompt spaceship
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_CHAR_SYMBOL=">"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_HG_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
@@ -68,12 +71,13 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias ip='ip --color=auto'
 alias ls='ls -lahv --color=auto --group-directories-first'
+alias tree='tree -C'
 
 # mine
-alias vim='nvim'
-alias vi='nvim'
+alias nvim='nvim --listen localhost:6666'
+alias vim='nvim --listen localhost:6666'
+alias vi='nvim --listen localhost:6666'
 alias ssh='TERM=xterm-color ssh'
-alias cat='bat'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -82,10 +86,13 @@ alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/U
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | grep -i"
 alias wiki="awman"
+alias virtualbox="GTK2_RC_FILES='' virtualbox"
 
 #######################################
 # Plugins
 #######################################
+# Load Completions Scripts
+fpath=(~/.config/zsh/completions $fpath)
 
 # Load Custom Keybindings
 source ~/.config/zsh/keybindings.zsh 2>/dev/null

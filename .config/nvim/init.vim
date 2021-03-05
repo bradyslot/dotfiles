@@ -12,7 +12,6 @@ set expandtab
 set smartindent
 set nu
 set nowrap
-set smartcase
 set incsearch
 set termguicolors
 set scrolloff=999
@@ -34,6 +33,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'chrisbra/Colorizer'
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
@@ -42,20 +42,19 @@ Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
 " language extensions
-Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
 " ========================================================================= COC
 
-" coc completion with Tab and S-Tab
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -67,14 +66,15 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" use <c-space> to trigger completion
+" Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" <CR> selects first item and formats
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -105,42 +105,19 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 " ================================================================= COLORSCHEME
+
+" system wide colorscheme is handled by Flavours, :colorscheme looks into the
+" runtime path 'colors/{name}.vim'
+" airline detects the colorscheme from g:colors_name declared in theme.vim
+colorscheme theme
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_theme='base16'
 let g:airline_symbols.maxlinenr=''
-colorscheme base16-solarflare
-
-" solarflare theme
-if has('nvim')
-    let g:terminal_color_0  = '#18262f'
-    let g:terminal_color_1  = '#ef5253'
-    let g:terminal_color_2  = '#7cc844'
-    let g:terminal_color_3  = '#e4b51c'
-    let g:terminal_color_4  = '#33b5e1'
-    let g:terminal_color_5  = '#a363d5'
-    let g:terminal_color_6  = '#52cbb0'
-    let g:terminal_color_7  = '#a6afb8'
-    let g:terminal_color_8  = '#667581'
-    let g:terminal_color_9  = '#ef5253'
-    let g:terminal_color_10 = '#7cc844'
-    let g:terminal_color_11 = '#e4b51c'
-    let g:terminal_color_12 = '#33b5e1'
-    let g:terminal_color_13 = '#a363d5'
-    let g:terminal_color_14 = '#52cbb0'
-    let g:terminal_color_15 = '#f5f7fa'
-endif
+let g:airline_symbols.linenr=''
+let g:airline_section_y=''
 
 " ====================================================================== RANGER
 
@@ -171,7 +148,7 @@ let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
 let g:floaterm_width=0.85
-let g:floaterm_height=0.5
+let g:floaterm_height=0.7
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_keymap_new    = '<F7>'
@@ -200,6 +177,7 @@ nnoremap <leader>r :FloatermNew ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
 nnoremap <leader>c :Colors<CR>
+nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
 
 " move between windows
 nnoremap <leader>h :wincmd h<CR>
@@ -236,10 +214,17 @@ nnoremap <silent> gr <Plug>(coc-references)
 " buffer navigation
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-nnoremap H :bprev <CR>
-nnoremap L :bnext <CR>
+nnoremap <C-h> :bprev <CR>
+nnoremap <C-l> :bnext <CR>
+
+" jump to begining and end of line
+nnoremap <S-h> ^
+nnoremap <S-l> $
 
 " ==================================================================== COMMANDS
 
 " write using sudo with w!!
 cmap w!! w !sudo tee > /dev/null %
+
+" enable vim-repeat support on mappings
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)

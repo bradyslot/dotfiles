@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
+path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
 export PATH
 
 # locale
@@ -14,7 +14,7 @@ export TERMINAL=alacritty
 export WM=dwm
 export PAGER=less
 export VIDEO=vlc
-export IMAGE=sxiv
+export IMAGE=nomacs
 export OPENER=xdg-open
 
 # clean up home directory
@@ -28,7 +28,6 @@ export ZDOTDIR=$HOME/.config/zsh
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE=-
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -49,11 +48,10 @@ export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export PATH="/home/drauk/.local/share/cargo/bin:$PATH"
 
 # program env variables
-export CM_LAUNCHER='dmenu_run'
 export ZSH_CUSTOM=$HOME/.config/zsh/custom
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 # colorize things
 export LESS=-R
@@ -66,8 +64,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="Nord"
-# export HIGHLIGHT_STYLE="nord"
+export BAT_THEME="base16"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -75,27 +72,35 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# Base16 Nord FZF
-gen_fzf_default_opts() {
-local color00='#2E3440'
-local color01='#3B4252'
-local color02='#434C5E'
-local color03='#4C566A'
-local color04='#D8DEE9'
-local color05='#E5E9F0'
-local color06='#ECEFF4'
-local color07='#8FBCBB'
-local color08='#BF616A'
-local color09='#D08770'
-local color0A='#EBCB8B'
-local color0B='#A3BE8C'
-local color0C='#88C0D0'
-local color0D='#81A1C1'
-local color0E='#B48EAD'
-local color0F='#5E81AC'
+# Start Flavours
+# Base16 Solar Flare
+# Author: Chuck Harmston (https://chuck.harmston.ch)
+
+_gen_fzf_default_opts() {
+
+local color00='#18262F'
+local color01='#222E38'
+local color02='#586875'
+local color03='#667581'
+local color04='#85939E'
+local color05='#A6AFB8'
+local color06='#E8E9ED'
+local color07='#F5F7FA'
+local color08='#EF5253'
+local color09='#E66B2B'
+local color0A='#E4B51C'
+local color0B='#7CC844'
+local color0C='#52CBB0'
+local color0D='#33B5E1'
+local color0E='#A363D5'
+local color0F='#D73C9A'
+
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+
 }
-gen_fzf_default_opts
+
+_gen_fzf_default_opts
+# End Flavours

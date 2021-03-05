@@ -1,22 +1,21 @@
 #!/bin/sh
 
-uncluttler -idle 0 &
+fc-cache -f &
+xsettingsd &
+xrandr -r 75 &
+xcalib ~/.config/xcalib/q3279vwf.icm &
 xset s off -dpms 2> /dev/null &
-xset r rate 240 40 &
+xset r rate 350 40 &
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
+numlockx &
 xrdb ~/.config/X11/Xresources &
-dwmblocks &
-picom --no-fading-openclose &
+feh --no-fehbg --bg-fill ~/Pictures/fluffy-galaxy-wallpaper.png &
+# dwmblocks &
+picom -f -D 5 -i 1.0 -c &
 sxhkd &
 dunst &
-
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 while true; do
-	dbus-launch dwm 2> /dev/null
+	exec i3
 done
