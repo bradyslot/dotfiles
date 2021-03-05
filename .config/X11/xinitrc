@@ -3,8 +3,6 @@
 fc-cache -f &
 xsettingsd &
 xrandr -r 75 &
-clipmenud &
-uncluttler -idle 0 &
 xcalib ~/.config/xcalib/q3279vwf.icm &
 xset s off -dpms 2> /dev/null &
 xset r rate 350 40 &
