@@ -17,7 +17,7 @@ set termguicolors
 set scrolloff=999
 set noshowmode
 set clipboard=unnamedplus
-set colorcolumn=81
+set colorcolumn=80
 set cmdheight=1
 set shortmess+=c
 set updatetime=50
@@ -32,11 +32,15 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'chrisbra/Colorizer'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
+
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
 
 " quality of life improvements
 Plug 'tpope/vim-commentary'
@@ -44,66 +48,141 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 
-" language extensions
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" language server protocol
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 
-" ========================================================================= COC
+" =================================================================== TELESCOPE
 
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap // <cmd>lua require('telescope.builtin').live_grep()<cr>
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
+    prompt_position = "top",
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
+    layout_defaults = {
+      horizontal = {
+        mirror = false,
+        preview_width = 0.6,
+      },
+      vertical = {
+        mirror = false,
+      },
+    },
+    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_ignore_patterns = {},
+    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    shorten_path = true,
+    winblend = 0,
+    width = 0.75,
+    preview_cutoff = 80,
+    results_height = 1,
+    results_width = 0.4,
+    border = {},
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    color_devicons = true,
+    use_less = true,
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  }
+}
+EOF
+
+" ================================================================== LSP CONFIG
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+" nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.clangd.setup{}
+EOF
+
+" ======================================================================= COMPE
+
+lua << EOF
+vim.o.completeopt = "menuone,noselect"
+
+require'compe'.setup {
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 1;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    max_abbr_width = 100;
+    max_kind_width = 100;
+    max_menu_width = 100;
+    documentation = false;
+
+    source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = true;
+    treesitter = true;
+    };
+}
+
+local t = function(str)
+return vim.api.nvim_replace_termcodes(str, true, true, true)
+
+end
+_G.s_tab_complete = function()
+if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
 else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
+    return t "<S-Tab>"
+end
+end
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
 
 " ================================================================= COLORSCHEME
 
@@ -119,28 +198,21 @@ let g:airline_symbols.maxlinenr=''
 let g:airline_symbols.linenr=''
 let g:airline_section_y=''
 
-" ====================================================================== RANGER
+" ================================================================== TREESITTER
 
-" open ranger when vim opens a directory
-let g:ranger_replace_netrw = 1
-let g:ranger_map_keys = 0
-
-" ==================================================================== POLYGLOT
-
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = "all", -- "all", "maintained"
+    ignore_install = { }, -- List of parsers to ignore installing
+    highlight = {
+        enable = true,  -- false will disable the whole extension
+        disable = { },  -- list of language that will be disabled
+    },
+    indent = {
+        enable = true
+    },
+}
+EOF
 
 " ==================================================================== FLOATERM
 
@@ -151,23 +223,11 @@ let g:floaterm_width=0.9
 let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
+let g:floaterm_opener='edit'
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
-
-" ========================================================================= FZF
-
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
-let $FZF_DEFAULT_OPTS='--layout=reverse'
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 }}
-
-" buffer search
-nnoremap // :BLines<CR>
-" project search
-nnoremap <Leader>p :GFiles<CR>
-" file search
-nnoremap <C-p> :Files<CR>
 
 " ====================================================================== LEADER
 
@@ -176,7 +236,6 @@ nnoremap <leader>g :FloatermNew lazygit<CR>
 nnoremap <leader>r :FloatermNew ranger<CR>
 nnoremap <leader>w :write<CR>
 nnoremap <leader>x :bd<CR>
-nnoremap <leader>c :Colors<CR>
 nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
 
 " move between windows
@@ -204,12 +263,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " comment line or visual selection
 nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
-
-" Coc jumping
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
 
 " buffer navigation
 let g:airline#extensions#tabline#enabled = 1

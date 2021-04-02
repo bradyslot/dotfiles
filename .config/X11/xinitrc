@@ -1,6 +1,5 @@
 #!/bin/sh
 
-fc-cache -f &
 xsettingsd &
 xrandr -r 75 &
 xcalib ~/.config/xcalib/q3279vwf.icm &

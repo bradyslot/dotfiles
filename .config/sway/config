@@ -23,25 +23,25 @@ default_floating_border pixel 2
 gaps inner 10
 
 # Start Flavours
-## Base16 Solar Flare
-# Author: Chuck Harmston (https://chuck.harmston.ch)
+## Base16 Nova
+# Author: George Essig (https://github.com/gessig), Trevor D. Miller (https://trevordmiller.com)
 
-set $base00 #18262F
-set $base01 #222E38
-set $base02 #586875
-set $base03 #667581
-set $base04 #85939E
-set $base05 #A6AFB8
-set $base06 #E8E9ED
-set $base07 #F5F7FA
-set $base08 #EF5253
-set $base09 #E66B2B
-set $base0A #E4B51C
-set $base0B #7CC844
-set $base0C #52CBB0
-set $base0D #33B5E1
-set $base0E #A363D5
-set $base0F #D73C9A
+set $base00 #3C4C55
+set $base01 #556873
+set $base02 #6A7D89
+set $base03 #899BA6
+set $base04 #899BA6
+set $base05 #C5D4DD
+set $base06 #899BA6
+set $base07 #556873
+set $base08 #83AFE5
+set $base09 #7FC1CA
+set $base0A #A8CE93
+set $base0B #7FC1CA
+set $base0C #F2C38F
+set $base0D #83AFE5
+set $base0E #9A93E1
+set $base0F #F2C38F
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
