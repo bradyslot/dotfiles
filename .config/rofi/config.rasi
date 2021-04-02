@@ -1,6 +1,6 @@
 configuration {
     modi: "window,drun,ssh,combi";
-    font: "Terminus 14";
+    font: "Envy Code R 12";
     combi-modi: "window,drun,ssh";
     theme: "colors";
     width: 30;

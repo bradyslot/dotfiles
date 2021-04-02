@@ -37,11 +37,11 @@ SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_HG_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=false
-SPACESHIP_RUBY_SHOW=false
 SPACESHIP_ELM_SHOW=false
 SPACESHIP_ELIXIR_SHOW=false
 SPACESHIP_XCODE_SHOW_LOCAL=false
 SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_RUBY_SHOW=false
 SPACESHIP_GOLANG_SHOW=false
 SPACESHIP_PHP_SHOW=false
 SPACESHIP_RUST_SHOW=false
@@ -87,6 +87,8 @@ alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | grep -i"
 alias wiki="awman"
 alias virtualbox="GTK2_RC_FILES='' virtualbox"
+alias enablev4l2="sudo modprobe v4l2loopback exclusive_caps=1 max_buffers=2"
+alias startcam="gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0"
 
 #######################################
 # Plugins
