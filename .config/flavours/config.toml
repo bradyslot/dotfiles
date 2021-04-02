@@ -14,14 +14,14 @@
 # rewrite = true
 # hook = 'polybar-msg cmd restart'
 
-[[item]]
-file = '~/.config/sway/config'
-template = 'sway'
-subtemplate = 'colors'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-hook = 'sway reload'
+# [[item]]
+# file = '~/.config/sway/config'
+# template = 'sway'
+# subtemplate = 'colors'
+# rewrite = false
+# start = '# Start Flavours'
+# end = '# End Flavours'
+# hook = 'sway reload'
 
 [[item]]
 file = '~/.config/i3/config'
@@ -47,7 +47,9 @@ subtemplate = 'default-256'
 rewrite = false
 start = '! Start Flavours'
 end = '! End Flavours'
-hook = 'bash -c "xrdb -load ~/.config/X11/Xresources && xdotool key alt+F5"'
+hook = 'bash -c "xrdb -load ~/.config/X11/Xresources"'
+# this will reload dwm by simulating a keystroak
+# && xdotool key alt+F5
 
 [[item]]
 file = '~/.config/rofi/colors.rasi'
@@ -98,4 +100,3 @@ file = '~/.config/waybar/colors.css'
 template = 'waybar'
 subtemplate = 'default'
 rewrite = true
-
