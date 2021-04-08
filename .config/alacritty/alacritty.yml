@@ -69,7 +69,7 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: xos4 Terminus
+    family: Envy Code R
     style: Regular
   #bold:
     #family: JetBrains Mono
@@ -98,7 +98,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10
+  size: 12
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -117,48 +117,48 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Start Flavours
-# Base16 Solar Flare 256 - alacritty color config
-# Chuck Harmston (https://chuck.harmston.ch)
+# Base16 Humanoid dark 256 - alacritty color config
+# Thomas (tasmo) Friese
 colors:
   # Default colors
   primary:
-    background: '0x18262F'
-    foreground: '0xA6AFB8'
+    background: '0x232629'
+    foreground: '0xf8f8f2'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x18262F'
-    cursor: '0xA6AFB8'
+    text: '0x232629'
+    cursor: '0xf8f8f2'
 
   # Normal colors
   normal:
-    black:   '0x18262F'
-    red:     '0xEF5253'
-    green:   '0x7CC844'
-    yellow:  '0xE4B51C'
-    blue:    '0x33B5E1'
-    magenta: '0xA363D5'
-    cyan:    '0x52CBB0'
-    white:   '0xA6AFB8'
+    black:   '0x232629'
+    red:     '0xf11235'
+    green:   '0x02d849'
+    yellow:  '0xffb627'
+    blue:    '0x00a6fb'
+    magenta: '0xf15ee3'
+    cyan:    '0x0dd9d6'
+    white:   '0xf8f8f2'
 
   # Bright colors
   bright:
-    black:   '0x667581'
-    red:     '0xEF5253'
-    green:   '0x7CC844'
-    yellow:  '0xE4B51C'
-    blue:    '0x33B5E1'
-    magenta: '0xA363D5'
-    cyan:    '0x52CBB0'
-    white:   '0xF5F7FA'
+    black:   '0x60615d'
+    red:     '0xf11235'
+    green:   '0x02d849'
+    yellow:  '0xffb627'
+    blue:    '0x00a6fb'
+    magenta: '0xf15ee3'
+    cyan:    '0x0dd9d6'
+    white:   '0xfcfcfc'
 
   indexed_colors:
-    - { index: 16, color: '0xE66B2B' }
-    - { index: 17, color: '0xD73C9A' }
-    - { index: 18, color: '0x222E38' }
-    - { index: 19, color: '0x586875' }
-    - { index: 20, color: '0x85939E' }
-    - { index: 21, color: '0xE8E9ED' }
+    - { index: 16, color: '0xff9505' }
+    - { index: 17, color: '0xb27701' }
+    - { index: 18, color: '0x333b3d' }
+    - { index: 19, color: '0x484e54' }
+    - { index: 20, color: '0xc0c0bd' }
+    - { index: 21, color: '0xfcfcf6' }
 # End Flavours
 
 # Visual Bell

@@ -119,6 +119,9 @@ x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/magnet=transmission-gtk.desktop
 x-scheme-handler/spotify=spotify.desktop
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/etcher=balena-etcher-electron.desktop
 
 [Added Associations]
 image/png=gimp.desktop;
+application/x-raw-disk-image=xarchiver.desktop;
