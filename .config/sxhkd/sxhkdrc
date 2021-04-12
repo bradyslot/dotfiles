@@ -6,23 +6,29 @@ alt + minus
 	pulsemixer --change-volume -5
 
 alt + period
-	playerctl next
+	xbacklight +10
 
 alt + comma
-	playerctl previous
-
-alt + slash
-	playerctl play-pause
+	xbacklight -10
 
 # system shortcuts
 Print
 	scrot Pictures/scrot/screenshot-$(date '+%F-%H-%M-%S').png
 
+alt + Print
+	scrot -s Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
+
+alt + Escape
+	prompt 'Leave Xorg?' 'kill -9 -1'
+
+alt + Delete
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+
+alt + BackSpace
+	prompt "Reboot computer?" "sudo -A reboot"
+
+alt + backslash
+	clipmenu
+
 alt + shift + x
-	pkill sxhkd && $(sxhkd &)
-
-XF86MonBrightnessUp
-	xbacklight -inc 10
-
-XF86MonBrightnessDown
-	xbacklight -dec 10
+	killandnotify "sxhkd" "Config reloaded" && sxhkd &

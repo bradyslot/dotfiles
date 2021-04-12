@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$path[@]")
+path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/2.7.0/bin" "$path[@]")
 export PATH
 
 # locale
@@ -50,10 +50,8 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 # program env variables
-export CM_LAUNCHER='dmenu_run'
 export ZSH_CUSTOM=$HOME/.config/zsh/custom
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-export GDK_BACKEND=wayland
 
 # colorize things
 export LESS=-R
@@ -75,27 +73,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 Unikitty Dark
-# Author: Josh W Lewis (@joshwlewis)
+# Base16 Humanoid dark
+# Author: Thomas (tasmo) Friese
 
 _gen_fzf_default_opts() {
 
-local color00='#2e2a31'
-local color01='#4a464d'
-local color02='#666369'
-local color03='#838085'
-local color04='#9f9da2'
-local color05='#bcbabe'
-local color06='#d8d7da'
-local color07='#f5f4f7'
-local color08='#d8137f'
-local color09='#d65407'
-local color0A='#dc8a0e'
-local color0B='#17ad98'
-local color0C='#149bda'
-local color0D='#796af5'
-local color0E='#bb60ea'
-local color0F='#c720ca'
+local color00='#232629'
+local color01='#333b3d'
+local color02='#484e54'
+local color03='#60615d'
+local color04='#c0c0bd'
+local color05='#f8f8f2'
+local color06='#fcfcf6'
+local color07='#fcfcfc'
+local color08='#f11235'
+local color09='#ff9505'
+local color0A='#ffb627'
+local color0B='#02d849'
+local color0C='#0dd9d6'
+local color0D='#00a6fb'
+local color0E='#f15ee3'
+local color0F='#b27701'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\

@@ -35,8 +35,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 2
-    y: 2
+    x: 5
+    y: 5
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -69,8 +69,8 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Source Code Pro
-    style: Medium
+    family: Envy Code R
+    style: Regular
   #bold:
     #family: JetBrains Mono
     #style:
@@ -98,7 +98,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12
+  size: 8
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -117,48 +117,48 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Start Flavours
-# Base16 Unikitty Dark 256 - alacritty color config
-# Josh W Lewis (@joshwlewis)
+# Base16 Humanoid dark 256 - alacritty color config
+# Thomas (tasmo) Friese
 colors:
   # Default colors
   primary:
-    background: '0x2e2a31'
-    foreground: '0xbcbabe'
+    background: '0x232629'
+    foreground: '0xf8f8f2'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2e2a31'
-    cursor: '0xbcbabe'
+    text: '0x232629'
+    cursor: '0xf8f8f2'
 
   # Normal colors
   normal:
-    black:   '0x2e2a31'
-    red:     '0xd8137f'
-    green:   '0x17ad98'
-    yellow:  '0xdc8a0e'
-    blue:    '0x796af5'
-    magenta: '0xbb60ea'
-    cyan:    '0x149bda'
-    white:   '0xbcbabe'
+    black:   '0x232629'
+    red:     '0xf11235'
+    green:   '0x02d849'
+    yellow:  '0xffb627'
+    blue:    '0x00a6fb'
+    magenta: '0xf15ee3'
+    cyan:    '0x0dd9d6'
+    white:   '0xf8f8f2'
 
   # Bright colors
   bright:
-    black:   '0x838085'
-    red:     '0xd8137f'
-    green:   '0x17ad98'
-    yellow:  '0xdc8a0e'
-    blue:    '0x796af5'
-    magenta: '0xbb60ea'
-    cyan:    '0x149bda'
-    white:   '0xf5f4f7'
+    black:   '0x60615d'
+    red:     '0xf11235'
+    green:   '0x02d849'
+    yellow:  '0xffb627'
+    blue:    '0x00a6fb'
+    magenta: '0xf15ee3'
+    cyan:    '0x0dd9d6'
+    white:   '0xfcfcfc'
 
   indexed_colors:
-    - { index: 16, color: '0xd65407' }
-    - { index: 17, color: '0xc720ca' }
-    - { index: 18, color: '0x4a464d' }
-    - { index: 19, color: '0x666369' }
-    - { index: 20, color: '0x9f9da2' }
-    - { index: 21, color: '0xd8d7da' }
+    - { index: 16, color: '0xff9505' }
+    - { index: 17, color: '0xb27701' }
+    - { index: 18, color: '0x333b3d' }
+    - { index: 19, color: '0x484e54' }
+    - { index: 20, color: '0xc0c0bd' }
+    - { index: 21, color: '0xfcfcf6' }
 # End Flavours
 
 # Visual Bell
