@@ -33,24 +33,6 @@ end = '# End Flavours'
 hook = 'i3 restart'
 
 [[item]]
-file = '~/.config/sway/config'
-template = 'sway'
-subtemplate = 'colors'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-hook = 'sway reload'
-
-[[item]]
-file = '~/.config/i3/config'
-template = 'i3'
-subtemplate = 'colors'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-hook = 'i3 restart'
-
-[[item]]
 file = '~/.config/alacritty/alacritty.yml'
 template = 'alacritty'
 subtemplate = 'default-256'
@@ -113,8 +95,8 @@ subtemplate = 'gtk-3'
 rewrite = true
 hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"'
 
-[[item]]
-file = '~/.config/waybar/colors.css'
-template = 'waybar'
-subtemplate = 'default'
-rewrite = true
+# [[item]]
+# file = '~/.config/waybar/colors.css'
+# template = 'waybar'
+# subtemplate = 'default'
+# rewrite = true
