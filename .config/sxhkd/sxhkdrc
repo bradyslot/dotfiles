@@ -16,7 +16,7 @@ Print
 	scrot Pictures/scrot/screenshot-$(date '+%F-%H-%M-%S').png
 
 alt + Print
-	scrot -s Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
+	scrot -sf Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
 
 alt + Escape
 	prompt 'Leave Xorg?' 'kill -9 -1'
