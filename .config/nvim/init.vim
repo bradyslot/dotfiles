@@ -220,12 +220,7 @@ EOF
 " airline detects the colorscheme from g:colors_name declared in theme.vim
 colorscheme theme
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.maxlinenr=''
-let g:airline_symbols.linenr=''
-let g:airline_section_y=''
+let g:airline_symbols_ascii = 1
 
 " ================================================================== TREESITTER
 
@@ -248,8 +243,8 @@ EOF
 let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
-let g:floaterm_width=0.85
-let g:floaterm_height=0.7
+let g:floaterm_width=0.9
+let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_opener='edit'

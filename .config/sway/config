@@ -23,25 +23,25 @@ default_floating_border pixel 2
 gaps inner 10
 
 # Start Flavours
-## Base16 Nova
-# Author: George Essig (https://github.com/gessig), Trevor D. Miller (https://trevordmiller.com)
+## Base16 DanQing
+# Author: Wenhan Zhu (Cosmos) (zhuwenhan950913@gmail.com)
 
-set $base00 #3C4C55
-set $base01 #556873
-set $base02 #6A7D89
-set $base03 #899BA6
-set $base04 #899BA6
-set $base05 #C5D4DD
-set $base06 #899BA6
-set $base07 #556873
-set $base08 #83AFE5
-set $base09 #7FC1CA
-set $base0A #A8CE93
-set $base0B #7FC1CA
-set $base0C #F2C38F
-set $base0D #83AFE5
-set $base0E #9A93E1
-set $base0F #F2C38F
+set $base00 #2d302f
+set $base01 #434846
+set $base02 #5a605d
+set $base03 #9da8a3
+set $base04 #cad8d2
+set $base05 #e0f0eF
+set $base06 #ecf6f2
+set $base07 #fcfefd
+set $base08 #F9906F
+set $base09 #B38A61
+set $base0A #F0C239
+set $base0B #8AB361
+set $base0C #30DFF3
+set $base0D #B0A4E3
+set $base0E #CCA4E3
+set $base0F #CA6924
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border

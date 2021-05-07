@@ -1,23 +1,23 @@
 ! Start Flavours
-! Base16 Unikitty Dark
-! Scheme: Josh W Lewis (@joshwlewis)
+! Base16 vice
+! Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
 
-#define base00 #2e2a31
-#define base01 #4a464d
-#define base02 #666369
-#define base03 #838085
-#define base04 #9f9da2
-#define base05 #bcbabe
-#define base06 #d8d7da
-#define base07 #f5f4f7
-#define base08 #d8137f
-#define base09 #d65407
-#define base0A #dc8a0e
-#define base0B #17ad98
-#define base0C #149bda
-#define base0D #796af5
-#define base0E #bb60ea
-#define base0F #c720ca
+#define base00 #17191E
+#define base01 #22262d
+#define base02 #3c3f4c
+#define base03 #383a47
+#define base04 #555e70
+#define base05 #8b9cbe
+#define base06 #B2BFD9
+#define base07 #f4f4f7
+#define base08 #ff29a8
+#define base09 #85ffe0
+#define base0A #f0ffaa
+#define base0B #0badff
+#define base0C #8265ff
+#define base0D #00eaff
+#define base0E #00ffcc
+#define base0F #ff3d81
 
 *foreground:   base05
 #ifdef background_opacity

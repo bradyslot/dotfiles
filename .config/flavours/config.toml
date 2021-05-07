@@ -95,8 +95,8 @@ subtemplate = 'gtk-3'
 rewrite = true
 hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"'
 
-[[item]]
-file = '~/.config/waybar/colors.css'
-template = 'waybar'
-subtemplate = 'default'
-rewrite = true
+# [[item]]
+# file = '~/.config/waybar/colors.css'
+# template = 'waybar'
+# subtemplate = 'default'
+# rewrite = true

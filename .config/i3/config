@@ -5,7 +5,7 @@
 # |_|____/       \___\___/|_| |_|_| |_|\__, |
 #                                      |___/
 
-font pango:Envy Code R 12
+font pango:Sauce Code Pro Nerd Font Medium 9
 
 new_window pixel 2
 default_border pixel 2
@@ -14,27 +14,27 @@ default_floating_border pixel 2
 gaps inner 15
 
 # Start Flavours
-## Base16 Unikitty Dark
-# Author: Josh W Lewis (@joshwlewis)
+## Base16 vice
+# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
 #
 # You can use these variables anywhere in the i3 configuration file.
 
-set $base00 #2e2a31
-set $base01 #4a464d
-set $base02 #666369
-set $base03 #838085
-set $base04 #9f9da2
-set $base05 #bcbabe
-set $base06 #d8d7da
-set $base07 #f5f4f7
-set $base08 #d8137f
-set $base09 #d65407
-set $base0A #dc8a0e
-set $base0B #17ad98
-set $base0C #149bda
-set $base0D #796af5
-set $base0E #bb60ea
-set $base0F #c720ca
+set $base00 #17191E
+set $base01 #22262d
+set $base02 #3c3f4c
+set $base03 #383a47
+set $base04 #555e70
+set $base05 #8b9cbe
+set $base06 #B2BFD9
+set $base07 #f4f4f7
+set $base08 #ff29a8
+set $base09 #85ffe0
+set $base0A #f0ffaa
+set $base0B #0badff
+set $base0C #8265ff
+set $base0D #00eaff
+set $base0E #00ffcc
+set $base0F #ff3d81
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
@@ -44,13 +44,6 @@ client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
 client.placeholder      $base00 $base00 $base05 $base00 $base00
 client.background       $base07
-
-# NetworkManager nm-applet
-# exec --no-startup-id nm-applet
-
-exec --no-statup-id ~/.config/polybar/start.sh &
-
-exec --no-startup-id hsetroot -solid '#4c566a'
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
