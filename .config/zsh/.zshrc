@@ -63,10 +63,6 @@ SPACESHIP_JOBS_SHOW=false
 #######################################
 # Aliases
 #######################################
-# ssh work connections
-alias ssh-GrandHotelMornington='ssh helpdesk@101.187.45.112 -p 6114'
-alias ssh-PVSTest-Internal='ssh helpdesk@192.168.90.42'
-
 # pipping server
 alias send="curl -T - https://ppng.io/hD5w8JlHeUaI"
 alias receive="curl https://ppng.io/hD5w8JlHeUaI"
