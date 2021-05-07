@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/2.7.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/2.7.0/bin" "$path[@]")
+path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
 export PATH
 
 # locale
@@ -73,27 +73,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 Unikitty Dark
-# Author: Josh W Lewis (@joshwlewis)
+# Base16 vice
+# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
 
 _gen_fzf_default_opts() {
 
-local color00='#2e2a31'
-local color01='#4a464d'
-local color02='#666369'
-local color03='#838085'
-local color04='#9f9da2'
-local color05='#bcbabe'
-local color06='#d8d7da'
-local color07='#f5f4f7'
-local color08='#d8137f'
-local color09='#d65407'
-local color0A='#dc8a0e'
-local color0B='#17ad98'
-local color0C='#149bda'
-local color0D='#796af5'
-local color0E='#bb60ea'
-local color0F='#c720ca'
+local color00='#17191E'
+local color01='#22262d'
+local color02='#3c3f4c'
+local color03='#383a47'
+local color04='#555e70'
+local color05='#8b9cbe'
+local color06='#B2BFD9'
+local color07='#f4f4f7'
+local color08='#ff29a8'
+local color09='#85ffe0'
+local color0A='#f0ffaa'
+local color0B='#0badff'
+local color0C='#8265ff'
+local color0D='#00eaff'
+local color0E='#00ffcc'
+local color0F='#ff3d81'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\

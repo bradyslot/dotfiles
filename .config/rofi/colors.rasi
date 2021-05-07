@@ -1,19 +1,19 @@
 /**
- * Base16 Unikitty Dark ROFI Color theme
+ * Base16 vice ROFI Color theme
  *
  * Authors
- *  Scheme: Josh W Lewis (@joshwlewis)
+ *  Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 216, 19, 127, 100 % );
-    blue:                        rgba ( 121, 106, 245, 100 % );
-    lightfg:                     rgba ( 216, 215, 218, 100 % );
-    lightbg:                     rgba ( 74, 70, 77, 100 % );
-    foreground:                  rgba ( 188, 186, 190, 100 % );
-    background:                  rgba ( 46, 42, 49, 100 % );
-    background-color:            rgba ( 46, 42, 49, 0 % );
+    red:                         rgba ( 255, 41, 168, 100 % );
+    blue:                        rgba ( 0, 234, 255, 100 % );
+    lightfg:                     rgba ( 178, 191, 217, 100 % );
+    lightbg:                     rgba ( 34, 38, 45, 100 % );
+    foreground:                  rgba ( 139, 156, 190, 100 % );
+    background:                  rgba ( 23, 25, 30, 100 % );
+    background-color:            rgba ( 23, 25, 30, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;

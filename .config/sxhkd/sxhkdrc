@@ -1,34 +1,14 @@
-# media controls
-alt + equal
-	pulsemixer --change-volume +5
+@XF86Audio{RaiseVolume,LowerVolume,Mute,MicMute}
+    pactl -- {set-sink-volume 0 +5%,set-sink-volume 0 -5%,set-sink-mute 0 toggle,set-source-mute 0 toggle}
 
-alt + minus
-	pulsemixer --change-volume -5
+@XF86MonBrightness{Up,Down}
+    sudo xbacklight {+10,-10}
 
-alt + period
-	xbacklight +10
-
-alt + comma
-	xbacklight -10
-
-# system shortcuts
 Print
 	scrot Pictures/scrot/screenshot-$(date '+%F-%H-%M-%S').png
 
 alt + Print
 	scrot -sf Pictures/scrot/screengrab-$(date '+%F-%H-%M-%S').png
 
-alt + Escape
-	prompt 'Leave Xorg?' 'kill -9 -1'
-
-alt + Delete
-	prompt "Shutdown computer?" "sudo -A shutdown -h now"
-
-alt + BackSpace
-	prompt "Reboot computer?" "sudo -A reboot"
-
 alt + backslash
-	clipmenu
-
-alt + shift + x
-	killandnotify "sxhkd" "Config reloaded" && sxhkd &
+	clipcat-menu

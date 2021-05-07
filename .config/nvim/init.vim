@@ -220,12 +220,7 @@ EOF
 " airline detects the colorscheme from g:colors_name declared in theme.vim
 colorscheme theme
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.maxlinenr=''
-let g:airline_symbols.linenr=''
-let g:airline_section_y=''
+let g:airline_symbols_ascii = 1
 
 " ================================================================== TREESITTER
 
