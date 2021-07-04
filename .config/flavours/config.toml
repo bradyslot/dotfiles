@@ -81,19 +81,19 @@ subtemplate = 'default'
 rewrite = true
 hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
 
-[[item]]
-file = '~/.themes/FlatColor/colors2'
-template = 'gtk-flatcolor'
-subtemplate = 'gtk-2'
-rewrite = true
-hook = 'bash -c "killall xsettingsd; xsettingsd &"'
+/* [[item]] */
+/* file = '~/.themes/FlatColor/colors2' */
+/* template = 'gtk-flatcolor' */
+/* subtemplate = 'gtk-2' */
+/* rewrite = true */
+/* hook = 'bash -c "killall xsettingsd; xsettingsd &"' */
 
-[[item]]
-file = '~/.themes/FlatColor/colors3'
-template = 'gtk-flatcolor'
-subtemplate = 'gtk-3'
-rewrite = true
-hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"'
+/* [[item]] */
+/* file = '~/.themes/FlatColor/colors3' */
+/* template = 'gtk-flatcolor' */
+/* subtemplate = 'gtk-3' */
+/* rewrite = true */
+/* hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"' */
 
 # [[item]]
 # file = '~/.config/waybar/colors.css'

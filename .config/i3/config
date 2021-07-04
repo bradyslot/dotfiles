@@ -11,30 +11,31 @@ new_window pixel 2
 default_border pixel 2
 default_floating_border pixel 2
 
-gaps inner 15
+# gaps inner 15
+gaps inner 5
 
 # Start Flavours
-## Base16 vice
-# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
+## Base16 Material Vivid
+# Author: joshyrobot
 #
 # You can use these variables anywhere in the i3 configuration file.
 
-set $base00 #17191E
-set $base01 #22262d
-set $base02 #3c3f4c
-set $base03 #383a47
-set $base04 #555e70
-set $base05 #8b9cbe
-set $base06 #B2BFD9
-set $base07 #f4f4f7
-set $base08 #ff29a8
-set $base09 #85ffe0
-set $base0A #f0ffaa
-set $base0B #0badff
-set $base0C #8265ff
-set $base0D #00eaff
-set $base0E #00ffcc
-set $base0F #ff3d81
+set $base00 #202124
+set $base01 #27292c
+set $base02 #323639
+set $base03 #44464d
+set $base04 #676c71
+set $base05 #80868b
+set $base06 #9e9e9e
+set $base07 #ffffff
+set $base08 #f44336
+set $base09 #ff9800
+set $base0A #ffeb3b
+set $base0B #00e676
+set $base0C #00bcd4
+set $base0D #2196f3
+set $base0E #673ab7
+set $base0F #8d6e63
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
@@ -121,6 +122,9 @@ bindsym Mod1+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod1+minus scratchpad show
 
+# alt tab behaviour for switching back and forth between last workspace
+bindsym Mod1+Tab workspace back_and_forth
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -193,6 +197,7 @@ mode "resize" {
 bindsym Mod1+r mode "resize"
 
 bar {
-        status_command polybar -c ~/.config/polybar/config.ini main
+        # status_command polybar -c ~/.config/polybar/config.ini main
+        # status_command ~/bin/launch_polybar.sh &
         mode invisible
 }

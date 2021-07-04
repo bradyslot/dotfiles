@@ -1,19 +1,19 @@
 /**
- * Base16 vice ROFI Color theme
+ * Base16 Material Vivid ROFI Color theme
  *
  * Authors
- *  Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
+ *  Scheme: joshyrobot
  *  Template: Jordi Pakey-Rodriguez (https://github.com/0xdec), Andrea Scarpino (https://github.com/ilpianista)
  */
 
 * {
-    red:                         rgba ( 255, 41, 168, 100 % );
-    blue:                        rgba ( 0, 234, 255, 100 % );
-    lightfg:                     rgba ( 178, 191, 217, 100 % );
-    lightbg:                     rgba ( 34, 38, 45, 100 % );
-    foreground:                  rgba ( 139, 156, 190, 100 % );
-    background:                  rgba ( 23, 25, 30, 100 % );
-    background-color:            rgba ( 23, 25, 30, 0 % );
+    red:                         rgba ( 244, 67, 54, 100 % );
+    blue:                        rgba ( 33, 150, 243, 100 % );
+    lightfg:                     rgba ( 158, 158, 158, 100 % );
+    lightbg:                     rgba ( 39, 41, 44, 100 % );
+    foreground:                  rgba ( 128, 134, 139, 100 % );
+    background:                  rgba ( 32, 33, 36, 100 % );
+    background-color:            rgba ( 32, 33, 36, 0 % );
     separatorcolor:              @foreground;
     border-color:                @foreground;
     selected-normal-foreground:  @lightbg;

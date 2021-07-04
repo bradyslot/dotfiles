@@ -1,23 +1,23 @@
 ! Start Flavours
-! Base16 vice
-! Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
+! Base16 Material Vivid
+! Scheme: joshyrobot
 
-#define base00 #17191E
-#define base01 #22262d
-#define base02 #3c3f4c
-#define base03 #383a47
-#define base04 #555e70
-#define base05 #8b9cbe
-#define base06 #B2BFD9
-#define base07 #f4f4f7
-#define base08 #ff29a8
-#define base09 #85ffe0
-#define base0A #f0ffaa
-#define base0B #0badff
-#define base0C #8265ff
-#define base0D #00eaff
-#define base0E #00ffcc
-#define base0F #ff3d81
+#define base00 #202124
+#define base01 #27292c
+#define base02 #323639
+#define base03 #44464d
+#define base04 #676c71
+#define base05 #80868b
+#define base06 #9e9e9e
+#define base07 #ffffff
+#define base08 #f44336
+#define base09 #ff9800
+#define base0A #ffeb3b
+#define base0B #00e676
+#define base0C #00bcd4
+#define base0D #2196f3
+#define base0E #673ab7
+#define base0F #8d6e63
 
 *foreground:   base05
 #ifdef background_opacity
