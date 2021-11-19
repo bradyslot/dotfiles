@@ -1,3 +1,7 @@
+#######################################
+# Environment
+#######################################
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -116,4 +120,3 @@ source ~/.config/zsh/zsh-autosuggestions.zsh 2>/dev/null
 
 # Load zsh-syntax-highlighting
 source ~/.config/zsh/zsh-syntax-highlighting.zsh 2>/dev/null
-

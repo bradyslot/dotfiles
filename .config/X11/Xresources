@@ -1,23 +1,23 @@
 ! Start Flavours
-! Base16 Material Vivid
-! Scheme: joshyrobot
+! Base16 Classic Dark
+! Scheme: Jason Heeris (http://heeris.id.au)
 
-#define base00 #202124
-#define base01 #27292c
-#define base02 #323639
-#define base03 #44464d
-#define base04 #676c71
-#define base05 #80868b
-#define base06 #9e9e9e
-#define base07 #ffffff
-#define base08 #f44336
-#define base09 #ff9800
-#define base0A #ffeb3b
-#define base0B #00e676
-#define base0C #00bcd4
-#define base0D #2196f3
-#define base0E #673ab7
-#define base0F #8d6e63
+#define base00 #151515
+#define base01 #202020
+#define base02 #303030
+#define base03 #505050
+#define base04 #B0B0B0
+#define base05 #D0D0D0
+#define base06 #E0E0E0
+#define base07 #F5F5F5
+#define base08 #AC4142
+#define base09 #D28445
+#define base0A #F4BF75
+#define base0B #90A959
+#define base0C #75B5AA
+#define base0D #6A9FB5
+#define base0E #AA759F
+#define base0F #8F5536
 
 *foreground:   base05
 #ifdef background_opacity

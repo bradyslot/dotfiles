@@ -8,20 +8,28 @@
 # hook = '' (command to execute after injecting)
 
 
-# [[item]]
-# file = '~/.config/polybar/colors.ini'
-# template = 'polybar'
-# rewrite = true
-# hook = 'polybar-msg cmd restart'
+[[item]]
+file = '~/.config/polybar/colors.ini'
+template = 'polybar'
+rewrite = true
+hook = 'polybar-msg cmd restart'
 
-# [[item]]
-# file = '~/.config/sway/config'
-# template = 'sway'
-# subtemplate = 'colors'
-# rewrite = false
-# start = '# Start Flavours'
-# end = '# End Flavours'
-# hook = 'sway reload'
+[[item]]
+file = '~/.config/sway/config'
+template = 'sway'
+subtemplate = 'colors'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+hook = 'swaymsg reload'
+
+[[items]]
+file = "~/.config/waybar/colors.css"
+template = "waybar"
+rewrite = false
+start = '/* Start Flavours */'
+end = '/* End Flavours */'
+hook = "ps aux | grep -m 1 waybar | awk '{print $2}' | xargs kill ; waybar"
 
 [[item]]
 file = '~/.config/i3/config'
@@ -81,19 +89,19 @@ subtemplate = 'default'
 rewrite = true
 hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
 
-/* [[item]] */
-/* file = '~/.themes/FlatColor/colors2' */
-/* template = 'gtk-flatcolor' */
-/* subtemplate = 'gtk-2' */
-/* rewrite = true */
-/* hook = 'bash -c "killall xsettingsd; xsettingsd &"' */
+# [[item]]
+# file = '~/.themes/FlatColor/colors2'
+# template = 'gtk-flatcolor'
+# subtemplate = 'gtk-2'
+# rewrite = true
+# hook = 'bash -c "killall xsettingsd; xsettingsd &"'
 
-/* [[item]] */
-/* file = '~/.themes/FlatColor/colors3' */
-/* template = 'gtk-flatcolor' */
-/* subtemplate = 'gtk-3' */
-/* rewrite = true */
-/* hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"' */
+# [[item]]
+# file = '~/.themes/FlatColor/colors3'
+# template = 'gtk-flatcolor'
+# subtemplate = 'gtk-3'
+# rewrite = true
+# hook = 'bash -c "gsettings set org.gnome.desktop.interface gtk-theme dummy && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"'
 
 # [[item]]
 # file = '~/.config/waybar/colors.css'
