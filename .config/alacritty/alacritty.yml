@@ -69,8 +69,11 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Sauce Code Pro Nerd Font
+    family: Terminus
     style: Medium
+
+  # Point size
+  size: 12
   #bold:
     #family: JetBrains Mono
     #style:
@@ -97,9 +100,6 @@ font:
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
 
-  # Point size
-  size: 8
-
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
@@ -117,48 +117,48 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Start Flavours
-# Base16 vice 256 - alacritty color config
-# Thomas Leon Highbaugh thighbaugh@zoho.com
+# Base16 Classic Dark 256 - alacritty color config
+# Jason Heeris (http://heeris.id.au)
 colors:
   # Default colors
   primary:
-    background: '0x17191E'
-    foreground: '0x8b9cbe'
+    background: '0x151515'
+    foreground: '0xD0D0D0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x17191E'
-    cursor: '0x8b9cbe'
+    text: '0x151515'
+    cursor: '0xD0D0D0'
 
   # Normal colors
   normal:
-    black:   '0x17191E'
-    red:     '0xff29a8'
-    green:   '0x0badff'
-    yellow:  '0xf0ffaa'
-    blue:    '0x00eaff'
-    magenta: '0x00ffcc'
-    cyan:    '0x8265ff'
-    white:   '0x8b9cbe'
+    black:   '0x151515'
+    red:     '0xAC4142'
+    green:   '0x90A959'
+    yellow:  '0xF4BF75'
+    blue:    '0x6A9FB5'
+    magenta: '0xAA759F'
+    cyan:    '0x75B5AA'
+    white:   '0xD0D0D0'
 
   # Bright colors
   bright:
-    black:   '0x383a47'
-    red:     '0xff29a8'
-    green:   '0x0badff'
-    yellow:  '0xf0ffaa'
-    blue:    '0x00eaff'
-    magenta: '0x00ffcc'
-    cyan:    '0x8265ff'
-    white:   '0xf4f4f7'
+    black:   '0x505050'
+    red:     '0xAC4142'
+    green:   '0x90A959'
+    yellow:  '0xF4BF75'
+    blue:    '0x6A9FB5'
+    magenta: '0xAA759F'
+    cyan:    '0x75B5AA'
+    white:   '0xF5F5F5'
 
   indexed_colors:
-    - { index: 16, color: '0x85ffe0' }
-    - { index: 17, color: '0xff3d81' }
-    - { index: 18, color: '0x22262d' }
-    - { index: 19, color: '0x3c3f4c' }
-    - { index: 20, color: '0x555e70' }
-    - { index: 21, color: '0xB2BFD9' }
+    - { index: 16, color: '0xD28445' }
+    - { index: 17, color: '0x8F5536' }
+    - { index: 18, color: '0x202020' }
+    - { index: 19, color: '0x303030' }
+    - { index: 20, color: '0xB0B0B0' }
+    - { index: 21, color: '0xE0E0E0' }
 # End Flavours
 
 # Visual Bell
@@ -247,7 +247,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   #hide_when_typing: true
 
-  url:
+  hints:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.

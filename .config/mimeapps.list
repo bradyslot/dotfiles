@@ -119,9 +119,15 @@ x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/magnet=transmission-gtk.desktop
 x-scheme-handler/spotify=spotify.desktop
-x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/msteams=teams-insiders.desktop
 x-scheme-handler/etcher=balena-etcher-electron.desktop
+application/x-trash=nvim.desktop
 
 [Added Associations]
 image/png=gimp.desktop;
 application/x-raw-disk-image=xarchiver.desktop;
+application/x-trash=nvim.desktop;
+image/svg+xml=org.nomacs.ImageLounge.desktop;
+application/vnd.rar=org.gnome.FileRoller.desktop;xarchiver.desktop;
+application/x-java-archive=xarchiver.desktop;
+text/plain=vim.desktop;org.gnome.gedit.desktop;nvim.desktop;

@@ -1,23 +1,23 @@
 ! Start Flavours
-! Base16 vice
-! Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
+! Base16 Classic Dark
+! Scheme: Jason Heeris (http://heeris.id.au)
 
-#define base00 #17191E
-#define base01 #22262d
-#define base02 #3c3f4c
-#define base03 #383a47
-#define base04 #555e70
-#define base05 #8b9cbe
-#define base06 #B2BFD9
-#define base07 #f4f4f7
-#define base08 #ff29a8
-#define base09 #85ffe0
-#define base0A #f0ffaa
-#define base0B #0badff
-#define base0C #8265ff
-#define base0D #00eaff
-#define base0E #00ffcc
-#define base0F #ff3d81
+#define base00 #151515
+#define base01 #202020
+#define base02 #303030
+#define base03 #505050
+#define base04 #B0B0B0
+#define base05 #D0D0D0
+#define base06 #E0E0E0
+#define base07 #F5F5F5
+#define base08 #AC4142
+#define base09 #D28445
+#define base0A #F4BF75
+#define base0B #90A959
+#define base0C #75B5AA
+#define base0D #6A9FB5
+#define base0E #AA759F
+#define base0F #8F5536
 
 *foreground:   base05
 #ifdef background_opacity

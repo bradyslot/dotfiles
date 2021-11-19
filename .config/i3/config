@@ -5,36 +5,37 @@
 # |_|____/       \___\___/|_| |_|_| |_|\__, |
 #                                      |___/
 
-font pango:Sauce Code Pro Nerd Font Medium 9
+font pango:Terminus 10
 
 new_window pixel 2
 default_border pixel 2
 default_floating_border pixel 2
 
-gaps inner 15
+# gaps inner 15
+gaps inner 10
 
 # Start Flavours
-## Base16 vice
-# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
+## Base16 Classic Dark
+# Author: Jason Heeris (http://heeris.id.au)
 #
 # You can use these variables anywhere in the i3 configuration file.
 
-set $base00 #17191E
-set $base01 #22262d
-set $base02 #3c3f4c
-set $base03 #383a47
-set $base04 #555e70
-set $base05 #8b9cbe
-set $base06 #B2BFD9
-set $base07 #f4f4f7
-set $base08 #ff29a8
-set $base09 #85ffe0
-set $base0A #f0ffaa
-set $base0B #0badff
-set $base0C #8265ff
-set $base0D #00eaff
-set $base0E #00ffcc
-set $base0F #ff3d81
+set $base00 #151515
+set $base01 #202020
+set $base02 #303030
+set $base03 #505050
+set $base04 #B0B0B0
+set $base05 #D0D0D0
+set $base06 #E0E0E0
+set $base07 #F5F5F5
+set $base08 #AC4142
+set $base09 #D28445
+set $base0A #F4BF75
+set $base0B #90A959
+set $base0C #75B5AA
+set $base0D #6A9FB5
+set $base0E #AA759F
+set $base0F #8F5536
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
@@ -121,6 +122,9 @@ bindsym Mod1+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod1+minus scratchpad show
 
+# alt tab behaviour for switching back and forth between last workspace
+bindsym Mod1+Tab workspace back_and_forth
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -193,6 +197,7 @@ mode "resize" {
 bindsym Mod1+r mode "resize"
 
 bar {
-        status_command polybar -c ~/.config/polybar/config.ini main
+        # status_command polybar -c ~/.config/polybar/config.ini main
+        # status_command ~/bin/launch_polybar.sh &
         mode invisible
 }

@@ -1,6 +1,6 @@
 configuration {
     modi: "window,drun,ssh,combi";
-    font: "Sauce Code Pro Nerd Font Medium 10";
+    font: "Terminus 12";
     combi-modi: "window,drun,ssh";
     theme: "colors";
     width: 30;

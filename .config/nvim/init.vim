@@ -10,17 +10,20 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set autoindent
 set nu
 set nowrap
 set incsearch
 set termguicolors
 set scrolloff=999
+set sidescrolloff=999
 set noshowmode
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set colorcolumn=80
 set cmdheight=1
 set shortmess+=c
 set updatetime=50
+set conceallevel=0
 set completeopt=menuone,noinsert,noselect
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -49,6 +52,7 @@ Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'Yggdroot/indentLine'
 
 " language server protocol
 Plug 'neovim/nvim-lspconfig'
@@ -57,6 +61,15 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
+
+" ======================================================================== YAML
+" Fix auto-indentation for YAML files
+augroup yaml_fix
+    autocmd!
+    autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+augroup END
+let g:indentLine_char = '┆'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " =================================================================== TELESCOPE
 
@@ -75,18 +88,16 @@ require('telescope').setup{
       '--column',
       '--smart-case'
     },
-    prompt_position = "top",
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
-    sorting_strategy = "ascending",
+    sorting_strategy = "descending",
     layout_strategy = "horizontal",
-    layout_defaults = {
+    layout_config = {
       horizontal = {
         mirror = false,
-        preview_width = 0.6,
       },
       vertical = {
         mirror = false,
@@ -95,16 +106,12 @@ require('telescope').setup{
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
     winblend = 0,
-    width = 0.75,
-    preview_cutoff = 80,
-    results_height = 1,
-    results_width = 0.4,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
+    path_display = {},
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -220,6 +227,8 @@ EOF
 " airline detects the colorscheme from g:colors_name declared in theme.vim
 colorscheme theme
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
 
 " ================================================================== TREESITTER
@@ -263,18 +272,24 @@ nnoremap <leader>x :bd<CR>
 nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
 
 " move between windows
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+" nnoremap <leader>h :wincmd h<CR>
+" nnoremap <leader>j :wincmd j<CR>
+" nnoremap <leader>k :wincmd k<CR>
+" nnoremap <leader>l :wincmd l<CR>
 
 " ====================================================================== REMAPS
 
-" move visual selection around
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
+" remap joining lines and opening help
+nnoremap <C-j> J
+nnoremap <C-k> K
+
+" move lines around
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
 
 " indenting line or visual selection
 vnoremap > >gv
@@ -289,14 +304,16 @@ nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
 
 " buffer navigation
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 nnoremap <C-h> :bprev <CR>
 nnoremap <C-l> :bnext <CR>
 
 " jump to begining and end of line
 nnoremap <S-h> ^
 nnoremap <S-l> $
+
+" shift j k to 10j 10k
+nnoremap <S-j> 10j
+nnoremap <S-k> 10k
 
 " ==================================================================== COMMANDS
 

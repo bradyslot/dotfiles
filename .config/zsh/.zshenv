@@ -48,6 +48,7 @@ export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible
 
 # program env variables
 export ZSH_CUSTOM=$HOME/.config/zsh/custom
@@ -73,27 +74,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 vice
-# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
+# Base16 Classic Dark
+# Author: Jason Heeris (http://heeris.id.au)
 
 _gen_fzf_default_opts() {
 
-local color00='#17191E'
-local color01='#22262d'
-local color02='#3c3f4c'
-local color03='#383a47'
-local color04='#555e70'
-local color05='#8b9cbe'
-local color06='#B2BFD9'
-local color07='#f4f4f7'
-local color08='#ff29a8'
-local color09='#85ffe0'
-local color0A='#f0ffaa'
-local color0B='#0badff'
-local color0C='#8265ff'
-local color0D='#00eaff'
-local color0E='#00ffcc'
-local color0F='#ff3d81'
+local color00='#151515'
+local color01='#202020'
+local color02='#303030'
+local color03='#505050'
+local color04='#B0B0B0'
+local color05='#D0D0D0'
+local color06='#E0E0E0'
+local color07='#F5F5F5'
+local color08='#AC4142'
+local color09='#D28445'
+local color0A='#F4BF75'
+local color0B='#90A959'
+local color0C='#75B5AA'
+local color0D='#6A9FB5'
+local color0E='#AA759F'
+local color0F='#8F5536'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\

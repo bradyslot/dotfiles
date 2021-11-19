@@ -1,5 +1,5 @@
 @XF86Audio{RaiseVolume,LowerVolume,Mute,MicMute}
-    pactl -- {set-sink-volume 0 +5%,set-sink-volume 0 -5%,set-sink-mute 0 toggle,set-source-mute 0 toggle}
+    pactl -- {set-sink-volume @DEFAULT_SINK@ +5%,set-sink-volume @DEFAULT_SINK@ -5%,set-sink-mute @DEFAULT_SINK@ toggle,set-source-mute @DEFAULT_SINK@ toggle}
 
 @XF86MonBrightness{Up,Down}
     sudo xbacklight {+10,-10}
