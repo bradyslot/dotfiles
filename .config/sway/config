@@ -1,4 +1,4 @@
-font pango:Terminus 10
+font pango:Source Code Pro 10
 
 # new_window pixel 2
 default_border pixel 2
@@ -39,27 +39,28 @@ bindsym --release Mod1+Print exec flameshot gui -p ~/Pictures/flameshot/
 bindsym --release Print exec flameshot full -p ~/Pictures/flameshot/
 
 exec waybar
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start Flavours
-## Base16 Classic Dark
-# Author: Jason Heeris (http://heeris.id.au)
+## Base16 Porple
+# Author: Niek den Breeje (https://github.com/AuditeMarlow)
 
-set $base00 #151515
-set $base01 #202020
-set $base02 #303030
-set $base03 #505050
-set $base04 #B0B0B0
-set $base05 #D0D0D0
-set $base06 #E0E0E0
-set $base07 #F5F5F5
-set $base08 #AC4142
-set $base09 #D28445
-set $base0A #F4BF75
-set $base0B #90A959
-set $base0C #75B5AA
-set $base0D #6A9FB5
-set $base0E #AA759F
-set $base0F #8F5536
+set $base00 #292c36
+set $base01 #333344
+set $base02 #474160
+set $base03 #65568a
+set $base04 #b8b8b8
+set $base05 #d8d8d8
+set $base06 #e8e8e8
+set $base07 #f8f8f8
+set $base08 #f84547
+set $base09 #d28e5d
+set $base0A #efa16b
+set $base0B #95c76f
+set $base0C #64878f
+set $base0D #8485ce
+set $base0E #b74989
+set $base0F #986841
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
