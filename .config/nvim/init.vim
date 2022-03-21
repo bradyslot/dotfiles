@@ -53,6 +53,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'breuckelen/vim-resize'
 
 " language server protocol
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
@@ -138,11 +139,11 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-" Run the Code Lens action on the current line.
-nmap <leader>cl  <Plug>(coc-codelens-action)
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" " Apply AutoFix to problem on the current line.
+" nmap <leader>qf  <Plug>(coc-fix-current)
+" " Run the Code Lens action on the current line.
+" nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -274,6 +275,13 @@ EOF
 " airline detects the colorscheme from g:colors_name declared in theme.vim
 colorscheme theme
 
+" ===================================================================== AIRLINE
+
+" enable global status line
+set laststatus=3
+" make winddow seperator crispy
+highlight WinSeparator guibg=None
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
@@ -293,34 +301,55 @@ let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 
-" ====================================================================== LEADER
+" ====================================================================== REMAPS
+
+" Close split window before closing buffer
+function CloseWindowThenBuffer()
+  try
+    :close
+  catch /^Vim\%((\a\+)\)\=:E444/
+    :bd
+  endtry
+endfunction
 
 let g:mapleader = ' '
-" nnoremap <leader>g :FloatermNew lazygit<CR>
-nnoremap <leader>r :FloatermNew ranger<CR>
-nnoremap <leader>w :write<CR>
-nnoremap <leader>x :bd<CR>
-nnoremap <leader>s :silent! so ~/.config/nvim/init.vim<CR>
+
+nnoremap <silent><leader>r :FloatermNew ranger<CR>
+nnoremap <silent><leader>w :write<CR>
+nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>x :bd<CR>
+nnoremap <silent><leader>c :close<CR>
+
+" resize windows with arrow keys
+let g:vim_resize_disable_auto_mappings = 1
+nnoremap <silent><C-Left> :CmdResizeLeft<CR>
+nnoremap <silent><C-Right> :CmdResizeRight<CR>
+nnoremap <silent><C-Up> :CmdResizeUp<CR>
+nnoremap <silent><C-Down> :CmdResizeDown<CR>
 
 " move between windows
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <silent><leader>h :wincmd h<CR>
+nnoremap <silent><leader>j :wincmd j<CR>
+nnoremap <silent><leader>k :wincmd k<CR>
+nnoremap <silent><leader>l :wincmd l<CR>
 
-" ====================================================================== REMAPS
+" split windows
+set splitright
+set splitbelow
+nnoremap <silent><leader>- :split<CR>
+nnoremap <silent><leader>\ :vsplit<CR>
 
 " remap joining lines and opening help
 nnoremap <C-j> J
 nnoremap <C-k> K
 
 " move lines around
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-" inoremap <C-j> <esc>:m .+1<CR>==
-" inoremap <C-k> <esc>:m .-2<CR>==
-" nnoremap <leader>j :m .+1<CR>==
-" nnoremap <leader>k :m .-2<CR>==
+vnoremap <silent>J :m '>+1<CR>gv=gv
+vnoremap <silent>K :m '<-2<CR>gv=gv
+" inoremap <silent><C-j> <esc>:m .+1<CR>==
+" inoremap <silent><C-k> <esc>:m .-2<CR>==
+" nnoremap <silent><leader>j :m .+1<CR>==
+" nnoremap <silent><leader>k :m .-2<CR>==
 
 " indenting line or visual selection
 vnoremap > >gv
@@ -331,12 +360,12 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " comment line or visual selection
-nnoremap <C-_> :Commentary<CR>
-vnoremap <C-_> :Commentary<CR>
+nnoremap <silent><C-_> :Commentary<CR>
+vnoremap <silent><C-_> :Commentary<CR>
 
 " buffer navigation
-nnoremap <C-h> :bprev <CR>
-nnoremap <C-l> :bnext <CR>
+nnoremap <silent><C-h> :bprev <CR>
+nnoremap <silent><C-l> :bnext <CR>
 
 " jump to begining and end of line
 nnoremap <S-h> ^

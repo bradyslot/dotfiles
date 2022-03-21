@@ -1,8 +1,8 @@
 font pango:Source Code Pro 10
 
 # new_window pixel 2
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 4
+default_floating_border pixel 4
 
 # gaps inner 15
 gaps inner 10
@@ -16,6 +16,8 @@ input * {
 }
 
 output "*" bg ~/Pictures/Wallpapers/space.jpg fill
+output DP-1 pos 0 0 res 3840 2160
+output eDP-1 pos 960 2160 res 1920 1080
 
 input type:touchpad {
     tap enabled
