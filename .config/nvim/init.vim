@@ -53,7 +53,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'breuckelen/vim-resize'
+" Plug 'breuckelen/vim-resize'
+Plug 'mrjones2014/smart-splits.nvim'
 
 " language server protocol
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
@@ -320,24 +321,36 @@ nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim<CR>
 nnoremap <silent><leader>x :bd<CR>
 nnoremap <silent><leader>c :close<CR>
 
-" resize windows with arrow keys
-let g:vim_resize_disable_auto_mappings = 1
-nnoremap <silent><C-Left> :CmdResizeLeft<CR>
-nnoremap <silent><C-Right> :CmdResizeRight<CR>
-nnoremap <silent><C-Up> :CmdResizeUp<CR>
-nnoremap <silent><C-Down> :CmdResizeDown<CR>
-
-" move between windows
-nnoremap <silent><leader>h :wincmd h<CR>
-nnoremap <silent><leader>j :wincmd j<CR>
-nnoremap <silent><leader>k :wincmd k<CR>
-nnoremap <silent><leader>l :wincmd l<CR>
-
 " split windows
 set splitright
 set splitbelow
 nnoremap <silent><leader>- :split<CR>
 nnoremap <silent><leader>\ :vsplit<CR>
+
+" resizing splits
+nmap <silent><C-Left> :lua require('smart-splits').resize_left()<CR>
+nmap <silent><C-Down> :lua require('smart-splits').resize_down()<CR>
+nmap <silent><C-Up> :lua require('smart-splits').resize_up()<CR>
+nmap <silent><C-Right> :lua require('smart-splits').resize_right()<CR>
+
+" moving between splits
+nmap <silent><leader>h :lua require('smart-splits').move_cursor_left()<CR>
+nmap <silent><leader>j :lua require('smart-splits').move_cursor_down()<CR>
+nmap <silent><leader>k :lua require('smart-splits').move_cursor_up()<CR>
+nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
+
+" " resize windows with arrow keys
+" let g:vim_resize_disable_auto_mappings = 1
+" nnoremap <silent><C-Left> :CmdResizeLeft<CR>
+" nnoremap <silent><C-Right> :CmdResizeRight<CR>
+" nnoremap <silent><C-Up> :CmdResizeUp<CR>
+" nnoremap <silent><C-Down> :CmdResizeDown<CR>
+
+" " move between windows
+" nnoremap <silent><leader>h :wincmd h<CR>
+" nnoremap <silent><leader>j :wincmd j<CR>
+" nnoremap <silent><leader>k :wincmd k<CR>
+" nnoremap <silent><leader>l :wincmd l<CR>
 
 " remap joining lines and opening help
 nnoremap <C-j> J

@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
+path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
 export PATH
 
 # locale
@@ -11,7 +11,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export BROWSER=brave
 export TERMINAL=alacritty
-export WM=dwm
+export WM=sway
 export PAGER=less
 export VIDEO=vlc
 export IMAGE=nomacs

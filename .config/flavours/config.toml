@@ -8,11 +8,11 @@
 # hook = '' (command to execute after injecting)
 
 
-[[item]]
-file = '~/.config/polybar/colors.ini'
-template = 'polybar'
-rewrite = true
-hook = 'polybar-msg cmd restart'
+# [[item]]
+# file = '~/.config/polybar/colors.ini'
+# template = 'polybar'
+# rewrite = true
+# hook = 'polybar-msg cmd restart'
 
 [[item]]
 file = '~/.config/sway/config'
@@ -23,13 +23,13 @@ start = '# Start Flavours'
 end = '# End Flavours'
 hook = 'swaymsg reload'
 
-[[items]]
-file = "~/.config/waybar/colors.css"
-template = "waybar"
-rewrite = false
-start = '/* Start Flavours */'
-end = '/* End Flavours */'
-hook = "killall waybar; waybar &"
+# [[items]]
+# file = "~/.config/waybar/colors.css"
+# template = "waybar"
+# rewrite = false
+# start = '/* Start Flavours */'
+# end = '/* End Flavours */'
+# hook = "killall waybar; waybar &"
 
 # [[item]]
 # file = '~/.config/i3/config'

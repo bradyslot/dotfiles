@@ -4,7 +4,6 @@ font pango:Source Code Pro 10
 default_border pixel 4
 default_floating_border pixel 4
 
-# gaps inner 15
 gaps inner 10
 
 input * {
@@ -15,12 +14,25 @@ input * {
     xkb_numlock enable
 }
 
-output "*" bg ~/Pictures/Wallpapers/space.jpg fill
-output DP-1 pos 0 0 res 3840 2160
-output eDP-1 pos 960 2160 res 1920 1080
+xwayland enable
+
+#output "*" bg ~/Pictures/Wallpapers/space.jpg fill
+output DP-1 pos 2160 0 res 3840 2160
+output HDMI-A-1 pos 0 0 res 3840 2160 transform 270
+
+# import vars into dbus for screensharing
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 input type:touchpad {
     tap enabled
+}
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Arc-Darker'
+    gsettings set $gnome-schema icon-theme 'Papirus'
+    # gsettings set $gnome-schema cursor-theme 'cursor theme name'
+    gsettings set $gnome-schema font-name 'Source Code Pro 10'
 }
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -30,8 +42,11 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
-exec wl-paste -t text --watch clipman store
-bindsym Mod1+backslash exec clipman pick -t rofi
+# clipboard manager
+# exec wl-paste -t text --watch clipman store
+# bindsym Mod1+backslash exec clipman pick -t rofi
+exec clipcatd
+bindsym Mod1+backslash exec clipcat-menu
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec hash dbus-update-activation-environment 2>/dev/null && \
@@ -40,7 +55,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 bindsym --release Mod1+Print exec flameshot gui -p ~/Pictures/flameshot/
 bindsym --release Print exec flameshot full -p ~/Pictures/flameshot/
 
-exec waybar
+# exec waybar
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start Flavours
@@ -84,13 +99,14 @@ set $right l
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec alacritty
 
 # kill focused window
 bindsym Mod1+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym Mod1+d exec rofi -show drun -show-icons
+set $menu "rofi -show drun -show-icons"
+bindsym Mod1+d exec $menu
 
 # change focus
 bindsym Mod1+$left focus left
@@ -191,10 +207,10 @@ bindsym Mod1+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart sway inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod1+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit sway (logs you out of your X session)
+bindsym Mod1+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

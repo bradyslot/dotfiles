@@ -17,6 +17,22 @@ SAVEHIST=1000
 HISTFILE=~/.cache/zsh/history
 [[ ! -e ~/.cache/zsh/history ]] && touch ~/.cache/zsh/history
 
+# oh-my-zsh settings
+export ZSH="$ZDOTDIR/.oh-my-zsh"
+
+ZSH_THEME="spaceship"
+
+plugins=(
+  git
+  # zsh-autocomplete
+  zsh-autosuggestions
+  # fast-syntax-highlighting
+  zsh-syntax-highlighting
+  # colored-man-pages
+)
+
+source $ZSH/oh-my-zsh.sh
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -31,8 +47,8 @@ _comp_options+=(globdots)		# Include hidden files.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Spaceship prompt
-autoload -U promptinit; promptinit
-prompt spaceship
+# autoload -U promptinit; promptinit
+# prompt spaceship
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
@@ -99,6 +115,7 @@ alias startcam="gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo 
 alias qsim="java -jar TinyClient.jar 192.168.90.250 password"
 alias find-large-files='sudo su -c "find / -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r"'
 alias git-commit-previous='git commit --amend --no-edit'
+alias screencast='/usr/lib/xdg-desktop-portal-wlr'
 
 ssh-pemgen () {
     ssh-keygen -P "" -t rsa -b 4096 -m pem -f "$1" -C "$1"
@@ -108,12 +125,12 @@ ssh-pemgen () {
 # Plugins
 #######################################
 # Load Completions Scripts
-fpath=(~/.config/zsh/completions $fpath)
+# fpath=(~/.config/zsh/completions $fpath)
 
-# Load Custom Keybindings
-source ~/.config/zsh/keybindings.zsh 2>/dev/null
+# # Load Custom Keybindings
+# source ~/.config/zsh/keybindings.zsh 2>/dev/null
 
-# Enable Mouse Support
+# # Enable Mouse Support
 source ~/.config/zsh/mouse.zsh 2>/dev/null
 
 # Load extract function
@@ -122,8 +139,10 @@ source ~/.config/zsh/extract.zsh 2>/dev/null
 # Load universal archive function
 source ~/.config/zsh/archive.zsh 2>/dev/null
 
-# Load zsh-autosuggestions
-source ~/.config/zsh/zsh-autosuggestions.zsh 2>/dev/null
+# # Load zsh-autosuggestions
+# source ~/.config/zsh/zsh-autosuggestions.zsh 2>/dev/null
 
-# Load zsh-syntax-highlighting
-source ~/.config/zsh/zsh-syntax-highlighting.zsh 2>/dev/null
+# # Load zsh-syntax-highlighting
+# source ~/.config/zsh/zsh-syntax-highlighting.zsh 2>/dev/null
+#
+

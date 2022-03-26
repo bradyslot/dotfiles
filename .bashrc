@@ -196,3 +196,5 @@ set menu-complete-display-prefix on
 # enable colors in tab completion
 set colored-stats on
 set colored-completion-prefix on
+alias ls='ls --color=auto'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
