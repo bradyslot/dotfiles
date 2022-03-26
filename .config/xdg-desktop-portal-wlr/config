@@ -1,0 +1,7 @@
+[screencast]
+output_name=DP-1
+# max_fps=30
+# exec_before=disable_notifications.sh
+# exec_after=enable_notifications.sh
+chooser_type=none
+chooser_cmd=slurp -f %o -or

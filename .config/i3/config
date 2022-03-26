@@ -15,27 +15,27 @@ default_floating_border pixel 2
 gaps inner 10
 
 # Start Flavours
-## Base16 Classic Dark
-# Author: Jason Heeris (http://heeris.id.au)
+## Base16 Embers
+# Author: Jannik Siebert (https://github.com/janniks)
 #
 # You can use these variables anywhere in the i3 configuration file.
 
-set $base00 #151515
-set $base01 #202020
-set $base02 #303030
-set $base03 #505050
-set $base04 #B0B0B0
-set $base05 #D0D0D0
-set $base06 #E0E0E0
-set $base07 #F5F5F5
-set $base08 #AC4142
-set $base09 #D28445
-set $base0A #F4BF75
-set $base0B #90A959
-set $base0C #75B5AA
-set $base0D #6A9FB5
-set $base0E #AA759F
-set $base0F #8F5536
+set $base00 #16130F
+set $base01 #2C2620
+set $base02 #433B32
+set $base03 #5A5047
+set $base04 #8A8075
+set $base05 #A39A90
+set $base06 #BEB6AE
+set $base07 #DBD6D1
+set $base08 #826D57
+set $base09 #828257
+set $base0A #6D8257
+set $base0B #57826D
+set $base0C #576D82
+set $base0D #6D5782
+set $base0E #82576D
+set $base0F #825757
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border

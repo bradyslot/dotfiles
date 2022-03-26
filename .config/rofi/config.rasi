@@ -1,8 +1,8 @@
+@theme "colors"
 configuration {
     modi: "window,drun,ssh,combi";
-    font: "Terminus 12";
+    font: "Source Code Pro Semibold 12";
     combi-modi: "window,drun,ssh";
-    theme: "colors";
     width: 30;
     lines: 15;
     padding: 5;

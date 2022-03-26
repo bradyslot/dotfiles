@@ -69,8 +69,8 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Terminus
-    style: Medium
+    family: Source Code Pro
+    style: Semibold
 
   # Point size
   size: 12
@@ -117,48 +117,48 @@ font:
 draw_bold_text_with_bright_colors: false
 
 # Start Flavours
-# Base16 Classic Dark 256 - alacritty color config
-# Jason Heeris (http://heeris.id.au)
+# Base16 Porple 256 - alacritty color config
+# Niek den Breeje (https://github.com/AuditeMarlow)
 colors:
   # Default colors
   primary:
-    background: '0x151515'
-    foreground: '0xD0D0D0'
+    background: '0x292c36'
+    foreground: '0xd8d8d8'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x151515'
-    cursor: '0xD0D0D0'
+    text: '0x292c36'
+    cursor: '0xd8d8d8'
 
   # Normal colors
   normal:
-    black:   '0x151515'
-    red:     '0xAC4142'
-    green:   '0x90A959'
-    yellow:  '0xF4BF75'
-    blue:    '0x6A9FB5'
-    magenta: '0xAA759F'
-    cyan:    '0x75B5AA'
-    white:   '0xD0D0D0'
+    black:   '0x292c36'
+    red:     '0xf84547'
+    green:   '0x95c76f'
+    yellow:  '0xefa16b'
+    blue:    '0x8485ce'
+    magenta: '0xb74989'
+    cyan:    '0x64878f'
+    white:   '0xd8d8d8'
 
   # Bright colors
   bright:
-    black:   '0x505050'
-    red:     '0xAC4142'
-    green:   '0x90A959'
-    yellow:  '0xF4BF75'
-    blue:    '0x6A9FB5'
-    magenta: '0xAA759F'
-    cyan:    '0x75B5AA'
-    white:   '0xF5F5F5'
+    black:   '0x65568a'
+    red:     '0xf84547'
+    green:   '0x95c76f'
+    yellow:  '0xefa16b'
+    blue:    '0x8485ce'
+    magenta: '0xb74989'
+    cyan:    '0x64878f'
+    white:   '0xf8f8f8'
 
   indexed_colors:
-    - { index: 16, color: '0xD28445' }
-    - { index: 17, color: '0x8F5536' }
-    - { index: 18, color: '0x202020' }
-    - { index: 19, color: '0x303030' }
-    - { index: 20, color: '0xB0B0B0' }
-    - { index: 21, color: '0xE0E0E0' }
+    - { index: 16, color: '0xd28e5d' }
+    - { index: 17, color: '0x986841' }
+    - { index: 18, color: '0x333344' }
+    - { index: 19, color: '0x474160' }
+    - { index: 20, color: '0xb8b8b8' }
+    - { index: 21, color: '0xe8e8e8' }
 # End Flavours
 
 # Visual Bell
@@ -191,7 +191,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1
+window.opacity: 1
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

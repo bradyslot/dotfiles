@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$HOME/.local/share/cargo/bin/" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
+path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
 export PATH
 
 # locale
@@ -11,7 +11,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 export BROWSER=brave
 export TERMINAL=alacritty
-export WM=dwm
+export WM=sway
 export PAGER=less
 export VIDEO=vlc
 export IMAGE=nomacs
@@ -49,10 +49,16 @@ export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
+export AWS_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/credentials"
+export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/shared-credentials"
 
 # program env variables
 export ZSH_CUSTOM=$HOME/.config/zsh/custom
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+export NVIM_LISTEN_ADDRESS=localhost:6666
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # colorize things
 export LESS=-R
@@ -74,27 +80,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 Classic Dark
-# Author: Jason Heeris (http://heeris.id.au)
+# Base16 Porple
+# Author: Niek den Breeje (https://github.com/AuditeMarlow)
 
 _gen_fzf_default_opts() {
 
-local color00='#151515'
-local color01='#202020'
-local color02='#303030'
-local color03='#505050'
-local color04='#B0B0B0'
-local color05='#D0D0D0'
-local color06='#E0E0E0'
-local color07='#F5F5F5'
-local color08='#AC4142'
-local color09='#D28445'
-local color0A='#F4BF75'
-local color0B='#90A959'
-local color0C='#75B5AA'
-local color0D='#6A9FB5'
-local color0E='#AA759F'
-local color0F='#8F5536'
+local color00='#292c36'
+local color01='#333344'
+local color02='#474160'
+local color03='#65568a'
+local color04='#b8b8b8'
+local color05='#d8d8d8'
+local color06='#e8e8e8'
+local color07='#f8f8f8'
+local color08='#f84547'
+local color09='#d28e5d'
+local color0A='#efa16b'
+local color0B='#95c76f'
+local color0C='#64878f'
+local color0D='#8485ce'
+local color0E='#b74989'
+local color0F='#986841'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
