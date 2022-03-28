@@ -17,6 +17,8 @@ SAVEHIST=1000
 HISTFILE=~/.cache/zsh/history
 [[ ! -e ~/.cache/zsh/history ]] && touch ~/.cache/zsh/history
 
+# disable insecure oh-my-zsh permissions warnings
+ZSH_DISABLE_COMPFIX=true
 # oh-my-zsh settings
 export ZSH="$ZDOTDIR/.oh-my-zsh"
 
