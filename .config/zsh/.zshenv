@@ -54,6 +54,7 @@ export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
 export AWS_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/credentials"
 export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/shared-credentials"
+export QT_QPA_PLATFORM=wayland
 
 # program env variables
 export ZSH_CUSTOM=$HOME/.config/zsh/custom

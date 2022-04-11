@@ -316,10 +316,11 @@ endfunction
 let g:mapleader = ' '
 
 nnoremap <silent><leader>r :FloatermNew ranger<CR>
+nnoremap <silent><leader>g :FloatermNew lazygit<CR>
 nnoremap <silent><leader>w :write<CR>
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim<CR>
-nnoremap <silent><leader>x :bd<CR>
-nnoremap <silent><leader>c :close<CR>
+nnoremap <silent><leader>x :close<CR>
+nnoremap <silent><leader>c :bd<CR>
 
 " split windows
 set splitright
