@@ -1,31 +1,36 @@
+set nocompatible
 syntax on
 filetype plugin indent on
-set relativenumber
-set mouse=a
-set showcmd
-set nohlsearch
-set hidden
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
 set autoindent
-set number
-set nowrap
-set incsearch
-set termguicolors
-set scrolloff=999
-set sidescrolloff=999
-set noshowmode
 set clipboard+=unnamedplus
-set colorcolumn=80
 set cmdheight=1
-set shortmess+=c
-set updatetime=50
-set conceallevel=0
+set colorcolumn=80
 set completeopt=menuone,noinsert,noselect
+set conceallevel=0
+set cursorline
+set expandtab
+set hidden
+set incsearch
+set list
+set mouse=a
+set noerrorbells
+set nohlsearch
+set noshowmode
+set nowrap
+set number
+set relativenumber
+set scrolloff=999
+set shiftwidth=2
+set shortmess+=c
+set showcmd
+set sidescrolloff=999
+set smartindent
+set tabstop=2 softtabstop=2
+set termguicolors
+set updatetime=50
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+let g:polyglot_disabled = ['ansible']
 
 " ===================================================================== PLUGINS
 
@@ -35,62 +40,128 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'connorholyday/vim-snazzy'
+Plug 'joshdick/onedark.vim'
+Plug 'lilydjwg/colorizer'
 
 " floating terminal inside vim
 Plug 'voldikss/vim-floaterm'
 
-" telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'
-
 " quality of life improvements
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-suround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Yggdroot/indentLine'
 " Plug 'breuckelen/vim-resize'
 Plug 'mrjones2014/smart-splits.nvim'
+Plug 'windwp/nvim-autopairs'
+Plug 'ggandor/leap.nvim'
 
 " language server protocol
-Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+Plug 'yaegassy/coc-ansible', {'do': 'yarn install --frozen-lockfile'}
+Plug 'pearofducks/ansible-vim'
+Plug 'github/copilot.vim'
+" Plug 'dense-analysis/ale'
 
 call plug#end()
 
+" ======================================================================== LEAP
+
+lua require('leap').add_default_mappings()
+
+" ========================================================================= ALE
+
+" let g:rustfmt_autosave = 1
+" let g:rustfmt_emit_files = 1
+" let g:rustfmt_fail_silently = 0
+" let g:ale_linters = {
+"       \ 'rust': ['analyzer']
+" }
+
+" ===================================================================== COPILOT
+
+" Use Right arrow key to accept autopilot suggestion
+" this maintains the same autosuggestion behaviur i'm used to with zsh
+inoremap <silent><script><expr> <Right> copilot#Accept("\<Right>")
+let g:copilot_no_tab_map = v:true
+
+" ======================================================================== YAML
+
+" Fix auto-indentation for YAML files
+augroup yaml_fix
+  autocmd!
+  autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+augroup END
+
+" ===================================================================== ANSIBLE
+
+au BufRead,BufNewFile */inventory/* set filetype=ansible_hosts
+au BufRead,BufNewFile */group_vars/*,*/host_vars/* set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yml,*/roles/*.yml set filetype=yaml.ansible
+
+" syntax highlighting yml is broken from launch
+au BufRead,BufNewFile *.yml colorscheme onedark
+au BufRead,BufNewFile *.yml :AirlineRefresh
+
+let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
+
+" ansible-vim
+let g:ansible_attribute_highlight = 'a'
+" let g:ansible_name_highlight = 'b'
+" let g:ansible_extra_keyword_highlight = 1
+" let g:ansible_normal_keywords_highlight = 'Constant'
+" let g:ansible_loop_keywords_highlight = 'Constant'
+
+" ================================================================= COLORSCHEME
+
+set background=dark
+let g:airline_theme='onedark'
+colorscheme onedark
+
+" ===================================================================== AIRLINE
+
+" enable global status line
+set laststatus=3
+" make winddow seperator crispy
+highlight WinSeparator guibg=None
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_symbols_ascii = 1
+
+" ==================================================================== POLYGLOT
+
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:csv_no_conceal = 1
+
 " ========================================================================= COC
 
-" EXAMPLE COC CONIG
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
+" Tab completion
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> behave properly
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -99,20 +170,18 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent><C-k> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
@@ -120,7 +189,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>c <Plug>(coc-rename)
+" nmap <leader>cw <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -159,12 +228,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  nnoremap <silent><nowait><expr> <ScrollWheelDown> coc#float#has_scroll() ? coc#float#scroll(1) : "\<ScrollWheelDown>"
+  nnoremap <silent><nowait><expr> <ScrollWheelUp> coc#float#has_scroll() ? coc#float#scroll(0) : "\<ScrollWheelUp>"
+  inoremap <silent><nowait><expr> <ScrollWheelDown> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <ScrollWheelUp> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <ScrollWheelDown> coc#float#has_scroll() ? coc#float#scroll(1) : "\<ScrollWheelDown>"
+  vnoremap <silent><nowait><expr> <ScrollWheelUp> coc#float#has_scroll() ? coc#float#scroll(0) : "\<ScrollWheelUp>"
 endif
 
 " Use CTRL-S for selections ranges.
@@ -204,96 +273,25 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" ======================================================================== YAML
-
-" Fix auto-indentation for YAML files
-augroup yaml_fix
-    autocmd!
-    autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-augroup END
 
 " ================================================================== INDENTLINE
 
+" fix conceallevel issue with json and markdown
+" conceal is quite literally the shittiest feature of any program in existence
+let g:markdown_syntax_conceal=0
+let g:vim_json_conceal=0
 let g:indentLine_char = '┆'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setColors = 1
 
-" =================================================================== TELESCOPE
-
-nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap // <cmd>lua require('telescope.builtin').live_grep()<cr>
-
-lua << EOF
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    path_display = {},
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
-}
-EOF
-
-" ================================================================= COLORSCHEME
-
-" system wide colorscheme is handled by Flavours, :colorscheme looks into the
-" runtime path 'colors/{name}.vim'
-" airline detects the colorscheme from g:colors_name declared in theme.vim
-colorscheme theme
-
-" ===================================================================== AIRLINE
-
-" enable global status line
-set laststatus=3
-" make winddow seperator crispy
-highlight WinSeparator guibg=None
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_symbols_ascii = 1
 
 " ==================================================================== FLOATERM
 
 let g:floaterm_shell='zsh'
 let g:floaterm_gitcommit='floaterm'
 let g:floaterm_autoinsert=1
-let g:floaterm_width=0.9
-let g:floaterm_height=0.8
+let g:floaterm_width=1.0
+let g:floaterm_height=1.0
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 let g:floaterm_opener='edit'
@@ -303,6 +301,13 @@ let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 
 " ====================================================================== REMAPS
+
+" autoclose in insert mode
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
 
 " Close split window before closing buffer
 function CloseWindowThenBuffer()
@@ -318,7 +323,8 @@ let g:mapleader = ' '
 nnoremap <silent><leader>r :FloatermNew ranger<CR>
 nnoremap <silent><leader>g :FloatermNew lazygit<CR>
 nnoremap <silent><leader>w :write<CR>
-nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim<CR>
+" airline breaks when sourcing config
+nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
 nnoremap <silent><leader>x :close<CR>
 nnoremap <silent><leader>c :bd<CR>
 

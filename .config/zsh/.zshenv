@@ -81,27 +81,27 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
-# Base16 Porple
-# Author: Niek den Breeje (https://github.com/AuditeMarlow)
+# Base16 OneDark
+# Author: Lalit Magant (http://github.com/tilal6991)
 
 _gen_fzf_default_opts() {
 
-local color00='#292c36'
-local color01='#333344'
-local color02='#474160'
-local color03='#65568a'
-local color04='#b8b8b8'
-local color05='#d8d8d8'
-local color06='#e8e8e8'
-local color07='#f8f8f8'
-local color08='#f84547'
-local color09='#d28e5d'
-local color0A='#efa16b'
-local color0B='#95c76f'
-local color0C='#64878f'
-local color0D='#8485ce'
-local color0E='#b74989'
-local color0F='#986841'
+local color00='#282c34'
+local color01='#353b45'
+local color02='#3e4451'
+local color03='#545862'
+local color04='#565c64'
+local color05='#abb2bf'
+local color06='#b6bdca'
+local color07='#c8ccd4'
+local color08='#e06c75'
+local color09='#d19a66'
+local color0A='#e5c07b'
+local color0B='#98c379'
+local color0C='#56b6c2'
+local color0D='#61afef'
+local color0E='#c678dd'
+local color0F='#be5046'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\

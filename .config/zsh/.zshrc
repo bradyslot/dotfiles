@@ -109,7 +109,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
-alias p="ps aux | grep -i"
+alias p="ps aux | head -1 && ps aux | grep -i"
 alias wiki="awman"
 alias virtualbox="GTK2_RC_FILES='' virtualbox"
 alias enablev4l2="sudo modprobe v4l2loopback exclusive_caps=1 max_buffers=2"

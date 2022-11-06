@@ -17,8 +17,9 @@ input * {
 xwayland enable
 
 #output "*" bg ~/Pictures/Wallpapers/space.jpg fill
-output DP-1 pos 2160 0 res 3840 2160
-output HDMI-A-1 pos 0 0 res 3840 2160 transform 270
+# output DP-1 pos 1440 0 res 3840 2160
+# output HDMI-A-1 pos 0 0 res 3840 2160 transform 270 scale 1.5
+include ~/.config/sway/outputs
 
 # import vars into dbus for screensharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -59,29 +60,29 @@ bindsym --release Print exec flameshot full -p ~/Pictures/flameshot/
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start Flavours
-## Base16 Porple
-# Author: Niek den Breeje (https://github.com/AuditeMarlow)
+## Base16 OneDark
+# Author: Lalit Magant (http://github.com/tilal6991)
 
-set $base00 #292c36
-set $base01 #333344
-set $base02 #474160
-set $base03 #65568a
-set $base04 #b8b8b8
-set $base05 #d8d8d8
-set $base06 #e8e8e8
-set $base07 #f8f8f8
-set $base08 #f84547
-set $base09 #d28e5d
-set $base0A #efa16b
-set $base0B #95c76f
-set $base0C #64878f
-set $base0D #8485ce
-set $base0E #b74989
-set $base0F #986841
+set $base00 #282c34
+set $base01 #353b45
+set $base02 #3e4451
+set $base03 #545862
+set $base04 #565c64
+set $base05 #abb2bf
+set $base06 #b6bdca
+set $base07 #c8ccd4
+set $base08 #e06c75
+set $base09 #d19a66
+set $base0A #e5c07b
+set $base0B #98c379
+set $base0C #56b6c2
+set $base0D #61afef
+set $base0E #c678dd
+set $base0F #be5046
 # End Flavours
 
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused          $base05 $base0D $base00 $base0B $base0C
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
 client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
@@ -158,12 +159,17 @@ bindsym Mod1+a focus parent
 # focus the child container
 #bindsym Mod1+d focus child
 
+bindsym Mod1+grave exec alacritty -t "floating_terminal"
+for_window [title="floating_terminal"] floating enable
+
 # move the currently focused window to the scratchpad
 bindsym Mod1+Shift+minus move scratchpad
+# bindsym Mod1+Shift+grave move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod1+minus scratchpad show
+# bindsym Mod1+grave scratchpad show
 
 # alt tab behaviour for switching back and forth between last workspace
 bindsym Mod1+Tab workspace back_and_forth
