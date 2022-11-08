@@ -1,17 +1,40 @@
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
-  /* font-family: NerdFont, Inter, 'Victor Mono', 'Fira Code', sans-serif; */
   font-family: "Source Code Pro Semibold", mono;
   font-size: 15px;
 }
 
+/* Start Flavours */
+/*
+*
+* Base16 OneDark
+* Author: Lalit Magant (http://github.com/tilal6991)
+*
+*/
+
+@define-color base00 #282c34;
+@define-color base01 #353b45;
+@define-color base02 #3e4451;
+@define-color base03 #545862;
+@define-color base04 #565c64;
+@define-color base05 #abb2bf;
+@define-color base06 #b6bdca;
+@define-color base07 #c8ccd4;
+@define-color base08 #e06c75;
+@define-color base09 #d19a66;
+@define-color base0A #e5c07b;
+@define-color base0B #98c379;
+@define-color base0C #56b6c2;
+@define-color base0D #61afef;
+@define-color base0E #c678dd;
+@define-color base0F #be5046;
+/* End Flavours */
+
 .modules-right {
   margin: 4px;
   padding: 3px;
-  background-color: #313244;
+  background-color: @base00;
   border-radius: 2rem;
-}
+}defined
 
 window#waybar {
   background-color: transparent;
@@ -24,45 +47,36 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-window#waybar.termite {
-  background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-  background-color: #000000;
-  border: none;
-}
-
 #workspaces {
   margin: 4px;
-  padding: 3px;
-  background-color: #313244;
+  padding: 5px;
+  background-color: @base00;
   border-radius: 2rem;
 }
 
 #workspaces button {
   padding: 0px;
   margin: 2px;
-  background-color: #45475a;
-  color: #cdd6f4;
+  background-color: @base02;
+  color: @base07;
   border-radius: 2rem;
 }
 
 #workspaces button:hover {
-  background: #585b70;
+  background: @base02;
 }
 
 #workspaces button.focused {
-  background-color: #cba6f7;
-  color: #4c4f69;
+  background-color: @base0E;
+  color: @base00;
 }
 
 #workspaces button.urgent {
-  background-color: #f38ba8;
+  background-color: @base08;
 }
 
 #mode {
-  background-color: #f38ba8;
+  background-color: @base0F;
 }
 
 #clock,
@@ -78,17 +92,11 @@ window#waybar.chromium {
 #tray,
 #mode,
 #idle_inhibitor,
-#mpd {
-  border-radius: 2rem;
-  padding-left: 8px;
-  padding-right: 8px;
-  margin: 2px;
-  color: #4c4f69;
-}
+#mpd,
 
 #window {
   margin: 4px;
-  background-color: #313244;
+  background-color: @base00;
   border-radius: 2rem;
   padding-left: 8px;
   padding-right: 8px;
@@ -98,19 +106,30 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
-#clock {
-  background-color: #eba0ac;
-}
-
 #battery {
-  background-color: #fab387;
-  color: #45475a;
+  background-color: @base0A;
+  color: @base00;
 }
 
-#battery.charging, #battery.plugged {
-  color: #45475a;
-  background-color: #a6e3a1;
+#network {
+  background-color: @base0B;
+  color: @base00;
 }
+
+#pulseaudio {
+  background-color: @base0C;
+  color: @base00;
+}
+
+#pulseaudio.muted {
+  color: @base07;
+}
+
+#clock {
+  background-color: @base0D;
+  color: @base00;
+}
+
 
 @keyframes blink {
   to {
@@ -119,136 +138,112 @@ window#waybar.empty #window {
   }
 }
 
-#battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
 label:focus {
   background-color: #000000;
 }
 
-#cpu {
-  background-color: #2ecc71;
-  color: #000000;
-}
+/* #cpu { */
+/*   background-color: #2ecc71; */
+/*   color: #000000; */
+/* } */
 
-#memory {
-  background-color: #9b59b6;
-}
+/* #memory { */
+/*   background-color: #9b59b6; */
+/* } */
 
-#disk {
-  background-color: #964B00;
-}
+/* #disk { */
+/*   background-color: #964B00; */
+/* } */
 
-#backlight {
-  background-color: #90b1b1;
-}
+/* #backlight { */
+/*   background-color: #90b1b1; */
+/* } */
 
-#network {
-  background-color: #74c7ec;
-}
+/* #network.disconnected { */
+/*   background-color: @base02; */
+/* } */
 
-#network.disconnected {
-  background-color: #585b70;
-}
+/* #custom-media { */
+/*   background-color: #66cc99; */
+/*   color: #2a5c45; */
+/*   min-width: 100px; */
+/* } */
 
-#pulseaudio {
-  background-color: #a6e3a1;
-  color: #4c4f69;
-}
+/* #custom-media.custom-spotify { */
+/*   background-color: #66cc99; */
+/* } */
 
-#pulseaudio.muted {
-  background-color: #90b1b1;
-  color: #2a5c45;
-}
+/* #custom-media.custom-vlc { */
+/*   background-color: #ffa000; */
+/* } */
 
-#custom-media {
-  background-color: #66cc99;
-  color: #2a5c45;
-  min-width: 100px;
-}
+/* #temperature { */
+/*   background-color: #f0932b; */
+/* } */
 
-#custom-media.custom-spotify {
-  background-color: #66cc99;
-}
+/* #temperature.critical { */
+/*   background-color: #eb4d4b; */
+/* } */
 
-#custom-media.custom-vlc {
-  background-color: #ffa000;
-}
+/* #tray { */
+/*   background-color: #45475a; */
+/* } */
 
-#temperature {
-  background-color: #f0932b;
-}
+/* #tray > .passive { */
+/*   -gtk-icon-effect: dim; */
+/* } */
 
-#temperature.critical {
-  background-color: #eb4d4b;
-}
+/* #tray > .needs-attention { */
+/*   -gtk-icon-effect: highlight; */
+/*   background-color: #eb4d4b; */
+/* } */
 
-#tray {
-  background-color: #45475a;
-}
+/* #idle_inhibitor { */
+/*   background-color: #2d3436; */
+/* } */
 
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
+/* #idle_inhibitor.activated { */
+/*   background-color: #ecf0f1; */
+/*   color: #2d3436; */
+/* } */
 
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
-}
+/* #mpd { */
+/*   background-color: #66cc99; */
+/*   color: #2a5c45; */
+/* } */
 
-#idle_inhibitor {
-  background-color: #2d3436;
-}
+/* #mpd.disconnected { */
+/*   background-color: #f53c3c; */
+/* } */
 
-#idle_inhibitor.activated {
-  background-color: #ecf0f1;
-  color: #2d3436;
-}
+/* #mpd.stopped { */
+/*   background-color: #90b1b1; */
+/* } */
 
-#mpd {
-  background-color: #66cc99;
-  color: #2a5c45;
-}
+/* #mpd.paused { */
+/*   background-color: #51a37a; */
+/* } */
 
-#mpd.disconnected {
-  background-color: #f53c3c;
-}
+/* #language { */
+/*   background: #00b093; */
+/*   color: #740864; */
+/*   padding: 0 5px; */
+/*   margin: 0 5px; */
+/*   min-width: 16px; */
+/* } */
 
-#mpd.stopped {
-  background-color: #90b1b1;
-}
+/* #keyboard-state { */
+/*   background: #97e1ad; */
+/*   color: #000000; */
+/*   padding: 0 0px; */
+/*   margin: 0 5px; */
+/*   min-width: 16px; */
+/* } */
 
-#mpd.paused {
-  background-color: #51a37a;
-}
+/* #keyboard-state > label { */
+/*   padding: 0 5px; */
+/* } */
 
-#language {
-  background: #00b093;
-  color: #740864;
-  padding: 0 5px;
-  margin: 0 5px;
-  min-width: 16px;
-}
-
-#keyboard-state {
-  background: #97e1ad;
-  color: #000000;
-  padding: 0 0px;
-  margin: 0 5px;
-  min-width: 16px;
-}
-
-#keyboard-state > label {
-  padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-  background: rgba(0, 0, 0, 0.2);
-}
+/* #keyboard-state > label.locked { */
+/*   background: rgba(0, 0, 0, 0.2); */
+/* } */

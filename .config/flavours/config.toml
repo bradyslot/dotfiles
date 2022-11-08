@@ -7,13 +7,6 @@
 # end = '# End flavours' (if not rewriting, where to stop replacing)
 # hook = '' (command to execute after injecting)
 
-
-# [[item]]
-# file = '~/.config/polybar/colors.ini'
-# template = 'polybar'
-# rewrite = true
-# hook = 'polybar-msg cmd restart'
-
 [[item]]
 file = '~/.config/sway/config'
 template = 'sway'
@@ -22,6 +15,50 @@ rewrite = false
 start = '# Start Flavours'
 end = '# End Flavours'
 hook = 'swaymsg reload'
+
+[[item]]
+file = '~/.config/alacritty/alacritty.yml'
+template = 'alacritty'
+subtemplate = 'default-256'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+
+[[item]]
+file = '~/.zshenv'
+template = 'fzf'
+subtemplate = 'default'
+rewrite = false
+start = '# Start Flavours'
+end = '# End Flavours'
+hook = 'zsh -c "source ~/.config/zsh/.zshrc"'
+
+[[item]]
+file = '~/.config/nvim/colors/theme.vim'
+template = 'vim'
+subtemplate = 'default'
+rewrite = true
+hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
+
+[[item]]
+file = '~/.config/wofi/style.css'
+template = 'wofi'
+rewrite = false
+start = '/* Start Flavours */'
+end = '/* End Flavours */'
+
+[[item]]
+file = '~/.config/waybar/style.css'
+template = 'waybar'
+rewrite = false
+start = '/* Start Flavours */'
+end = '/* End Flavours */'
+
+# [[item]]
+# file = '~/.config/polybar/colors.ini'
+# template = 'polybar'
+# rewrite = true
+# hook = 'polybar-msg cmd restart'
 
 # [[items]]
 # file = "~/.config/waybar/colors.css"
@@ -40,54 +77,30 @@ hook = 'swaymsg reload'
 # end = '# End Flavours'
 # hook = 'i3 restart'
 
-[[item]]
-file = '~/.config/alacritty/alacritty.yml'
-template = 'alacritty'
-subtemplate = 'default-256'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-
-[[item]]
-file = '~/.config/X11/Xresources'
-template = 'xresources'
-subtemplate = 'default-256'
-rewrite = false
-start = '! Start Flavours'
-end = '! End Flavours'
-hook = 'bash -c "xrdb -load ~/.config/X11/Xresources"'
+# [[item]]
+# file = '~/.config/X11/Xresources'
+# template = 'xresources'
+# subtemplate = 'default-256'
+# rewrite = false
+# start = '! Start Flavours'
+# end = '! End Flavours'
+# hook = 'bash -c "xrdb -load ~/.config/X11/Xresources"'
 # this will reload dwm by simulating a keystroak
 # && xdotool key alt+F5
 
-[[item]]
-file = '~/.config/rofi/colors.rasi'
-template = 'rofi'
-subtemplate = 'default'
-rewrite = true
+# [[item]]
+# file = '~/.config/rofi/colors.rasi'
+# template = 'rofi'
+# subtemplate = 'default'
+# rewrite = true
 
-[[item]]
-file = '~/.config/zsh/.zshenv'
-template = 'fzf'
-subtemplate = 'default'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-hook = 'zsh -c "source ~/.config/zsh/.zshrc"'
-
-[[item]]
-file = '~/.config/dunst/dunstrc'
-template = 'dunst'
-subtemplate = 'default'
-rewrite = false
-start = '# Start Flavours'
-end = '# End Flavours'
-
-[[item]]
-file = '~/.config/nvim/colors/theme.vim'
-template = 'vim'
-subtemplate = 'default'
-rewrite = true
-hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
+# [[item]]
+# file = '~/.config/dunst/dunstrc'
+# template = 'dunst'
+# subtemplate = 'default'
+# rewrite = false
+# start = '# Start Flavours'
+# end = '# End Flavours'
 
 # [[item]]
 # file = '~/.themes/FlatColor/colors2'

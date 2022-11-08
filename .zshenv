@@ -84,7 +84,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # Start Flavours
 # Base16 OneDark
-# Author: Lalit Magant (http://github.com/tilal6991)
+# Scheme author: Lalit Magant (http://github.com/tilal6991)
+# Template author: Tinted Theming (https://github.com/tinted-theming)
 
 _gen_fzf_default_opts() {
 

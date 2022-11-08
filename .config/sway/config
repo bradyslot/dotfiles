@@ -56,7 +56,7 @@ bindsym --release $mod+Print exec flameshot gui -p ~/Pictures/flameshot/
 bindsym --release Print exec flameshot full -p ~/Pictures/flameshot/
 
 
-exec waybar --config ~/.config/waybar/config --style ~/.config/waybar/style.css
+# exec waybar --config ~/.config/waybar/config --style ~/.config/waybar/style.css
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start Flavours
@@ -106,7 +106,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start wofi (a program launcher)
-set $menu "wofi --show drun"
+set $menu "wofi --show drun --style ~/.config/wofi/style.css"
 bindsym $mod+d exec $menu
 
 # change focus

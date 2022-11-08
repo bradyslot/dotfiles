@@ -3,24 +3,21 @@
   "position": "top",
   "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
   "modules-center": [""],
-  "modules-right": ["tray", "battery", "network", "clock", "pulseaudio"],
+  "modules-right": ["tray", "battery", "network", "pulseaudio", "clock"],
   "height": 32,
   "sway/window": {
     "max-length": 50
   },
   "network": {
-  "format-wifi": "{essid} ({signalStrength}%) {icon}",
+  "format-wifi": "{essid} ({signalStrength}%)",
   "format-ethernet": "{ifname}",
-  "format-disconnected": "",
+  "format-disconnected": "disconnected",
   "max-length": 50,
-  "on-click": "alacritty -e 'iwctl'",
-  "format-icons": ["󰤯","󰤟", "󰤢", "󰤥", "󰤨"]
   },
   "battery": {
-    "format": "{capacity}% {icon}",
-    "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
+    "format": "{capacity}%",
   },
   "clock": {
-    "format-alt": "{:%a, %d. %b  %H:%M}"
+    "format": "{:%a, %b %e %I:%M %p}"
   }
 }
