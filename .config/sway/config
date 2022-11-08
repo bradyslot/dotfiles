@@ -55,7 +55,8 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 bindsym --release $mod+Print exec flameshot gui -p ~/Pictures/flameshot/
 bindsym --release Print exec flameshot full -p ~/Pictures/flameshot/
 
-# exec waybar
+
+exec waybar --config ~/.config/waybar/config --style ~/.config/waybar/style.css
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Start Flavours

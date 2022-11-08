@@ -1,3 +1,0 @@
-#!/bin/sh
-
-#/bin/bash --login -i ~/.config/X11/xinitrc

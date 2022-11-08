@@ -64,6 +64,8 @@ call plug#end()
 
 lua require('leap').add_default_mappings()
 " lua require('leap').leap { target_windows = { vim.fn.win_getid() } }
+lua vim.keymap.del({'x', 'o'}, 'x')
+lua vim.keymap.del({'x', 'o'}, 'X')
 
 " ========================================================================= ALE
 
