@@ -30,8 +30,9 @@ ZSH_DISABLE_COMPFIX=true
 
 plugins=(
   git
-  ssh-agent
 )
+
+zstyle :omz:plugins:ssh-agent lazy yes
 
 source $ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -50,8 +51,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
+# source node version manager
+source /usr/share/nvm/init-nvm.sh
+
 # ===================================================================== ALIASES
-#
+
+
 # pipping server
 alias send="curl -T - https://ppng.io/hD5w8JlHeUaI"
 alias receive="curl https://ppng.io/hD5w8JlHeUaI"
@@ -87,9 +92,13 @@ alias git-commit-previous='git commit --amend --no-edit'
 alias screencast='/usr/lib/xdg-desktop-portal-wlr'
 
 # =================================================================== FUNCTIONS
-#
+
+activate () {
+  source ~/src/venv/$1/bin/activate
+}
+
 ssh-pemgen () {
-    ssh-keygen -P "" -t rsa -b 4096 -m pem -f "$1" -C "$1"
+  ssh-keygen -P "" -t rsa -b 4096 -m pem -f "$1" -C "$1"
 }
 
 eval "$(starship init zsh)"

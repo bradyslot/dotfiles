@@ -57,17 +57,23 @@ Plug 'ggandor/leap.nvim'
 " language server protocol
 Plug 'github/copilot.vim'
 Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
 " ======================================================================== LEAP
 
 lua require('leap').add_default_mappings()
-" lua require('leap').leap { target_windows = { vim.fn.win_getid() } }
+
+" remove leaps use of x in visual mode
 lua vim.keymap.del({'x', 'o'}, 'x')
 lua vim.keymap.del({'x', 'o'}, 'X')
 
 " ========================================================================= ALE
+"
+let g:deoplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " let g:rustfmt_autosave = 1
 " let g:rustfmt_emit_files = 1
@@ -75,6 +81,11 @@ lua vim.keymap.del({'x', 'o'}, 'X')
 " let g:ale_linters = {
 "       \ 'rust': ['analyzer']
 " }
+
+let g:ale_completion_enabled = 1
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 
 " ===================================================================== COPILOT
 
