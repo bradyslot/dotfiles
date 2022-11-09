@@ -70,10 +70,14 @@ lua vim.keymap.del({'x', 'o'}, 'x')
 lua vim.keymap.del({'x', 'o'}, 'X')
 
 " ========================================================================= ALE
-"
+
 let g:deoplete#enable_at_startup = 1
-" <TAB>: completion.
+let g:deoplete#auto_complete_delay = 10
+let g:deoplete#auto_refresh_delay = 50
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 
 " let g:rustfmt_autosave = 1
 " let g:rustfmt_emit_files = 1
@@ -83,9 +87,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " }
 
 let g:ale_completion_enabled = 1
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
 
 " ===================================================================== COPILOT
 
