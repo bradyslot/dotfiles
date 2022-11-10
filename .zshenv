@@ -57,6 +57,7 @@ export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible
 # export AWS_SHARED_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/shared-credentials"
 export QT_QPA_PLATFORM=wayland
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # program env variables
 # export ZSH_CUSTOM=$HOME/.config/zsh/custom
