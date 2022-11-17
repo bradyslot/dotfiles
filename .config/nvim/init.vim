@@ -5,7 +5,6 @@ set autoindent
 set clipboard+=unnamedplus
 set cmdheight=1
 set colorcolumn=80
-set completeopt=menuone,noinsert,noselect
 set conceallevel=0
 set cursorline
 set expandtab
@@ -58,6 +57,7 @@ Plug 'ggandor/leap.nvim'
 Plug 'github/copilot.vim'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -70,23 +70,27 @@ lua vim.keymap.del({'x', 'o'}, 'x')
 lua vim.keymap.del({'x', 'o'}, 'X')
 
 " ========================================================================= ALE
+"
+set completeopt=menu,menuone,preview,noselect,noinsert
+autocmd BufNewFile,BufRead *.rs set filetype=rust
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 10
-let g:deoplete#auto_refresh_delay = 50
+let g:ale_linters = { 'rust': ['analyzer'] }
+" let g:ale_fixers = { 'rust': ['rustfmt'] }
+
+" disable pesky missing unsafe macro warning
+let g:ale_rust_analyzer_config = { "rust-analyzer.diagnostics.disabled": [ "missing-unsafe" ] }
+
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
-
-" let g:rustfmt_autosave = 1
-" let g:rustfmt_emit_files = 1
-" let g:rustfmt_fail_silently = 0
-" let g:ale_linters = {
-"       \ 'rust': ['analyzer']
-" }
-
 let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+" let g:ale_fix_on_save = 1
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '!'
+
+
+nmap <silent>gd :ALEGoToDefinition<CR>
+nmap <silent>gr :ALEFindReferences<CR>
 
 " ===================================================================== COPILOT
 
