@@ -62,7 +62,6 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " ======================================================================== LEAP
-
 lua require('leap').add_default_mappings()
 
 " remove leaps use of x in visual mode

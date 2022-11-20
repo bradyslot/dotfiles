@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
-BAT_PATH=/sys/class/power_supply/macsmc-battery/capacity
+BAT_PATH=/sys/class/power_supply/macsmc-battery
 
-awk '{print $1"%"}' $BAT_PATH
+BAT_CAPACITY="$(cat $BAT_PATH/capacity)"
+BAT_STATUS="$(cat $BAT_PATH/status)"
+
+echo "$BAT_CAPACITY $BAT_STATUS"

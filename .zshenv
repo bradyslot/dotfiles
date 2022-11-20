@@ -58,7 +58,9 @@ export ANSIBLE_CONFIG="$XDG_CONFIG_HOME"/ansible
 export QT_QPA_PLATFORM=wayland
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    export MOZ_ENABLE_WAYLAND=1
+fi
 # program env variables
 # export ZSH_CUSTOM=$HOME/.config/zsh/custom
 export NVIM_LISTEN_ADDRESS=localhost:6666
