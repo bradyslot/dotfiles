@@ -32,6 +32,13 @@ exec_always {
     gsettings set $gnome-schema font-name 'Source Code Pro 10'
 }
 
+
+# Notification Daemon
+exec swaync
+
+# Toggle control center
+bindsym $mod+n exec swaync-client -t -sw
+
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -40,10 +47,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
 # clipboard manager
-# exec wl-paste -t text --watch clipman store
-# bindsym $mod+backslash exec clipman pick -t rofi
-# exec clipcatd
-# bindsym $mod+backslash exec clipcat-menu
+# need to impliment a clipboard manager
 
 # import vars into dbus for screensharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
