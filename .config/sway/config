@@ -6,7 +6,7 @@ default_floating_border pixel 4
 
 gaps inner 5
 
-set $mod Mod4
+set $mod Mod1
 
 input * {
     xkb_layout "us"
