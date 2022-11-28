@@ -26,25 +26,34 @@ input type:touchpad {
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Arc-Darker'
+    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
     gsettings set $gnome-schema icon-theme 'Papirus'
-    # gsettings set $gnome-schema cursor-theme 'cursor theme name'
+    gsettings set $gnome-schema cursor-theme 'Adwaita'
     gsettings set $gnome-schema font-name 'Source Code Pro 10'
 }
 
 
 # Notification Daemon
-exec swaync
+# exec swaync
 
 # Toggle control center
 bindsym $mod+n exec swaync-client -t -sw
 
+# start wofi (a program launcher)
+set $menu "wofi --show drun --style ~/.config/wofi/style.css"
+bindsym $mod+d exec $menu
+
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86AudioRecord exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
+bindsym XF86LaunchA exec $menu
 
 # clipboard manager
 # need to impliment a clipboard manager
@@ -108,10 +117,6 @@ bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start wofi (a program launcher)
-set $menu "wofi --show drun --style ~/.config/wofi/style.css"
-bindsym $mod+d exec $menu
 
 # change focus
 bindsym $mod+$left focus left
