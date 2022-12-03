@@ -40,6 +40,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'lilydjwg/colorizer'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " quality of life improvements
 Plug 'voldikss/vim-floaterm'
@@ -56,14 +57,53 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-" language server protocol
+" AI Assistant
 Plug 'github/copilot.vim'
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" Language Plugins
+Plug 'jose-elias-alvarez/typescript.nvim'
+
+" Snippets
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+
+" Linting
 Plug 'dense-analysis/ale'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
 
 call plug#end()
 
+" ========================================================================= ALE
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
+nmap gd :ALEGoToDefinition<CR>
+nmap gr :ALEFindReferences<CR>
+
+
+" ========================================================================= LSP
+
+set completeopt=menu,menuone,noselect
+source ~/.config/nvim/lsp.lua
+
 " ============================================================ INDENT-BLANKLINE
+
+" conceal is quite literally the shittiest feature of any program in existence
+let g:markdown_syntax_conceal=0
+let g:vim_json_conceal=0
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:csv_no_conceal = 1
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_setColors = 1
@@ -71,7 +111,7 @@ let g:indentLine_setColors = 1
 lua vim.opt.list = true
 lua require("indent_blankline").setup {}
 
-" =================================================================== Undo Tree
+" ==================================================================== UNDOTREE
 
 if has("persistent_undo")
   let target_path = expand('~/.cache/undodir')
@@ -90,6 +130,7 @@ nmap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
 
 " ========================================================================= GIT
 
+let g:gitgutter_sign_column_always = 1
 nmap <leader>gg :G<CR>
 nmap <leader>gs :G status<CR>
 nmap <leader>gd :G diff<CR>
@@ -112,29 +153,6 @@ lua require('leap').add_default_mappings()
 " remove leaps use of x in visual mode
 lua vim.keymap.del({'x', 'o'}, 'x')
 lua vim.keymap.del({'x', 'o'}, 'X')
-
-" ========================================================================= ALE
-"
-set completeopt=menu,menuone,preview,noselect,noinsert
-autocmd BufNewFile,BufRead *.rs set filetype=rust
-
-let g:ale_linters = { 'rust': ['analyzer'] }
-" let g:ale_fixers = { 'rust': ['rustfmt'] }
-
-" disable pesky missing unsafe macro warning
-let g:ale_rust_analyzer_config = { "rust-analyzer.diagnostics.disabled": [ "missing-unsafe" ] }
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
-let g:ale_sign_column_always = 1
-" let g:ale_fix_on_save = 1
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-
-
-nmap <silent>gd :ALEGoToDefinition<CR>
-nmap <silent>gr :ALEFindReferences<CR>
 
 " ===================================================================== COPILOT
 
@@ -167,16 +185,6 @@ highlight WinSeparator guibg=None
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
-
-" ==================================================================== POLYGLOT
-
-" conceal is quite literally the shittiest feature of any program in existence
-let g:markdown_syntax_conceal=0
-let g:vim_json_conceal=0
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:csv_no_conceal = 1
 
 " ==================================================================== FLOATERM
 
