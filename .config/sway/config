@@ -16,7 +16,8 @@ input * {
     xkb_numlock enable
 }
 
-xwayland disable
+xwayland enable
+exec xhost local:
 
 include ~/.config/sway/outputs
 

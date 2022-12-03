@@ -4,7 +4,7 @@ path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/
 export PATH
 
 # locale
-export LANG=en_AU.UTF-8
+export LANG=en_US.UTF-8
 
 # default apps
 export VISUAL=nvim

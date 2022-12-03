@@ -16,8 +16,8 @@ set noerrorbells
 set nohlsearch
 set noshowmode
 set nowrap
-set number
-set relativenumber
+set number relativenumber
+set nu rnu
 set scrolloff=999
 set shiftwidth=2
 set shortmess+=c
@@ -28,6 +28,7 @@ set tabstop=2 softtabstop=2
 set termguicolors
 set updatetime=50
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+let g:mapleader = ' '
 
 " ===================================================================== PLUGINS
 
@@ -44,22 +45,58 @@ Plug 'lilydjwg/colorizer'
 " quality of life improvements
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-suround'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
 
 " language server protocol
 Plug 'github/copilot.vim'
 Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
+
+" =================================================================== Undo Tree
+
+if has("persistent_undo")
+  let target_path = expand('~/.cache/undodir')
+
+  " create the directory and any parent directories
+  " if the location does not exist.
+  if !isdirectory(target_path)
+      call mkdir(target_path, "p", 0700)
+  endif
+
+  let &undodir=target_path
+  set undofile
+endif
+
+nmap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
+
+" ========================================================================= GIT
+
+nmap <leader>gg :G<CR>
+nmap <leader>gs :G status<CR>
+nmap <leader>gd :G diff<CR>
+nmap <leader>gc :G commit<CR>
+nmap <leader>gp :G push<CR>
+nmap <leader>gl :G pull<CR>
+
+" ========================================================================= FZF
+
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
+let g:fzf_preview_window = 'right:70%'
+let g:fzf_buffers_jump = 1
+
+nmap <leader>f :Files<CR>
+nmap <leader>/ :Rg<CR>
 
 " ======================================================================== LEAP
 lua require('leap').add_default_mappings()
@@ -157,10 +194,7 @@ let g:floaterm_keymap_toggle = '<F12>'
 
 " ====================================================================== REMAPS
 
-let g:mapleader = ' '
-
 nnoremap <silent><leader>r :FloatermNew ranger<CR>
-nnoremap <silent><leader>g :FloatermNew lazygit<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
