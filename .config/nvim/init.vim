@@ -38,7 +38,6 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'lilydjwg/colorizer'
 
@@ -49,19 +48,28 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'Yggdroot/indentLine'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " language server protocol
 Plug 'github/copilot.vim'
 Plug 'dense-analysis/ale'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 call plug#end()
+
+" ============================================================ INDENT-BLANKLINE
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setColors = 1
+
+lua vim.opt.list = true
+lua require("indent_blankline").setup {}
 
 " =================================================================== Undo Tree
 
@@ -163,19 +171,12 @@ let g:airline_symbols_ascii = 1
 " ==================================================================== POLYGLOT
 
 " conceal is quite literally the shittiest feature of any program in existence
-" fix conceallevel issue with json and markdown
 let g:markdown_syntax_conceal=0
 let g:vim_json_conceal=0
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:csv_no_conceal = 1
-
-" ================================================================== INDENTLINE
-
-let g:indentLine_char = '┆'
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_setColors = 1
 
 " ==================================================================== FLOATERM
 
