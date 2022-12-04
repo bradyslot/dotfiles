@@ -80,6 +80,9 @@ Plug 'jayp0521/mason-null-ls.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 
+" LSP UI
+Plug 'glepnir/lspsaga.nvim'
+
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
@@ -96,6 +99,10 @@ call plug#end()
 
 set completeopt=menu,menuone,noselect
 source ~/.config/nvim/lsp.lua
+
+nmap <leader>gr :lua vim.lsp.buf.references()<CR>
+nmap <leader>gd :lua vim.lsp.buf.definition()<CR>
+nmap <C-k> :lua vim.lsp.buf.hover()<CR>
 
 " ============================================================ INDENT-BLANKLINE
 
@@ -133,12 +140,12 @@ nmap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
 " ========================================================================= GIT
 
 let g:gitgutter_sign_column_always = 1
-nmap <leader>gg :G<CR>
-nmap <leader>gs :G status<CR>
-nmap <leader>gd :G diff<CR>
-nmap <leader>gc :G commit<CR>
-nmap <leader>gp :G push<CR>
-nmap <leader>gl :G pull<CR>
+nmap <leader>g :G<CR>
+" nmap <leader>gs :G status<CR>
+" nmap <leader>gd :G diff<CR>
+" nmap <leader>gc :G commit<CR>
+" nmap <leader>gp :G push<CR>
+" nmap <leader>gl :G pull<CR>
 
 " ========================================================================= FZF
 
@@ -232,7 +239,7 @@ nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
 
 " remap joining lines and opening help
 nnoremap <C-j> J
-nnoremap <C-k> K
+" nnoremap <C-k> K
 
 " move lines around in visual mode
 vnoremap <silent>J :m '>+1<CR>gv=gv
