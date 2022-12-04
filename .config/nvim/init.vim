@@ -17,8 +17,8 @@ set nohlsearch
 set noshowmode
 set nowrap
 set number relativenumber
-set nu rnu
 set scrolloff=999
+set scl=yes
 set shiftwidth=2
 set shortmess+=c
 set showcmd
@@ -51,11 +51,18 @@ Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 Plug 'lukas-reineke/indent-blankline.nvim'
+
+" Dependencies
+Plug 'nvim-lua/plenary.nvim'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
+
+" Search
+Plug 'junegunn/fzf.vim'
 
 " AI Assistant
 Plug 'github/copilot.vim'
@@ -68,6 +75,14 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+" LSP Package Manager
+Plug 'jayp0521/mason-null-ls.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'williamboman/mason.nvim'
+
+" Linting
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 " Language Plugins
 Plug 'jose-elias-alvarez/typescript.nvim'
 
@@ -75,20 +90,7 @@ Plug 'jose-elias-alvarez/typescript.nvim'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 
-" Linting
-Plug 'dense-analysis/ale'
-
-
 call plug#end()
-
-" ========================================================================= ALE
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-nmap gd :ALEGoToDefinition<CR>
-nmap gr :ALEFindReferences<CR>
-
 
 " ========================================================================= LSP
 
@@ -113,13 +115,13 @@ lua require("indent_blankline").setup {}
 
 " ==================================================================== UNDOTREE
 
-if has("persistent_undo")
+if has('persistent_undo')
   let target_path = expand('~/.cache/undodir')
 
   " create the directory and any parent directories
   " if the location does not exist.
   if !isdirectory(target_path)
-      call mkdir(target_path, "p", 0700)
+      call mkdir(target_path, 'p', 0700)
   endif
 
   let &undodir=target_path
@@ -179,7 +181,7 @@ colorscheme onedark
 
 " enable global status line
 set laststatus=3
-" make winddow seperator crispy
+" make winddow separator crispy
 highlight WinSeparator guibg=None
 
 let g:airline#extensions#tabline#enabled = 1
@@ -252,7 +254,7 @@ vnoremap <silent><C-_> :Commentary<CR>
 nnoremap <silent><C-h> :bprev <CR>
 nnoremap <silent><C-l> :bnext <CR>
 
-" jump to begining and end of line
+" jump to beginning and end of line
 nnoremap <S-h> ^
 nnoremap <S-l> $
 
