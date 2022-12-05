@@ -95,14 +95,17 @@ Plug 'L3MON4D3/LuaSnip'
 
 call plug#end()
 
-" ========================================================================= LSP
+" ========================================================================= LUA
 
 set completeopt=menu,menuone,noselect
-source ~/.config/nvim/lsp.lua
 
-nmap <leader>gr :lua vim.lsp.buf.references()<CR>
-nmap <leader>gd :lua vim.lsp.buf.definition()<CR>
-nmap <C-k> :lua vim.lsp.buf.hover()<CR>
+source ~/.config/nvim/lsp.lua
+source ~/.config/nvim/nvim-cmp.lua
+source ~/.config/nvim/nvim-lspconfig.lua
+
+lua local luasnip = require('luasnip')
+lua require('gitsigns').setup()
+lua require("mason").setup()
 
 " ============================================================ INDENT-BLANKLINE
 
