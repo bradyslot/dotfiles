@@ -52,7 +52,7 @@ compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # source node version manager
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # ===================================================================== ALIASES
 

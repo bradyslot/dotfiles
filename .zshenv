@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
+path=("$HOME/bin" "$HOME/.local/vendor/node_modules/.bin/" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
 export PATH
 
 # locale
@@ -22,6 +22,13 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
+# NodeJS
+export NPM_CONFIG_PREFIX="$HOME/.local/vendor"
+export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
+export N_PREFIX="$HOME/.local/vendor"
+export NPM_PACKAGES="$HOME/.local/vendor"
+export NPM_LOCAL_PREFIX="$HOME/.local/vendor"
 
 # clean up non xdg conforming programs
 # export ZDOTDIR=$HOME/.config/zsh

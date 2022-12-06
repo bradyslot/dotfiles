@@ -16,9 +16,9 @@ set noerrorbells
 set nohlsearch
 set noshowmode
 set nowrap
-set number
-set relativenumber
+set number relativenumber
 set scrolloff=999
+set scl=yes
 set shiftwidth=2
 set shortmess+=c
 set showcmd
@@ -28,6 +28,7 @@ set tabstop=2 softtabstop=2
 set termguicolors
 set updatetime=50
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+let g:mapleader = ' '
 
 " ===================================================================== PLUGINS
 
@@ -37,29 +38,127 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'lilydjwg/colorizer'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " quality of life improvements
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-suround'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'yuttie/comfortable-motion.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
+Plug 'mbbill/undotree'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
-" language server protocol
+" Dependencies
+Plug 'nvim-lua/plenary.nvim'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'f-person/git-blame.nvim'
+
+" Search
+Plug 'junegunn/fzf.vim'
+
+" AI Assistant
 Plug 'github/copilot.vim'
-Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'rust-lang/rust.vim'
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" LSP Package Manager
+Plug 'jayp0521/mason-null-ls.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'williamboman/mason.nvim'
+
+" LSP UI
+Plug 'glepnir/lspsaga.nvim'
+
+" Linting
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
+" Language Plugins
+Plug 'jose-elias-alvarez/typescript.nvim'
+
+" Snippets
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
 
 call plug#end()
+
+" ========================================================================= LUA
+
+set completeopt=menu,menuone,noselect
+
+source ~/.config/nvim/nvim-cmp.lua
+source ~/.config/nvim/nvim-lspconfig.lua
+source ~/.config/nvim/null-ls.lua
+
+lua local luasnip = require('luasnip')
+lua require('gitsigns').setup()
+lua require("mason").setup()
+
+" ============================================================ INDENT-BLANKLINE
+
+" conceal is quite literally the shittiest feature of any program in existence
+let g:markdown_syntax_conceal=0
+let g:vim_json_conceal=0
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:csv_no_conceal = 1
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setColors = 1
+
+lua vim.opt.list = true
+lua require("indent_blankline").setup {}
+
+" ==================================================================== UNDOTREE
+
+if has('persistent_undo')
+  let target_path = expand('~/.cache/undodir')
+
+  " create the directory and any parent directories
+  " if the location does not exist.
+  if !isdirectory(target_path)
+      call mkdir(target_path, 'p', 0700)
+  endif
+
+  let &undodir=target_path
+  set undofile
+endif
+
+nmap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
+
+" ========================================================================= GIT
+
+let g:gitgutter_sign_column_always = 1
+nmap <leader>g :G<CR>
+" nmap <leader>gs :G status<CR>
+" nmap <leader>gd :G diff<CR>
+" nmap <leader>gc :G commit<CR>
+" nmap <leader>gp :G push<CR>
+" nmap <leader>gl :G pull<CR>
+
+" ========================================================================= FZF
+
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
+let g:fzf_preview_window = 'right:70%'
+let g:fzf_buffers_jump = 1
+
+nmap <leader>f :Files<CR>
+nmap <leader>/ :Rg<CR>
 
 " ======================================================================== LEAP
 lua require('leap').add_default_mappings()
@@ -67,29 +166,6 @@ lua require('leap').add_default_mappings()
 " remove leaps use of x in visual mode
 lua vim.keymap.del({'x', 'o'}, 'x')
 lua vim.keymap.del({'x', 'o'}, 'X')
-
-" ========================================================================= ALE
-"
-set completeopt=menu,menuone,preview,noselect,noinsert
-autocmd BufNewFile,BufRead *.rs set filetype=rust
-
-let g:ale_linters = { 'rust': ['analyzer'] }
-" let g:ale_fixers = { 'rust': ['rustfmt'] }
-
-" disable pesky missing unsafe macro warning
-let g:ale_rust_analyzer_config = { "rust-analyzer.diagnostics.disabled": [ "missing-unsafe" ] }
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
-let g:ale_sign_column_always = 1
-" let g:ale_fix_on_save = 1
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-
-
-nmap <silent>gd :ALEGoToDefinition<CR>
-nmap <silent>gr :ALEFindReferences<CR>
 
 " ===================================================================== COPILOT
 
@@ -116,29 +192,12 @@ colorscheme onedark
 
 " enable global status line
 set laststatus=3
-" make winddow seperator crispy
+" make winddow separator crispy
 highlight WinSeparator guibg=None
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
-
-" ==================================================================== POLYGLOT
-
-" conceal is quite literally the shittiest feature of any program in existence
-" fix conceallevel issue with json and markdown
-let g:markdown_syntax_conceal=0
-let g:vim_json_conceal=0
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:csv_no_conceal = 1
-
-" ================================================================== INDENTLINE
-
-let g:indentLine_char = '┆'
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_setColors = 1
 
 " ==================================================================== FLOATERM
 
@@ -157,10 +216,7 @@ let g:floaterm_keymap_toggle = '<F12>'
 
 " ====================================================================== REMAPS
 
-let g:mapleader = ' '
-
 nnoremap <silent><leader>r :FloatermNew ranger<CR>
-nnoremap <silent><leader>g :FloatermNew lazygit<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
@@ -187,7 +243,7 @@ nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
 
 " remap joining lines and opening help
 nnoremap <C-j> J
-nnoremap <C-k> K
+" nnoremap <C-k> K
 
 " move lines around in visual mode
 vnoremap <silent>J :m '>+1<CR>gv=gv
@@ -209,7 +265,7 @@ vnoremap <silent><C-_> :Commentary<CR>
 nnoremap <silent><C-h> :bprev <CR>
 nnoremap <silent><C-l> :bnext <CR>
 
-" jump to begining and end of line
+" jump to beginning and end of line
 nnoremap <S-h> ^
 nnoremap <S-l> $
 
