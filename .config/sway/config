@@ -22,6 +22,7 @@ include ~/.config/sway/outputs
 
 input type:touchpad {
     tap enabled
+    dwt disabled
 }
 
 set $gnome-schema org.gnome.desktop.interface
@@ -53,7 +54,7 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
-bindsym XF86LaunchA exec $menu
+bindsym XF86LaunchA exec grimshot save output
 
 # clipboard manager
 # need to impliment a clipboard manager
