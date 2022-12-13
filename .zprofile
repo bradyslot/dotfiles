@@ -7,4 +7,6 @@ export XDG_SESSION_DESKTOP=sway
 
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
     exec sway
+    # fix sway socket issue
+    export SWAYSOCK="$(ls /run/user/1000/sway-ipc.* | head -n 1)"
 fi

@@ -60,6 +60,7 @@ Plug 'nvim-lua/plenary.nvim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'f-person/git-blame.nvim'
 
 " Search
 Plug 'junegunn/fzf.vim'
@@ -76,7 +77,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
 " LSP Package Manager
-Plug 'jayp0521/mason-null-ls.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 
@@ -99,13 +99,17 @@ call plug#end()
 
 set completeopt=menu,menuone,noselect
 
-source ~/.config/nvim/lsp.lua
+source ~/.config/nvim/null-ls.lua
 source ~/.config/nvim/nvim-cmp.lua
+
+" make lspconfig available to mason-lspconfig
 source ~/.config/nvim/nvim-lspconfig.lua
+
+source ~/.config/nvim/mason.lua
+source ~/.config/nvim/mason-lspconfig.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
-lua require("mason").setup()
 
 " ============================================================ INDENT-BLANKLINE
 
@@ -219,7 +223,7 @@ nnoremap <silent><leader>r :FloatermNew ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
-nnoremap <silent><leader>x :close<CR>
+" nnoremap <silent><leader>x :close<CR>
 nnoremap <silent><leader>c :bd<CR>
 
 " split windows
