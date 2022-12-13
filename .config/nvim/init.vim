@@ -97,16 +97,16 @@ call plug#end()
 
 set completeopt=menu,menuone,noselect
 
-source ~/.config/nvim/null-ls.lua
-source ~/.config/nvim/nvim-cmp.lua
+source ~/.config/nvim/plugins/null-ls.lua
+source ~/.config/nvim/plugins/nvim-cmp.lua
 
 " make lspconfig available to mason-lspconfig
 lua local lspconfig = require('lspconfig')
 
-source ~/.config/nvim/mason.lua
-source ~/.config/nvim/mason-lspconfig.lua
+source ~/.config/nvim/plugins/mason.lua
+source ~/.config/nvim/plugins/mason-lspconfig.lua
 
-source ~/.config/nvim/lspsaga.lua
+source ~/.config/nvim/plugins/lspsaga.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
