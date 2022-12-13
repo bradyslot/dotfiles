@@ -41,6 +41,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'mhinz/vim-startify'
 
 " quality of life improvements
 Plug 'voldikss/vim-floaterm'
@@ -77,7 +78,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
 " LSP Package Manager
-Plug 'jayp0521/mason-null-ls.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 
@@ -86,9 +86,6 @@ Plug 'glepnir/lspsaga.nvim'
 
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
-
-" Language Plugins
-Plug 'jose-elias-alvarez/typescript.nvim'
 
 " Snippets
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -100,13 +97,19 @@ call plug#end()
 
 set completeopt=menu,menuone,noselect
 
-source ~/.config/nvim/nvim-cmp.lua
-source ~/.config/nvim/nvim-lspconfig.lua
-source ~/.config/nvim/null-ls.lua
+source ~/.config/nvim/plugins/null-ls.lua
+source ~/.config/nvim/plugins/nvim-cmp.lua
+
+" make lspconfig available to mason-lspconfig
+lua local lspconfig = require('lspconfig')
+
+source ~/.config/nvim/plugins/mason.lua
+source ~/.config/nvim/plugins/mason-lspconfig.lua
+
+source ~/.config/nvim/plugins/lspsaga.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
-lua require("mason").setup()
 
 " ============================================================ INDENT-BLANKLINE
 
@@ -220,8 +223,8 @@ nnoremap <silent><leader>r :FloatermNew ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
-nnoremap <silent><leader>x :close<CR>
-nnoremap <silent><leader>c :bd<CR>
+" nnoremap <silent><leader>x :close<CR>
+nnoremap <silent><leader>q :bd<CR>
 
 " split windows
 set splitright

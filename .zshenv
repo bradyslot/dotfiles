@@ -3,6 +3,9 @@ typeset -U PATH path
 path=("$HOME/bin" "$HOME/.local/vendor/node_modules/.bin/" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
 export PATH
 
+# fix ssh colors
+export TERM="xterm-256color"
+
 # locale
 export LANG=en_AU.UTF-8
 

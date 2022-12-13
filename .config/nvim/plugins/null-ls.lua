@@ -1,14 +1,19 @@
 -- Setup Null-ls
 local null_ls=require("null-ls")
 
--- Code actions, diagnostics, formatting, hover, completion
+-- Code actions, diagnostics, formatting, completion
 null_ls.setup({
-  sources = { 
+  sources = {
+    -- hover
+    null_ls.builtins.hover.printenv,
+
     -- typescript
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.code_actions.eslint_d,
+    -- code actions have broken indentation
+    -- would rather not have them at all
+    -- null_ls.builtins.code_actions.eslint_d,
 
     -- rustfmt
     null_ls.builtins.formatting.rustfmt,
@@ -35,11 +40,11 @@ null_ls.setup({
 
     -- spelling
     null_ls.builtins.diagnostics.codespell,
+    null_ls.builtins.diagnostics.djlint,
 
     -- python
     null_ls.builtins.diagnostics.flake8,
     null_ls.builtins.diagnostics.pylint,
-    null_ls.builtins.diagnostics.djlint,
 
     -- snippets
     null_ls.builtins.completion.luasnip,
@@ -50,4 +55,3 @@ null_ls.setup({
     null_ls.builtins.diagnostics.dotenv_linter,
   },
 })
-
