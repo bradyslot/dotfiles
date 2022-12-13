@@ -41,6 +41,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'mhinz/vim-startify'
 
 " quality of life improvements
 Plug 'voldikss/vim-floaterm'
@@ -85,9 +86,6 @@ Plug 'glepnir/lspsaga.nvim'
 
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
-
-" Language Plugins
-Plug 'jose-elias-alvarez/typescript.nvim'
 
 " Snippets
 Plug 'saadparwaiz1/cmp_luasnip'
