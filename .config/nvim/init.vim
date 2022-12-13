@@ -103,10 +103,12 @@ source ~/.config/nvim/null-ls.lua
 source ~/.config/nvim/nvim-cmp.lua
 
 " make lspconfig available to mason-lspconfig
-source ~/.config/nvim/nvim-lspconfig.lua
+lua local lspconfig = require('lspconfig')
 
 source ~/.config/nvim/mason.lua
 source ~/.config/nvim/mason-lspconfig.lua
+
+source ~/.config/nvim/lspsaga.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
@@ -224,7 +226,7 @@ nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
 " nnoremap <silent><leader>x :close<CR>
-nnoremap <silent><leader>c :bd<CR>
+nnoremap <silent><leader>q :bd<CR>
 
 " split windows
 set splitright

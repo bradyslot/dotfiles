@@ -3,7 +3,10 @@ local null_ls=require("null-ls")
 
 -- Code actions, diagnostics, formatting, hover, completion
 null_ls.setup({
-  sources = { 
+  sources = {
+    -- hover
+    null_ls.builtins.hover.printenv,
+
     -- typescript
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.eslint_d,
