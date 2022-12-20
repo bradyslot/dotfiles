@@ -69,13 +69,17 @@ Plug 'junegunn/fzf.vim'
 " AI Assistant
 Plug 'github/copilot.vim'
 
-" LSP
+" Completion
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+
+" Snippets
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " LSP Package Manager
 Plug 'williamboman/mason-lspconfig.nvim'
@@ -87,10 +91,6 @@ Plug 'glepnir/lspsaga.nvim'
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
-" Snippets
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
-
 call plug#end()
 
 " ========================================================================= LUA
@@ -99,14 +99,8 @@ set completeopt=menu,menuone,noselect
 
 source ~/.config/nvim/plugins/null-ls.lua
 source ~/.config/nvim/plugins/nvim-cmp.lua
-
-" make lspconfig available to mason-lspconfig
-lua local lspconfig = require('lspconfig')
-
-source ~/.config/nvim/plugins/mason.lua
-source ~/.config/nvim/plugins/mason-lspconfig.lua
-
 source ~/.config/nvim/plugins/lspsaga.lua
+source ~/.config/nvim/plugins/mason.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
