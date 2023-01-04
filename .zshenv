@@ -4,7 +4,7 @@ path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/
 export PATH
 
 # fix ssh colors
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # locale
 export LANG=en_US.UTF-8

@@ -68,6 +68,8 @@ Plug 'junegunn/fzf.vim'
 
 " AI Assistant
 Plug 'github/copilot.vim'
+" Plug 'dense-analysis/neural'
+" Plug 'elpiloto/significant.nvim'
 
 " Completion
 Plug 'neovim/nvim-lspconfig'
@@ -101,6 +103,7 @@ source ~/.config/nvim/plugins/null-ls.lua
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/lspsaga.lua
 source ~/.config/nvim/plugins/mason.lua
+" source ~/.config/nvim/plugins/neural.lua
 
 lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
@@ -151,7 +154,7 @@ nmap <leader>g :G<CR>
 " ========================================================================= FZF
 
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
-let g:fzf_preview_window = 'right:70%'
+let g:fzf_preview_window = 'up:70%'
 let g:fzf_buffers_jump = 1
 
 nmap <leader>f :Files<CR>
@@ -239,7 +242,8 @@ nmap <silent><leader>k :lua require('smart-splits').move_cursor_up()<CR>
 nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
 
 " remap joining lines and opening help
-nnoremap <C-j> J
+nnoremap <silent><C-j> :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
+" nnoremap <C-j> J
 " nnoremap <C-k> K
 
 " move lines around in visual mode
