@@ -136,6 +136,7 @@ application/x-extension-ics=userapp-Thunderbird-NCRCF1.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-NCRCF1.desktop
 x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/figma=figma-linux.desktop
 
 [Added Associations]
 image/png=gimp.desktop;
