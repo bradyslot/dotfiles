@@ -4,7 +4,7 @@ mason_lspconfig.setup({
     ensure_installed = {
       "ansiblels",
       "bashls",
-      "clangd",
+      -- "clangd",
       "cmake",
       "cssls",
       "dockerls",

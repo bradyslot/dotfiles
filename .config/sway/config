@@ -22,7 +22,7 @@ include ~/.config/sway/outputs
 
 input type:touchpad {
     tap enabled
-    dwt disabled
+    # dwt disabled
 }
 
 set $gnome-schema org.gnome.desktop.interface

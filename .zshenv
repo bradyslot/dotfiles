@@ -4,7 +4,7 @@ path=("$HOME/bin" "$HOME/.local/vendor/node_modules/.bin/" "$GOPATH/bin" "$HOME/
 export PATH
 
 # fix ssh colors
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # locale
 export LANG=en_AU.UTF-8
