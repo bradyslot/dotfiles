@@ -90,6 +90,7 @@ alias qsim="java -jar TinyClient.jar 192.168.90.250 password"
 alias find-large-files='sudo su -c "find / -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r"'
 alias git-commit-previous='git commit --amend --no-edit'
 alias screencast='/usr/lib/xdg-desktop-portal-wlr'
+# eval "$(github-copilot-cli alias -- "$0")"
 
 # =================================================================== FUNCTIONS
 

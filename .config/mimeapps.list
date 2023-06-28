@@ -120,7 +120,7 @@ x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/magnet=transmission-gtk.desktop
 x-scheme-handler/spotify=spotify.desktop
 x-scheme-handler/msteams=teams.desktop
-x-scheme-handler/etcher=balena-etcher-electron.desktop
+x-scheme-handler/etcher=balena-etcher.desktop
 application/x-trash=nvim.desktop
 x-scheme-handler/rdp=org.remmina.Remmina.desktop
 x-scheme-handler/spice=org.remmina.Remmina.desktop
@@ -137,6 +137,12 @@ x-scheme-handler/webcals=userapp-Thunderbird-NCRCF1.desktop
 x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
 x-scheme-handler/figma=figma-linux.desktop
+x-scheme-handler/roblox-studio=roblox-studio.desktop
+x-scheme-handler/roblox-player=roblox-player.desktop
+x-scheme-handler/roblox-studio-auth=roblox-studio-auth.desktop
+x-scheme-handler/roblox=roblox-player.desktop
+application/x-roblox-rbxl=roblox-studio.desktop
+application/x-roblox-rbxlx=roblox-studio.desktop
 
 [Added Associations]
 image/png=gimp.desktop;

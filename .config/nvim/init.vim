@@ -37,23 +37,23 @@ call plug#begin(stdpath('data') . '/plugged')
 " colors and themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
-Plug 'lilydjwg/colorizer'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'mhinz/vim-startify'
 
 " quality of life improvements
-Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'terryma/vim-expand-region'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 Plug 'mbbill/undotree'
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'Yggdroot/indentLine'
 
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -61,15 +61,12 @@ Plug 'nvim-lua/plenary.nvim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'f-person/git-blame.nvim'
 
 " Search
 Plug 'junegunn/fzf.vim'
 
-" AI Assistant
+" AI
 Plug 'github/copilot.vim'
-" Plug 'dense-analysis/neural'
-" Plug 'elpiloto/significant.nvim'
 
 " Completion
 Plug 'neovim/nvim-lspconfig'
@@ -79,19 +76,13 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
-" Snippets
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-
 " LSP Package Manager
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
 
-" LSP UI
-Plug 'glepnir/lspsaga.nvim'
-
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jay-babu/mason-null-ls.nvim'
 
 call plug#end()
 
@@ -99,57 +90,34 @@ call plug#end()
 
 set completeopt=menu,menuone,noselect
 
-source ~/.config/nvim/plugins/null-ls.lua
 source ~/.config/nvim/plugins/nvim-cmp.lua
-source ~/.config/nvim/plugins/lspsaga.lua
+source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
-" source ~/.config/nvim/plugins/neural.lua
 
-lua local luasnip = require('luasnip')
 lua require('gitsigns').setup()
+lua require('colorizer').setup()
 
-" ============================================================ INDENT-BLANKLINE
-
-" conceal is quite literally the shittiest feature of any program in existence
-let g:markdown_syntax_conceal=0
-let g:vim_json_conceal=0
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:csv_no_conceal = 1
+" ================================================================== INDENTLINE
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_setColors = 1
-
-lua vim.opt.list = true
-lua require("indent_blankline").setup {}
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
 
 " ==================================================================== UNDOTREE
 
-if has('persistent_undo')
-  let target_path = expand('~/.cache/undodir')
-
-  " create the directory and any parent directories
-  " if the location does not exist.
-  if !isdirectory(target_path)
-      call mkdir(target_path, 'p', 0700)
-  endif
-
-  let &undodir=target_path
-  set undofile
-endif
-
-nmap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
+set undofile
+set undodir=~/.cache/undodir
+set undolevels=1000
+set undoreload=10000
 
 " ========================================================================= GIT
 
 let g:gitgutter_sign_column_always = 1
-nmap <leader>g :G<CR>
-" nmap <leader>gs :G status<CR>
-" nmap <leader>gd :G diff<CR>
-" nmap <leader>gc :G commit<CR>
-" nmap <leader>gp :G push<CR>
-" nmap <leader>gl :G pull<CR>
+
+" ====================================================================== RANGER
+
+let g:ranger_map_keys = 0
+let g:ranger_replace_netrw = 1
 
 " ========================================================================= FZF
 
@@ -174,14 +142,6 @@ lua vim.keymap.del({'x', 'o'}, 'X')
 inoremap <silent><script><expr> <Right> copilot#Accept("\<Right>")
 let g:copilot_no_tab_map = v:true
 
-" ======================================================================== YAML
-
-" Fix auto-indentation for YAML files
-augroup yaml_fix
-  autocmd!
-  autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-augroup END
-
 " ================================================================= COLORSCHEME
 
 set background=dark
@@ -199,24 +159,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
 
-" ==================================================================== FLOATERM
-
-let g:floaterm_shell='zsh'
-let g:floaterm_gitcommit='floaterm'
-let g:floaterm_autoinsert=1
-let g:floaterm_width=1.0
-let g:floaterm_height=1.0
-let g:floaterm_wintitle=0
-let g:floaterm_autoclose=1
-let g:floaterm_opener='edit'
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F12>'
-
 " ====================================================================== REMAPS
 
-nnoremap <silent><leader>r :FloatermNew ranger<CR>
+nnoremap <silent><leader>r :Ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
@@ -241,12 +186,10 @@ nmap <silent><leader>j :lua require('smart-splits').move_cursor_down()<CR>
 nmap <silent><leader>k :lua require('smart-splits').move_cursor_up()<CR>
 nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
 
-" remap joining lines and opening help
+" join lines without moving cursor
 nnoremap <silent><C-j> :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
-" nnoremap <C-j> J
-" nnoremap <C-k> K
 
-" move lines around in visual mode
+" move visually selected lines
 vnoremap <silent>J :m '>+1<CR>gv=gv
 vnoremap <silent>K :m '<-2<CR>gv=gv
 
@@ -270,7 +213,7 @@ nnoremap <silent><C-l> :bnext <CR>
 nnoremap <S-h> ^
 nnoremap <S-l> $
 
-" shift j k to 10j 10k
+" lazy fast scrolling
 nnoremap <S-j> 10j
 nnoremap <S-k> 10k
 

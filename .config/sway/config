@@ -223,6 +223,11 @@ bindsym $mod+Shift+r restart
 # exit sway (logs you out of your X session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
+# take selection screenshot
+bindsym $mod+Print exec cd ~/Pictures/Screenshots/ && slurp | grim -g - "selection-$(date +'%Yy%mm%dd-%Hh%Mm%Ss').png"
+bindsym Print exec cd ~/Pictures/Screenshots/ && slurp -o | grim -g - "screenshot-$(date +'%Yy%mm%dd-%Hh%Mm%Ss').png"
+
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
