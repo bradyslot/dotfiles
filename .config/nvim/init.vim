@@ -54,6 +54,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
+Plug 'junegunn/vim-easy-align'
 
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -85,6 +86,21 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jay-babu/mason-null-ls.nvim'
 
 call plug#end()
+
+" ===================================================================== AUTOCMD
+
+" Spell-check Markdown files and Git Commit Messages
+augroup Markdown
+  autocmd!
+  autocmd FileType markdown setlocal tw=80
+  autocmd FileType markdown setlocal fo+=t
+  autocmd FileType markdown setlocal wrap linebreak
+  autocmd FileType markdown setlocal spell
+augroup END
+
+autocmd FileType gitcommit setlocal spell
+" sql syntax highlighting for surrealQL files
+autocmd BufNewFile,BufRead *.surql set filetype=sql
 
 " ========================================================================= LUA
 
@@ -129,6 +145,7 @@ nmap <leader>f :Files<CR>
 nmap <leader>/ :Rg<CR>
 
 " ======================================================================== LEAP
+
 lua require('leap').add_default_mappings()
 
 " remove leaps use of x in visual mode
@@ -161,6 +178,25 @@ let g:airline_symbols_ascii = 1
 
 " ====================================================================== REMAPS
 
+" make j and k move by display lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" lazy fast scrolling by display lines
+nnoremap <S-j> 10gj
+nnoremap <S-k> 10gk
+vnoremap <S-j> 10gj
+vnoremap <S-k> 10gk
+
+" jump to beginning and end of display line
+nnoremap <S-h> g^
+nnoremap <S-l> g$
+
+
+vnoremap A <Plug>(EasyAlign)
+
 nnoremap <silent><leader>r :Ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
@@ -168,7 +204,7 @@ nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefre
 " nnoremap <silent><leader>x :close<CR>
 nnoremap <silent><leader>q :bd<CR>
 
-" split windows
+" intuitive window splitting with horizontal and vertical characters
 set splitright
 set splitbelow
 nnoremap <silent><leader>- :split<CR>
@@ -190,8 +226,8 @@ nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
 nnoremap <silent><C-j> :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
 
 " move visually selected lines
-vnoremap <silent>J :m '>+1<CR>gv=gv
-vnoremap <silent>K :m '<-2<CR>gv=gv
+vnoremap <silent><C-j> :m '>+1<CR>gv=gv
+vnoremap <silent><C-k> :m '<-2<CR>gv=gv
 
 " indenting line or visual selection
 vnoremap > >gv
@@ -208,14 +244,6 @@ vnoremap <silent><C-_> :Commentary<CR>
 " buffer navigation
 nnoremap <silent><C-h> :bprev <CR>
 nnoremap <silent><C-l> :bnext <CR>
-
-" jump to beginning and end of line
-nnoremap <S-h> ^
-nnoremap <S-l> $
-
-" lazy fast scrolling
-nnoremap <S-j> 10j
-nnoremap <S-k> 10k
 
 " ==================================================================== COMMANDS
 

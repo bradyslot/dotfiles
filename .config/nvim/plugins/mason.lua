@@ -5,7 +5,6 @@ local lsp_servers = {
   "cssls",
   "cssmodules_ls",
   "dockerls",
-  "eslint",
   "html",
   "jsonls",
   "pyright",
@@ -17,13 +16,14 @@ local lsp_servers = {
 }
 local lint_servers = {
   "actionlint",
+  "ansible-lint",
+  "eslint_d",
   "yamllint",
   "stylelint",
   "shellcheck",
   "pylint",
   "markdownlint",
   "jsonlint",
-  "ansiblelint",
   "codespell",
 }
 
@@ -44,6 +44,7 @@ require("mason").setup(settings)
 require("mason-null-ls").setup({
   ensure_installed = lint_servers,
   automatic_installation = true,
+  handlers = {},
 })
 require("mason-lspconfig").setup({
   ensure_installed = lsp_servers,

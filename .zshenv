@@ -6,6 +6,9 @@ export PATH
 # fix ssh colors
 # export TERM="xterm-256color"
 
+# number of cpu cores
+export NPROC="$(nproc)"
+
 # locale
 export LANG=en_US.UTF-8
 
