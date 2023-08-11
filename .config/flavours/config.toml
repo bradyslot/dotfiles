@@ -55,12 +55,12 @@ start = '# Start Flavours'
 end = '# End Flavours'
 hook = 'sed -i "/^\[colors\]$/d" ~/.config/hypr/hyprland.conf && sed -i "/^base0/ s/^/$/" ~/.config/hypr/hyprland.conf'
 
-# [[item]]
-# file = '~/.config/waybar/style.css'
-# template = 'waybar'
-# rewrite = false
-# start = '/* Start Flavours */'
-# end = '/* End Flavours */'
+[[item]]
+file = '~/.config/waybar/style.css'
+template = 'waybar'
+rewrite = false
+start = '/* Start Flavours */'
+end = '/* End Flavours */'
 
 # [[item]]
 # file = '~/.config/polybar/colors.ini'
