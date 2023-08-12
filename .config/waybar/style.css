@@ -49,7 +49,7 @@ button:hover {
 
 #workspaces button {
   padding: 5;
-  margin: 5 0 0 5;
+  margin: 10 0 0 10;
   color: #ffffff;
   border: 3 solid @base04;
 }
@@ -86,12 +86,12 @@ button:hover {
 #tray {
   border-radius: 99;
   padding: 0 10 0 10;
-  margin: 5 0 0 0;
+  margin: 10 0 0 5;
   color: @base00;
 }
 
 #clock {
-  margin-right: 5;
+  margin-right: 10;
 }
 
 #pulseaudio {
