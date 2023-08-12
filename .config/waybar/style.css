@@ -1,0 +1,187 @@
+/* Start Flavours */
+/*
+*
+* Base16 OneDark
+* Author: Lalit Magant (http://github.com/tilal6991)
+*
+*/
+
+@define-color base00 #282c34;
+@define-color base01 #353b45;
+@define-color base02 #3e4451;
+@define-color base03 #545862;
+@define-color base04 #565c64;
+@define-color base05 #abb2bf;
+@define-color base06 #b6bdca;
+@define-color base07 #c8ccd4;
+@define-color base08 #e06c75;
+@define-color base09 #d19a66;
+@define-color base0A #e5c07b;
+@define-color base0B #98c379;
+@define-color base0C #56b6c2;
+@define-color base0D #61afef;
+@define-color base0E #c678dd;
+@define-color base0F #be5046;
+/* End Flavours */
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Source Code Pro, Semibold;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+button {
+  border-radius: 99;
+  background-color: @base04;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+  background: rgba(0, 0, 0, 0.2);
+  background: inherit;
+}
+
+#workspaces button {
+  padding: 5;
+  margin: 5 0 0 5;
+  color: #ffffff;
+  border: 3 solid @base04;
+}
+
+#workspaces button.active {
+  background-color: @base07;
+  color: @base00;
+  border: 3 solid @base0C;
+}
+
+#workspaces button:hover {
+  background: @base00;
+  color: #ffffff;
+  border: 3 solid @base0C;
+}
+
+#workspaces button.focused {
+  background-color: @base05;
+}
+
+#workspaces button.urgent {
+  background-color: @base08;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#tray {
+  border-radius: 99;
+  padding: 0 10 0 10;
+  margin: 5 0 0 0;
+  color: @base00;
+}
+
+#clock {
+  margin-right: 5;
+}
+
+#pulseaudio {
+  background-color: @base0A;
+}
+
+#pulseaudio.muted {
+  background-color: @base08;
+}
+
+#wireplumber {
+  background-color: @base0A;
+}
+
+#wireplumber.muted {
+  background-color: @base08;
+}
+
+#network {
+  background-color: @base0B;
+}
+
+#network.disconnected {
+  background-color: @base08;
+}
+
+#cpu {
+  background-color: @base0C;
+}
+
+#memory {
+  background-color: @base0D;
+}
+
+#temperature {
+  background-color: @base0E;
+}
+
+#temperature.critical {
+  background-color: @base08;
+}
+
+#clock {
+  background-color: @base07;
+}
+
+#battery {
+  background-color: @base07;
+  color: @base00;
+}
+
+#battery.charging, #battery.plugged {
+  color: #ffffff;
+  background-color: #26A65B;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: @base00;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: @base08;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#backlight {
+  background-color: #90b1b1;
+}
+
+#tray {
+  background-color: #2980b9;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
+}
