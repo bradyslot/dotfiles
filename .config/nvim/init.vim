@@ -55,6 +55,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
+Plug 'fidian/hexmode'
 
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -86,6 +87,11 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jay-babu/mason-null-ls.nvim'
 
 call plug#end()
+
+" ===================================================================== HEXMODE
+
+let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.blob,*.a,*.so,*.dll.*.sys,*.com,*.dmg,*.img,*.iso,*.jar,*.lib,*.msi,*.tar,*.zip,*.gz,*.xz,*.bz2,*.lzma,*.7z,*.rar'
+let g:hexmode_xxd_options = '-g 1'
 
 " ===================================================================== AUTOCMD
 
