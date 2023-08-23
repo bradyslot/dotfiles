@@ -38,7 +38,7 @@ file = '~/.config/nvim/colors/theme.vim'
 template = 'vim'
 subtemplate = 'default'
 rewrite = true
-hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
+# hook = 'nvr --servername localhost:6666 --remote-send "<C-\><C-n>:silent! source ~/.config/nvim/init.vim<CR>"'
 
 [[item]]
 file = '~/.config/wofi/style.css'
@@ -61,6 +61,13 @@ template = 'waybar'
 rewrite = false
 start = '/* Start Flavours */'
 end = '/* End Flavours */'
+
+[[item]]
+file = '~/.config/bat/themes/base16.tmTheme'
+template = 'textmate'
+rewrite = false
+start = '<!-- Flavours Start -->'
+end = '<!-- Flavours End -->'
 
 # [[item]]
 # file = '~/.config/polybar/colors.ini'

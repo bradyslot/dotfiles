@@ -6,24 +6,31 @@ OS=$(uname)
 
 if [[ $OS = "Darwin" ]]
 then
-  ZSH="$HOME/.oh-my-zsh"
-  ZSH_PLUGINS_DIR="/opt/homebrew/share"
+  export ZSH="$HOME/.oh-my-zsh"
+  export ZSH_PLUGINS_DIR="/opt/homebrew/share"
+  PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/share/gem/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
+  if type brew &>/dev/null; then
+    HOMEBREW_PREFIX=$(brew --prefix)
+    for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+    for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
+  fi
+  export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 fi
 
 if [[ $OS = "Linux" ]]
 then
-  ZSH="/usr/share/oh-my-zsh"
-  ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+  export ZSH="/usr/share/oh-my-zsh"
+  export ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+  export PATH="$HOME/bin:$GOPATH/bin:$HOME/.gem/ruby/3.0.0/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
 fi
+
+# remove duplicates in PATH
+typeset -U PATH
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
-
-# Source Environment
-source ~/.zshenv
-source $ZSH/oh-my-zsh.sh
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -37,14 +44,13 @@ HISTFILE=~/.cache/zsh/history
 # disable insecure oh-my-zsh permissions warnings
 ZSH_DISABLE_COMPFIX=true
 
+source $ZSH/oh-my-zsh.sh
+source $ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 plugins=(
   git
 )
-
-zstyle :omz:plugins:ssh-agent lazy yes
-
-source $ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # disable automatic updates
 zstyle ':omz:update' mode disabled
@@ -60,11 +66,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
-# source node version manager
-# source /usr/share/nvm/init-nvm.sh
-
 # ===================================================================== ALIASES
-
 
 # pipping server
 alias send="curl -T - https://ppng.io/hD5w8JlHeUaI"

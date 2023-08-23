@@ -1,26 +1,3 @@
-# path
-typeset -U PATH path 
-
-# Operating System
-OS=$(uname)
-
-if [[ $OS = "Darwin" ]]
-then
-  path=("/opt/homebrew/opt/ruby/bin" "/opt/homebrew/opt/openjdk/bin" "/opt/homebrew/opt/findutils/libexec/gnubin" "/opt/homebrew/opt/coreutils/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" "/usr/local/bin" "$HOME/bin" "$HOME/.local/share/gem/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
-  export MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
-  export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
-  export PATH
-fi
-
-if [[ $OS = "Linux" ]]
-then
-  path=("$HOME/bin" "$GOPATH/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
-  export PATH
-fi
-
-# fix ssh colors
-# export TERM="xterm-256color"
-
 # locale
 export LANG=en_US.UTF-8
 
@@ -93,9 +70,9 @@ export BAT_THEME="base16"
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+  [ -n "$PS1" ] && \
+  [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+  eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Start Flavours
 # Base16 OneDark
