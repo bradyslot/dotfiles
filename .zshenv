@@ -1,13 +1,25 @@
 # path
-typeset -U PATH path
-path=("$HOME/bin" "$GOPATH/bin" "$HOME/.local/share/cargo/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$path[@]")
-export PATH
+typeset -U PATH path 
+
+# Operating System
+OS=$(uname)
+
+if [[ $OS = "Darwin" ]]
+then
+  path=("/opt/homebrew/opt/findutils/libexec/gnubin" "/opt/homebrew/opt/coreutils/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" "/usr/local/bin" "$HOME/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
+  MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+  export MANPATH
+  export PATH
+fi
+
+if [[ $OS = "Linux" ]]
+then
+  path=("$HOME/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
+  export PATH
+fi
 
 # fix ssh colors
 # export TERM="xterm-256color"
-
-# number of cpu cores
-export NPROC="$(nproc)"
 
 # locale
 export LANG=en_US.UTF-8
@@ -15,13 +27,7 @@ export LANG=en_US.UTF-8
 # default apps
 export VISUAL=nvim
 export EDITOR=nvim
-export BROWSER=brave
 export TERMINAL=alacritty
-export WM=sway
-export PAGER=less
-export VIDEO=vlc
-export IMAGE=nomacs
-export OPENER=xdg-open
 
 # clean up home directory
 export XDG_CONFIG_HOME="$HOME"/.config

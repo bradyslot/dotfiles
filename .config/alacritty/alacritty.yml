@@ -70,7 +70,7 @@ scrolling:
 font:
   normal:
     family: Source Code Pro
-    style: Semibold
+    style: SemiBold
 
   # Point size
   size: 12

@@ -1,11 +1,20 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# oh-my-zsh settings
-ZSH="/usr/share/oh-my-zsh/"
+# Operating System
+OS=$(uname)
 
-# distro packaged plugins dir
-ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+if [[ $OS = "Darwin" ]]
+then
+  ZSH="$HOME/.oh-my-zsh"
+  ZSH_PLUGINS_DIR="/opt/homebrew/share"
+fi
+
+if [[ $OS = "Linux" ]]
+then
+  ZSH="/usr/share/oh-my-zsh"
+  ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
+fi
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
