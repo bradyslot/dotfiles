@@ -24,8 +24,9 @@ then
   export PATH="$HOME/bin:$GOPATH/bin:$HOME/.gem/ruby/3.0.0/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
 fi
 
-# remove duplicates in PATH
+# remove duplicates in paths
 typeset -U PATH
+typeset -U MANPATH
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
