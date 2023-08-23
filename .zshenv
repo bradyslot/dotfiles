@@ -6,15 +6,15 @@ OS=$(uname)
 
 if [[ $OS = "Darwin" ]]
 then
-  path=("/opt/homebrew/opt/findutils/libexec/gnubin" "/opt/homebrew/opt/coreutils/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" "/usr/local/bin" "$HOME/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
-  MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
-  export MANPATH
+  path=("/opt/homebrew/opt/ruby/bin" "/opt/homebrew/opt/openjdk/bin" "/opt/homebrew/opt/findutils/libexec/gnubin" "/opt/homebrew/opt/coreutils/libexec/gnubin" "/opt/homebrew/bin" "/opt/homebrew/sbin" "/usr/local/bin" "$HOME/bin" "$HOME/.local/share/gem/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
+  export MANPATH="/opt/homebrew/opt/findutils/libexec/gnuman:/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+  export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
   export PATH
 fi
 
 if [[ $OS = "Linux" ]]
 then
-  path=("$HOME/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
+  path=("$HOME/bin" "$GOPATH/bin" "$HOME/.gem/ruby/3.0.0/bin" "$HOME/.local/share/gem/ruby/3.0.0/bin" "$HOME/.local/share/cargo/bin" "$HOME/.local/bin" "$path[@]")
   export PATH
 fi
 

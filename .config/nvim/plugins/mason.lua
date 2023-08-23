@@ -13,6 +13,7 @@ local lsp_servers = {
   "taplo",
   "tsserver",
   "yamlls",
+  "omnisharp",
 }
 local lint_servers = {
   "actionlint",

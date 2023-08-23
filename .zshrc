@@ -80,14 +80,13 @@ alias ls='ls -lahv --color=auto --group-directories-first'
 alias tree='tree -C'
 
 # mine
-alias nvim='nvim --listen localhost:6666'
-alias vim='nvim --listen localhost:6666'
-alias vi='nvim --listen localhost:6666'
+alias nvim='nvim'
+alias vim='nvim'
+alias vi='nvim'
 alias ssh='TERM=xterm-color ssh'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias lazyconfig='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias win10='sudo mount /dev/sda4 /win10 && cd /win10/Users/drauk || cd /win10/Users/drauk'
 alias ghidra="_JAVA_AWT_WM_NONREPARENTING=1 ghidra"
 alias p="ps aux | head -1 && ps aux | grep -i"
