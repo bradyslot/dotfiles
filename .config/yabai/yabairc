@@ -2,7 +2,7 @@
 
 # global settings
 yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          off
+yabai -m config focus_follows_mouse          autofocus
 
 yabai -m config window_origin_display        default
 yabai -m config window_placement             second_child
@@ -18,32 +18,28 @@ yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 
 # mouse support
-yabai -m config mouse_modifier               fn
+yabai -m config mouse_modifier               cmd
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  10
-yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
-yabai -m config window_gap                   10
+yabai -m config top_padding                  5
+yabai -m config bottom_padding               5
+yabai -m config left_padding                 5
+yabai -m config right_padding                5
+yabai -m config window_gap                   5
 
-# app exlusions
+# app exclusions
 yabai -m rule --add app='^System Information$' manage=off
-yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app='^System Preferences$' manage=off
+yabai -m rule --add app='^System Settings$' manage=off
+yabai -m rule --add title='Information$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Settings$' manage=off
-yabai -m rule --add app='^IM RemoteAccess$' manage=off
 yabai -m rule --add app='^Steam$' manage=off
 yabai -m rule --add app='^UTM$' manage=off
-
-
-yabai -m rule --add app=zoom.us manage=off
-yabai -m rule --add app="^Java Control Panel$" manage=off
-yabai -m rule --add app="^ATEN Java iKVM Viewer$" manage=off
 
 # disable animations when opening and closing windows
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false

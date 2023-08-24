@@ -1,14 +1,49 @@
 # open terminal
 cmd - return : open -n -a "Alacritty.app"
 
-cmd - 0x32 : ~/bin/ldap-login
-cmd + shift - 0x32 : ~/bin/ad-login
-
 # focus window
 cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
 cmd - j : yabai -m window --focus south
 cmd - k : yabai -m window --focus north
+
+# move window
+cmd + shift - h : yabai -m window --warp west
+cmd + shift - l : yabai -m window --warp east
+cmd + shift - j : yabai -m window --warp south
+cmd + shift - k : yabai -m window --warp north
+
+# move window to space
+cmd + shift - 1 : yabai -m window --space 1
+cmd + shift - 2 : yabai -m window --space 2
+cmd + shift - 3 : yabai -m window --space 3
+cmd + shift - 4 : yabai -m window --space 4
+cmd + shift - 5 : yabai -m window --space 5
+cmd + shift - 6 : yabai -m window --space 6
+cmd + shift - 7 : yabai -m window --space 7
+cmd + shift - 8 : yabai -m window --space 8
+cmd + shift - 9 : yabai -m window --space 9
+cmd + shift - 0 : yabai -m window --space 10 
+
+# resize windows
+cmd + ctrl + shift - h : yabai -m window west --resize right:-50:0 2> /dev/null  || yabai -m window --resize right:-50:0
+cmd + ctrl + shift - l : yabai -m window east --resize left:50:0 2> /dev/null    || yabai -m window --resize left:50:0
+cmd + ctrl + shift - k : yabai -m window south --resize top:0:-50 2> /dev/null   || yabai -m window --resize top:0:-50
+cmd + ctrl + shift - j : yabai -m window north --resize bottom:0:50 2> /dev/null || yabai -m window --resize bottom:0:50
+
+# set new window direction
+# 0x1B = minus, 0x2A = backslash
+cmd - 0x1B : yabai -m window --insert south
+cmd - 0x2A : yabai -m window --insert east
+
+# toggle float
+cmd + shift - return : yabai -m window --toggle float
+
+# fullscreen focused window
+cmd - f : yabai -m window --toggle zoom-fullscreen
+
+# native fullscreen focused window
+cmd + shift - f : yabai -m window --toggle native-fullscreen
 
 # if stacked then cycle else focus
 # cmd - j : yabai -m query --spaces --space | \
@@ -36,39 +71,11 @@ cmd - k : yabai -m window --focus north
 #             | jq -sre "add | map(select(.minimized != 1)) | sort_by(.display, .frame.y, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" \
 #             | xargs -I{} yabai -m window --focus {}
 
-# move window
-cmd + ctrl + shift - h : yabai -m window --warp west
-cmd + ctrl + shift - l : yabai -m window --warp east
-cmd + ctrl + shift - j : yabai -m window --warp south
-cmd + ctrl + shift - k : yabai -m window --warp north
-
-# resize windows
-cmd + shift - h : yabai -m window west --resize right:-50:0 2> /dev/null  || yabai -m window --resize right:-50:0
-cmd + shift - l : yabai -m window east --resize left:50:0 2> /dev/null    || yabai -m window --resize left:50:0
-cmd + shift - k : yabai -m window south --resize top:0:-50 2> /dev/null   || yabai -m window --resize top:0:-50
-cmd + shift - j : yabai -m window north --resize bottom:0:50 2> /dev/null || yabai -m window --resize bottom:0:50
-
 # set current window as a stack
 # cmd + ctrl - j : yabai -m window --stack south
 # cmd + ctrl - k : yabai -m window --stack north
 # cmd + ctrl - h : yabai -m window --stack west
 # cmd + ctrl - l : yabai -m window --stack east
-
-# set new window direction
-# 0x1B = minus, 0x2A = backslash
-cmd + shift - 0x1B : yabai -m window --insert south
-cmd + ctrl  - 0x1B : yabai -m window --insert north
-cmd + shift - 0x2A : yabai -m window --insert east
-cmd + ctrl  - 0x2A : yabai -m window --insert west
-
-# toggle float
-cmd + ctrl - space : yabai -m window --toggle float
-
-# fullscreen focused window
-cmd + shift - f : yabai -m window --toggle zoom-fullscreen
-
-# native fullscreen focused window
-cmd + ctrl + shift - f : yabai -m window --toggle native-fullscreen
 
 # change layout
 # cmd + shift - e : yabai -m query --spaces --space | \
