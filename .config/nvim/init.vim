@@ -86,11 +86,29 @@ Plug 'williamboman/mason.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jay-babu/mason-null-ls.nvim'
 
+" Debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'jay-babu/mason-nvim-dap.nvim'
+
 call plug#end()
+
+" =================================================================== DEBUGGING
+
+nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+" nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+" nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+" nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+nnoremap <silent> <leader>d :lua require('dapui').toggle()<CR>
 
 " ===================================================================== HEXMODE
 
-let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.blob,*.a,*.so,*.dll.*.sys,*.com,*.dmg,*.img,*.iso,*.jar,*.lib,*.msi,*.tar,*.zip,*.gz,*.xz,*.bz2,*.lzma,*.7z,*.rar'
+let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.blob,*.a,*.so,*.dll,*.sys,*.com'
 let g:hexmode_xxd_options = '-g 1'
 
 " ===================================================================== AUTOCMD
@@ -116,6 +134,7 @@ source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
 
+lua require('dapui').setup()
 lua require('gitsigns').setup()
 lua require('colorizer').setup()
 

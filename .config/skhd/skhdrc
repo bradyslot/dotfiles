@@ -1,0 +1,81 @@
+# open terminal
+cmd - return : open -n -a "Alacritty.app"
+
+cmd - 0x32 : ~/bin/ldap-login
+cmd + shift - 0x32 : ~/bin/ad-login
+
+# focus window
+cmd - h : yabai -m window --focus west
+cmd - l : yabai -m window --focus east
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+
+# if stacked then cycle else focus
+# cmd - j : yabai -m query --spaces --space | \
+#   jq -r '.type' | grep "stack" && yabai -m window --focus stack.next || \
+#   yabai -m window --focus south
+# cmd - k : yabai -m query --spaces --space | \
+#   jq -r '.type' | grep "stack" && yabai -m window --focus stack.prev || \
+#   yabai -m window --focus north
+
+# cycle through stack windows
+# alt - p : yabai -m window --focus stack.next || yabai -m window --focus south
+# alt - n : yabai -m window --focus stack.prev || yabai -m window --focus north
+
+# forwards
+# cmd - n : yabai -m query --spaces --space \
+#             | jq -re ".index" \
+#             | xargs -I{} yabai -m query --windows --space {} \
+#             | jq -sre "add | map(select(.minimized != 1)) | sort_by(.display, .frame.y, .frame.x, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" \
+#             | xargs -I{} yabai -m window --focus {}
+
+# backwards
+# cmd + shift - n : yabai -m query --spaces --space \
+#             | jq -re ".index" \
+#             | xargs -I{} yabai -m query --windows --space {} \
+#             | jq -sre "add | map(select(.minimized != 1)) | sort_by(.display, .frame.y, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" \
+#             | xargs -I{} yabai -m window --focus {}
+
+# move window
+cmd + ctrl + shift - h : yabai -m window --warp west
+cmd + ctrl + shift - l : yabai -m window --warp east
+cmd + ctrl + shift - j : yabai -m window --warp south
+cmd + ctrl + shift - k : yabai -m window --warp north
+
+# resize windows
+cmd + shift - h : yabai -m window west --resize right:-50:0 2> /dev/null  || yabai -m window --resize right:-50:0
+cmd + shift - l : yabai -m window east --resize left:50:0 2> /dev/null    || yabai -m window --resize left:50:0
+cmd + shift - k : yabai -m window south --resize top:0:-50 2> /dev/null   || yabai -m window --resize top:0:-50
+cmd + shift - j : yabai -m window north --resize bottom:0:50 2> /dev/null || yabai -m window --resize bottom:0:50
+
+# set current window as a stack
+# cmd + ctrl - j : yabai -m window --stack south
+# cmd + ctrl - k : yabai -m window --stack north
+# cmd + ctrl - h : yabai -m window --stack west
+# cmd + ctrl - l : yabai -m window --stack east
+
+# set new window direction
+# 0x1B = minus, 0x2A = backslash
+cmd + shift - 0x1B : yabai -m window --insert south
+cmd + ctrl  - 0x1B : yabai -m window --insert north
+cmd + shift - 0x2A : yabai -m window --insert east
+cmd + ctrl  - 0x2A : yabai -m window --insert west
+
+# toggle float
+cmd + ctrl - space : yabai -m window --toggle float
+
+# fullscreen focused window
+cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+
+# native fullscreen focused window
+cmd + ctrl + shift - f : yabai -m window --toggle native-fullscreen
+
+# change layout
+# cmd + shift - e : yabai -m query --spaces --space | \
+#   jq -r '.type' | grep "bsp" || \
+#   yabai -m space --layout bsp && \
+#   yabai -m config --space $(yabai -m query --spaces --space | jq -r '.index') left_padding 5
+# cmd + shift - s : yabai -m query --spaces --space | \
+#   jq -r '.type' | grep "stack" || \
+#   yabai -m space --layout stack && \
+#   yabai -m config --space $(yabai -m query --spaces --space | jq -r '.index') left_padding 15
