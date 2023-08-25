@@ -2,7 +2,7 @@
 cmd - return : open -n -a "Alacritty.app"
 
 # open application menu
-cmd - d : Alacritty -e bash -c ~/bin/menu.sh
+cmd - d : Alacritty -o font.size=16 -e bash -c ~/bin/menu.sh
 
 # focus window
 cmd - h : yabai -m window --focus west
