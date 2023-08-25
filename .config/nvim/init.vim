@@ -133,8 +133,8 @@ set completeopt=menu,menuone,noselect
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
+source ~/.config/nvim/plugins/dapui.lua
 
-lua require('dapui').setup()
 lua require('gitsigns').setup()
 lua require('colorizer').setup()
 

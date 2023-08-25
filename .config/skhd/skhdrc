@@ -1,6 +1,9 @@
 # open terminal
 cmd - return : open -n -a "Alacritty.app"
 
+# open application menu
+cmd - d : Alacritty -e bash -c ~/bin/menu.sh
+
 # focus window
 cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
@@ -33,16 +36,13 @@ cmd + ctrl + shift - j : yabai -m window north --resize bottom:0:50 2> /dev/null
 
 # set new window direction
 # 0x1B = minus, 0x2A = backslash
-cmd - 0x1B : yabai -m window --insert south
-cmd - 0x2A : yabai -m window --insert east
+cmd + shift - 0x1B : yabai -m window --insert south
+cmd + shift - 0x2A : yabai -m window --insert east
 
 # toggle float
 cmd + shift - return : yabai -m window --toggle float
 
-# fullscreen focused window
-cmd - f : yabai -m window --toggle zoom-fullscreen
-
-# native fullscreen focused window
+# toggle native fullscreen
 cmd + shift - f : yabai -m window --toggle native-fullscreen
 
 # if stacked then cycle else focus
