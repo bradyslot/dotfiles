@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+MODEL_VARIANT=$(echo "$@" | tr '[:upper:]' '[:lower:]')
+MODEL_PATH="$HOME/ai/models/codellama"
+LLAMA_CPP="$HOME/ai/llama.cpp/main"
+
+case $MODEL_VARIANT in
+    "instruct")
+        echo "Using Instruct Model."
+        MODEL_VARIANT="codellama-34b-instruct.Q8_0.gguf"
+        ;;
+    "python")
+        echo "Using Python Model."
+        MODEL_VARIANT="codellama-34b-python.Q8_0.gguf"
+        ;;
+    *)
+        echo "Using Default Model."
+        MODEL_VARIANT="codellama-34b.Q8_0.gguf"
+        ;;
+esac
+
+echo "- Press Ctrl+C to interject at any time.
+- To return control to LLaMa, end your input with '\'.
+- To return control without starting a new line, end your input with '/'."
+
+exec $LLAMA_CPP \
+    -m $MODEL_PATH/$MODEL_VARIANT \
+    -t 12 \
+    -n -1 \
+    -s 1337 \
+    --temp 0.7 \
+    --repeat-penalty 1.1 \
+    -ngl 32 \
+    -c 4096 \
+    --in-prefix "
+> " \
+    --color \
+    --interactive-first \
+    --multiline-input \
+    2> /dev/null # silence debug output
