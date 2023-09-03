@@ -8,13 +8,13 @@ if [[ $OS = "Darwin" ]]
 then
   export ZSH="$HOME/.oh-my-zsh"
   export ZSH_PLUGINS_DIR="/opt/homebrew/share"
-  PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/share/gem/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
+  export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/bin"
+  PATH="$DOTNET_ROOT:/Applications/Postgres.app/Contents/Versions/latest/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/share/gem/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
   if type brew &>/dev/null; then
     HOMEBREW_PREFIX=$(brew --prefix)
     for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
     for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
   fi
-  export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 fi
 
 if [[ $OS = "Linux" ]]
@@ -67,6 +67,11 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
+# ======================================================================== WORK
+
+WORK_ZSHRC="$HOME/src/onset/zshrc"
+[[ -f $WORK_ZSHRC ]] && source $WORK_ZSHRC
+
 # ===================================================================== ALIASES
 
 # pipping server
@@ -106,7 +111,7 @@ alias screencast='/usr/lib/xdg-desktop-portal-wlr'
 # =================================================================== FUNCTIONS
 
 activate () {
-  source ~/src/venv/$1/bin/activate
+  source ~/venv/$1/bin/activate
 }
 
 ssh-pemgen () {

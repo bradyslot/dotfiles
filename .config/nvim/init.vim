@@ -65,6 +65,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
 
 " Search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " AI
@@ -87,24 +88,88 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jay-babu/mason-null-ls.nvim'
 
 " Debugging
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'jay-babu/mason-nvim-dap.nvim'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
 " =================================================================== DEBUGGING
 
-nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
-nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
-nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
-nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
-nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-" nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-" nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
-" nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
-nnoremap <silent> <leader>d :lua require('dapui').toggle()<CR>
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_adapters = {
+\ "system-netcoredbg": {
+\   "name": "system-netcoredbg",
+\   "attach": {
+\     "pidProperty": "processId",
+\     "pidSelect": "ask"
+\   },
+\   "command": [ "/usr/local/bin/netcoredbg", "--interpreter=vscode" ],
+\   "configuration": {
+\     "cwd": "${PWD}"
+\   }
+\ } }
+
+let g:vimspector_configurations = {
+\ "launch - netcoredbg": {
+\   "name": "launch - netcoredbg",
+\   "adapter": "system-netcoredbg",
+\   "variables": {
+\     "Executable": system('echo -n $(basename $PWD)')
+\   },
+\   "filetypes": [ "cs" ],
+\   "configuration": {
+\     "cwd": "${PWD}",
+\     "request": "launch",
+\     "program": "${PWD}/bin/Debug/net6.0/${Executable}.dll",
+\     "args": [],
+\     "env": {},
+\     "stopAtEntry": v:true
+\   }
+\ },
+\ "attach - netcoredbg": {
+\   "name": "attach - netcoredbg",
+\   "adapter": "system-netcoredbg",
+\   "variables": {
+\     "Pid": system('pgrep $(basename $PWD)')
+\   },
+\   "filetypes": [ "cs" ],
+\   "configuration": {
+\     "cwd": "${PWD}",
+\     "request": "attach",
+\     "processId": "${Pid}",
+\     "stopAtEntry": v:true
+\   }
+\ } }
+
+function! CustomiseWinBar()
+  call win_gotoid( g:vimspector_session_windows.code )
+  " Clear the existing WinBar created by Vimspector
+  nunmenu WinBar
+  " Create our own WinBar
+  nnoremenu WinBar.󰓛\ Stop\ F3 :call vimspector#Stop()<CR>
+  nnoremenu WinBar.󰐊\ Continue\ F5 :call vimspector#Continue()<CR>
+  nnoremenu WinBar.󰏤\ Pause\ F6 :call vimspector#Pause()<CR>
+  nnoremenu WinBar.\ Step\ Over\ F10 :call vimspector#StepOver()<CR>
+  nnoremenu WinBar.\ Step\ In\ F11 :call vimspector#StepInto()<CR>
+  nnoremenu WinBar.\ Step\ Out\ F12 :call vimspector#StepOut()<CR>
+  nnoremenu WinBar.\ Restart\ F4: :call vimspector#Restart()<CR>
+  nnoremenu WinBar.\ Reset\ F8 :call vimspector#Reset()<CR>
+  nnoremenu WinBar.\ Toggle\ Breakpoint\ F9 :call vimspector#ToggleBreakpoint()<CR>
+  nnoremenu WinBar.\ Add\ Function\ Breakpoint\ F2 :call vimspector#AddFunctionBreakpoint()<CR>
+  nnoremenu WinBar.\ Add\ Conditional\ Breakpoint\ F7 :call vimspector#AddConditionalBreakpoint()<CR>
+  nnoremenu WinBar.\ Add\ Logpoint\ F1 :call vimspector#AddLogpoint()<CR>
+  nnoremenu WinBar.\ List\ Breakpoints\ F2 :call vimspector#ListBreakpoints()<CR>
+
+  redrawstatus!
+endfunction
+
+augroup VimspectorUI
+  autocmd!
+  autocmd User VimspectorUICreated call CustomiseWinBar()
+augroup END
+
+" nmap <Leader><F1> <Plug>:call vimspector#Reset()<CR>
+nmap <Leader>di <Plug>VimspectorBalloonEval
+xmap <Leader>di <Plug>VimspectorBalloonEval
 
 " ===================================================================== HEXMODE
 
@@ -133,7 +198,6 @@ set completeopt=menu,menuone,noselect
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
-source ~/.config/nvim/plugins/dapui.lua
 
 lua require('gitsigns').setup()
 lua require('colorizer').setup()
@@ -198,6 +262,7 @@ set laststatus=3
 highlight WinSeparator guibg=None
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
 
@@ -269,6 +334,10 @@ vnoremap <silent><C-_> :Commentary<CR>
 " buffer navigation
 nnoremap <silent><C-h> :bprev <CR>
 nnoremap <silent><C-l> :bnext <CR>
+
+" tab navigation
+nnoremap <silent><C-p> :tabprev <CR>
+nnoremap <silent><C-n> :tabnext <CR>
 
 " ==================================================================== COMMANDS
 

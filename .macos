@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## Change Screenshot Default Location
+defaults write com.apple.screencapture location "$HOME/Pictures/Screenshots"
+
 ## MOUSE SETTINGS
 
 # disable key hold accent character selection menu

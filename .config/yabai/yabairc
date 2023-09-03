@@ -38,9 +38,12 @@ yabai -m rule --add app='^System Settings$' manage=off
 yabai -m rule --add title='Information$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Settings$' manage=off
+yabai -m rule --add title='Installer$' manage=off
+yabai -m rule --add title='^fzfmenu$' manage=off
 yabai -m rule --add app='^Steam$' manage=off
 yabai -m rule --add app='^UTM$' manage=off
 yabai -m rule --add app='^Calculator$' manage=off
+yabai -m rule --add app='^Installer$' manage=off
 
 # disable animations when opening and closing windows
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false

@@ -15,9 +15,6 @@ local lsp_servers = {
   "yamlls",
   "omnisharp",
 }
-local dap_servers = {
-  "coreclr", -- .NET Core
-}
 local lint_servers = {
   "actionlint",
   "ansible-lint",
@@ -53,11 +50,6 @@ require("mason-null-ls").setup({
 require("mason-lspconfig").setup({
   ensure_installed = lsp_servers,
   automatic_installation = true,
-})
-require("mason-nvim-dap").setup({
-  ensure_installed = dap_servers,
-  automatic_installation = true,
-  handlers = {},
 })
 
 -- Set up lspconfig.
