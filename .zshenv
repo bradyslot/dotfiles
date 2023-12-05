@@ -5,6 +5,8 @@ export LANG=en_US.UTF-8
 export VISUAL=nvim
 export EDITOR=nvim
 export TERMINAL=alacritty
+# export PAGER=bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # clean up home directory
 export XDG_CONFIG_HOME="$HOME"/.config

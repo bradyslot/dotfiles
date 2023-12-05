@@ -1,13 +1,10 @@
 set nocompatible
 syntax on
 filetype plugin indent on
-set autoindent
 set clipboard+=unnamedplus
 set cmdheight=1
 set colorcolumn=80
-set conceallevel=0
 set cursorline
-set expandtab
 set hidden
 set incsearch
 set list
@@ -19,14 +16,16 @@ set nowrap
 set number relativenumber
 set scrolloff=999
 set scl=yes
-set shiftwidth=2
 set shortmess+=c
 set showcmd
 set sidescrolloff=999
 set smartindent
-set tabstop=2 softtabstop=2
+set expandtab
+set autoindent
+set shiftwidth=2 tabstop=2 softtabstop=2
 set termguicolors
 set updatetime=50
+set timeoutlen=500
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 let g:mapleader = ' '
 
@@ -40,6 +39,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-tree/nvim-web-devicons'
 
 " quality of life improvements
 Plug 'tpope/vim-commentary'
@@ -51,11 +51,25 @@ Plug 'terryma/vim-expand-region'
 Plug 'mrjones2014/smart-splits.nvim'
 Plug 'ggandor/leap.nvim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-easy-align'
 Plug 'fidian/hexmode'
+Plug 'folke/which-key.nvim'
+
+" file navigation
+Plug 'francoiscabrol/ranger.vim'
+" Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'liuchengxu/vista.vim'
+Plug 'preservim/tagbar'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" buffer/tab navigation
+Plug 'akinsho/bufferline.nvim'
+Plug 'tiagovla/scope.nvim'
 
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -63,10 +77,6 @@ Plug 'nvim-lua/plenary.nvim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
-
-" Search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 " AI
 Plug 'github/copilot.vim'
@@ -92,88 +102,52 @@ Plug 'puremourning/vimspector'
 
 call plug#end()
 
-" =================================================================== DEBUGGING
+" ================================================================== TAB/BUFFER
 
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_adapters = {
-\ "system-netcoredbg": {
-\   "name": "system-netcoredbg",
-\   "attach": {
-\     "pidProperty": "processId",
-\     "pidSelect": "ask"
-\   },
-\   "command": [ "/usr/local/bin/netcoredbg", "--interpreter=vscode" ],
-\   "configuration": {
-\     "cwd": "${PWD}"
-\   }
-\ } }
+lua require("bufferline").setup({})
+lua require("scope").setup({})
 
-let g:vimspector_configurations = {
-\ "launch - netcoredbg": {
-\   "name": "launch - netcoredbg",
-\   "adapter": "system-netcoredbg",
-\   "variables": {
-\     "Executable": system('echo -n $(basename $PWD)')
-\   },
-\   "filetypes": [ "cs" ],
-\   "configuration": {
-\     "cwd": "${PWD}",
-\     "request": "launch",
-\     "program": "${PWD}/bin/Debug/net6.0/${Executable}.dll",
-\     "args": [],
-\     "env": {},
-\     "stopAtEntry": v:true
-\   }
-\ },
-\ "attach - netcoredbg": {
-\   "name": "attach - netcoredbg",
-\   "adapter": "system-netcoredbg",
-\   "variables": {
-\     "Pid": system('pgrep $(basename $PWD)')
-\   },
-\   "filetypes": [ "cs" ],
-\   "configuration": {
-\     "cwd": "${PWD}",
-\     "request": "attach",
-\     "processId": "${Pid}",
-\     "stopAtEntry": v:true
-\   }
-\ } }
+" ====================================================================== TAGNAV
 
-function! CustomiseWinBar()
-  call win_gotoid( g:vimspector_session_windows.code )
-  " Clear the existing WinBar created by Vimspector
-  nunmenu WinBar
-  " Create our own WinBar
-  nnoremenu WinBar.󰓛\ Stop\ F3 :call vimspector#Stop()<CR>
-  nnoremenu WinBar.󰐊\ Continue\ F5 :call vimspector#Continue()<CR>
-  nnoremenu WinBar.󰏤\ Pause\ F6 :call vimspector#Pause()<CR>
-  nnoremenu WinBar.\ Step\ Over\ F10 :call vimspector#StepOver()<CR>
-  nnoremenu WinBar.\ Step\ In\ F11 :call vimspector#StepInto()<CR>
-  nnoremenu WinBar.\ Step\ Out\ F12 :call vimspector#StepOut()<CR>
-  nnoremenu WinBar.\ Restart\ F4: :call vimspector#Restart()<CR>
-  nnoremenu WinBar.\ Reset\ F8 :call vimspector#Reset()<CR>
-  nnoremenu WinBar.\ Toggle\ Breakpoint\ F9 :call vimspector#ToggleBreakpoint()<CR>
-  nnoremenu WinBar.\ Add\ Function\ Breakpoint\ F2 :call vimspector#AddFunctionBreakpoint()<CR>
-  nnoremenu WinBar.\ Add\ Conditional\ Breakpoint\ F7 :call vimspector#AddConditionalBreakpoint()<CR>
-  nnoremenu WinBar.\ Add\ Logpoint\ F1 :call vimspector#AddLogpoint()<CR>
-  nnoremenu WinBar.\ List\ Breakpoints\ F2 :call vimspector#ListBreakpoints()<CR>
+nnoremap <silent><leader>t :TagbarToggle<CR>
+let g:tagbar_compact = 1
 
-  redrawstatus!
-endfunction
+" ==================================================================== FILETREE
 
-augroup VimspectorUI
+nnoremap <silent><leader>n :NvimTreeFindFileToggle<CR>
+" autocmd VimEnter * noremap <silent><C-N> :NvimTreeFindFile<CR>
+lua require('nvim-tree').setup({ view = { width = 40 }})
+
+" ====================================================================== CSHARP
+
+" prevent newline at end of file
+augroup Csharp
   autocmd!
-  autocmd User VimspectorUICreated call CustomiseWinBar()
+  autocmd FileType cs set nofixendofline
 augroup END
 
-" nmap <Leader><F1> <Plug>:call vimspector#Reset()<CR>
-nmap <Leader>di <Plug>VimspectorBalloonEval
-xmap <Leader>di <Plug>VimspectorBalloonEval
+" =================================================================== WHICH-KEY
+
+source ~/.config/nvim/plugins/which-key.lua
+
+" =================================================================== DEBUGGING
+
+function! PidPicker(...)
+  if a:0 == 0
+    echo "Usage: PidPicker(port)"
+    return
+  endif
+
+  let l:port = a:1
+  return system('lsof -ti :' . l:port)
+endfunction
+
+let g:vimspector_custom_process_picker_func = 'PidPicker'
+let g:vimspector_base_dir=expand( '$HOME/src/onset/vimspector' )
 
 " ===================================================================== HEXMODE
 
-let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.blob,*.a,*.so,*.dll,*.sys,*.com'
+let g:hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.blob,*.a,*.so,*.dll,*.sys,*.com,*.dmg'
 let g:hexmode_xxd_options = '-g 1'
 
 " ===================================================================== AUTOCMD
@@ -181,9 +155,9 @@ let g:hexmode_xxd_options = '-g 1'
 " Spell-check Markdown files and Git Commit Messages
 augroup Markdown
   autocmd!
-  autocmd FileType markdown setlocal tw=80
-  autocmd FileType markdown setlocal fo+=t
-  autocmd FileType markdown setlocal wrap linebreak
+  " autocmd FileType markdown setlocal tw=80
+  " autocmd FileType markdown setlocal fo+=t
+  " autocmd FileType markdown setlocal wrap linebreak
   autocmd FileType markdown setlocal spell
 augroup END
 
@@ -198,6 +172,7 @@ set completeopt=menu,menuone,noselect
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
+source ~/.config/nvim/plugins/treesitter.lua
 
 lua require('gitsigns').setup()
 lua require('colorizer').setup()
@@ -261,18 +236,19 @@ set laststatus=3
 " make winddow separator crispy
 highlight WinSeparator guibg=None
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#omnisharp#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_symbols_ascii = 1
 
 " ====================================================================== REMAPS
 
 " make j and k move by display lines
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
+" vnoremap j gj
+" vnoremap k gk
 
 " lazy fast scrolling by display lines
 nnoremap <S-j> 10gj
@@ -291,7 +267,11 @@ nnoremap <silent><leader>r :Ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
 nnoremap <silent><leader>s :silent! so ~/.config/nvim/init.vim <CR>:AirlineRefresh<CR>
-" nnoremap <silent><leader>x :close<CR>
+
+" close window
+nnoremap <silent><leader>x :close<CR>
+
+" close buffer without closing window
 nnoremap <silent><leader>q :bd<CR>
 
 " intuitive window splitting with horizontal and vertical characters
@@ -301,9 +281,9 @@ nnoremap <silent><leader>- :split<CR>
 nnoremap <silent><leader>\ :vsplit<CR>
 
 " resizing splits
-nmap <silent><C-Left> :lua require('smart-splits').resize_left()<CR>
-nmap <silent><C-Down> :lua require('smart-splits').resize_down()<CR>
-nmap <silent><C-Up> :lua require('smart-splits').resize_up()<CR>
+nmap <silent><C-Left>  :lua require('smart-splits').resize_left()<CR>
+nmap <silent><C-Down>  :lua require('smart-splits').resize_down()<CR>
+nmap <silent><C-Up>    :lua require('smart-splits').resize_up()<CR>
 nmap <silent><C-Right> :lua require('smart-splits').resize_right()<CR>
 
 " moving between splits
@@ -343,6 +323,9 @@ nnoremap <silent><C-n> :tabnext <CR>
 
 " write using sudo with w!!
 cmap w!! w !sudo tee > /dev/null %
+
+" override the dumbest feature on the face of the earth
+set conceallevel=0
 
 " enable vim-repeat support on mappings
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)

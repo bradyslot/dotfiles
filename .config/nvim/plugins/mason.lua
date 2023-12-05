@@ -14,6 +14,7 @@ local lsp_servers = {
   "tsserver",
   "yamlls",
   "omnisharp",
+  "sqlls",
 }
 local lint_servers = {
   "actionlint",
@@ -26,6 +27,7 @@ local lint_servers = {
   "markdownlint",
   "jsonlint",
   "codespell",
+  -- "sqlfluff",
 }
 
 local settings = {
