@@ -14,6 +14,7 @@ local lsp_servers = {
   "tsserver",
   "yamlls",
   "omnisharp",
+  -- "csharp_ls",
   "sqlls",
 }
 local lint_servers = {

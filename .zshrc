@@ -8,8 +8,10 @@ if [[ $OS = "Darwin" ]]
 then
   export ZSH="$HOME/.oh-my-zsh"
   export ZSH_PLUGINS_DIR="/opt/homebrew/share"
-  export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/bin"
-  PATH="$DOTNET_ROOT:/opt/homebrew/Cellar/perl/5.36.1/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/share/gem/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
+  # export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/bin"
+  export DOTNET_ROOT="/opt/homebrew/opt/dotnet@6/libexec"
+  # export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+  PATH="$DOTNET_ROOT:/opt/homebrew/Cellar/perl/5.36.1/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$HOME/bin:$HOME/.local/share/gem/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$HOME/.dotnet/tools:$PATH"
   if type brew &>/dev/null; then
     HOMEBREW_PREFIX=$(brew --prefix)
     for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done

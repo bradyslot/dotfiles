@@ -28,6 +28,8 @@ set updatetime=50
 set timeoutlen=500
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 let g:mapleader = ' '
+let g:loaded_sql_completion = 0
+let g:omni_sql_no_default_maps = 1
 
 " ===================================================================== PLUGINS
 
@@ -48,8 +50,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'terryma/vim-expand-region'
-Plug 'mrjones2014/smart-splits.nvim'
-Plug 'ggandor/leap.nvim'
+" Plug 'mrjones2014/smart-splits.nvim'
+" Plug 'ggandor/leap.nvim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
@@ -92,6 +94,7 @@ Plug 'hrsh7th/nvim-cmp'
 " LSP Package Manager
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
+Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -173,6 +176,7 @@ source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
 source ~/.config/nvim/plugins/treesitter.lua
+source ~/.config/nvim/plugins/csharpls-extended-lsp.lua
 
 lua require('gitsigns').setup()
 lua require('colorizer').setup()
@@ -210,11 +214,11 @@ nmap <leader>/ :Rg<CR>
 
 " ======================================================================== LEAP
 
-lua require('leap').add_default_mappings()
+" lua require('leap').add_default_mappings()
 
 " remove leaps use of x in visual mode
-lua vim.keymap.del({'x', 'o'}, 'x')
-lua vim.keymap.del({'x', 'o'}, 'X')
+" lua vim.keymap.del({'x', 'o'}, 'x')
+" lua vim.keymap.del({'x', 'o'}, 'X')
 
 " ===================================================================== COPILOT
 
@@ -263,6 +267,7 @@ nnoremap <S-l> g$
 
 vnoremap A <Plug>(EasyAlign)
 
+nnoremap <silent><leader>u :UndotreeToggle<CR> :UndotreeFocus<CR>
 nnoremap <silent><leader>r :Ranger<CR>
 nnoremap <silent><leader>w :write<CR>
 " airline breaks when sourcing config
@@ -281,16 +286,16 @@ nnoremap <silent><leader>- :split<CR>
 nnoremap <silent><leader>\ :vsplit<CR>
 
 " resizing splits
-nmap <silent><C-Left>  :lua require('smart-splits').resize_left()<CR>
-nmap <silent><C-Down>  :lua require('smart-splits').resize_down()<CR>
-nmap <silent><C-Up>    :lua require('smart-splits').resize_up()<CR>
-nmap <silent><C-Right> :lua require('smart-splits').resize_right()<CR>
+" nmap <silent><C-Left>  :lua require('smart-splits').resize_left()<CR>
+" nmap <silent><C-Down>  :lua require('smart-splits').resize_down()<CR>
+" nmap <silent><C-Up>    :lua require('smart-splits').resize_up()<CR>
+" nmap <silent><C-Right> :lua require('smart-splits').resize_right()<CR>
 
 " moving between splits
-nmap <silent><leader>h :lua require('smart-splits').move_cursor_left()<CR>
-nmap <silent><leader>j :lua require('smart-splits').move_cursor_down()<CR>
-nmap <silent><leader>k :lua require('smart-splits').move_cursor_up()<CR>
-nmap <silent><leader>l :lua require('smart-splits').move_cursor_right()<CR>
+nmap <silent><leader>h :wincmd h<CR>
+nmap <silent><leader>j :wincmd j<CR>
+nmap <silent><leader>k :wincmd k<CR>
+nmap <silent><leader>l :wincmd l<CR>
 
 " join lines without moving cursor
 nnoremap <silent><C-j> :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
