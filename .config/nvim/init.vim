@@ -94,7 +94,7 @@ Plug 'hrsh7th/nvim-cmp'
 " LSP Package Manager
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
-Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
+Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Linting
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -176,7 +176,6 @@ source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
 source ~/.config/nvim/plugins/treesitter.lua
-source ~/.config/nvim/plugins/csharpls-extended-lsp.lua
 
 lua require('gitsigns').setup()
 lua require('colorizer').setup()

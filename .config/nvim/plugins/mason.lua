@@ -44,6 +44,14 @@ local settings = {
   max_concurrent_installers = 4,
 }
 
+local handlers = {
+  ["omnisharp"] = {
+    ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+    ["textDocument/references"] = require('omnisharp_extended').references_handler,
+    ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+  },
+}
+
 require("mason").setup(settings)
 require("mason-null-ls").setup({
   ensure_installed = lint_servers,
@@ -61,6 +69,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 for _,server in pairs(lsp_servers) do
   require("lspconfig")[server].setup {
     on_attach = require("mason").on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    handlers = handlers[server],
   }
 end
+
