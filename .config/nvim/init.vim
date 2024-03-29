@@ -18,7 +18,7 @@ set scrolloff=999
 set scl=yes
 set shortmess+=c
 set showcmd
-set sidescrolloff=999
+" set sidescrolloff=999
 set smartindent
 set expandtab
 set autoindent
@@ -38,8 +38,8 @@ call plug#begin(stdpath('data') . '/plugged')
 " colors and themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'joshdick/onedark.vim'
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'navarasu/onedark.nvim'
+" Plug 'NvChad/nvim-colorizer.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-tree/nvim-web-devicons'
 
@@ -178,7 +178,6 @@ source ~/.config/nvim/plugins/mason.lua
 source ~/.config/nvim/plugins/treesitter.lua
 
 lua require('gitsigns').setup()
-lua require('colorizer').setup()
 
 " ================================================================== INDENTLINE
 
@@ -228,8 +227,16 @@ let g:copilot_no_tab_map = v:true
 
 " ================================================================= COLORSCHEME
 
-set background=dark
+" lua require('colorizer').setup()
+" set background=dark
 let g:airline_theme='onedark'
+" match iterm2 theme bg color
+let g:onedark_config = {
+\ 'style': 'darker',
+\ 'colors': {
+\   'bg0': '#21252b',
+\ },
+\}
 colorscheme onedark
 
 " ===================================================================== AIRLINE

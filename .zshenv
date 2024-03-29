@@ -54,7 +54,7 @@ if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
 fi
 # program env variables
 # export ZSH_CUSTOM=$HOME/.config/zsh/custom
-export NVIM_LISTEN_ADDRESS=localhost:6666
+# export NVIM_LISTEN_ADDRESS=localhost:6666
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # colorize things

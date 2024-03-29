@@ -1,5 +1,5 @@
 # open terminal
-cmd - return : open -n -a "Alacritty.app"
+cmd - return : open -n -a "iTerm.app"
 
 # open application menu
 cmd - d : Alacritty -T fzfmenu -o font.size=16 -e bash -c ~/bin/menu.sh
@@ -29,9 +29,9 @@ cmd + shift - 9 : yabai -m window --space 9
 cmd + shift - 0 : yabai -m window --space 10 
 
 # resize windows
-cmd + shift - left : yabai -m window west --resize right:-50:0 2> /dev/null  || yabai -m window --resize right:-50:0
-cmd + shift - right : yabai -m window east --resize left:50:0 2> /dev/null    || yabai -m window --resize left:50:0
-cmd + shift - up : yabai -m window south --resize top:0:-50 2> /dev/null   || yabai -m window --resize top:0:-50
+cmd + shift - left : yabai -m window west --resize right:-50:0  2> /dev/null || yabai -m window --resize right:-50:0
+cmd + shift - right : yabai -m window east --resize left:50:0   2> /dev/null || yabai -m window --resize left:50:0
+cmd + shift - up : yabai -m window south --resize top:0:-50     2> /dev/null || yabai -m window --resize top:0:-50
 cmd + shift - down : yabai -m window north --resize bottom:0:50 2> /dev/null || yabai -m window --resize bottom:0:50
 
 # set new window direction

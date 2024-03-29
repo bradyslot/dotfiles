@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# show hidden files in finder
+defaults write com.apple.finder AppleShowAllFiles true
+
 ## Change Screenshot Default Location
 defaults write com.apple.screencapture location "$HOME/Pictures/Screenshots"
 

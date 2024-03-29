@@ -16,6 +16,7 @@ local lsp_servers = {
   "omnisharp",
   -- "csharp_ls",
   "sqlls",
+  "terraformls",
 }
 local lint_servers = {
   "actionlint",
@@ -28,10 +29,11 @@ local lint_servers = {
   "markdownlint",
   "jsonlint",
   "codespell",
+  "tflint",
   -- "sqlfluff",
 }
 
-local settings = {
+local mason_settings = {
   ui = {
     border = "none",
       icons = {
@@ -44,7 +46,7 @@ local settings = {
   max_concurrent_installers = 4,
 }
 
-local handlers = {
+local lsp_handlers = {
   ["omnisharp"] = {
     ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
     ["textDocument/references"] = require('omnisharp_extended').references_handler,
@@ -52,7 +54,19 @@ local handlers = {
   },
 }
 
-require("mason").setup(settings)
+local lsp_settings = {
+  ["omnisharp"] = {
+    -- enable_editorconfig_support = true,
+    -- enable_ms_build_load_projects_on_demand = true,
+    -- enable_roslyn_analyzers = true,
+    -- organize_imports_on_format = false,
+    -- enable_import_completion = false,
+    -- sdk_include_prereleases = false,
+    -- analyze_open_documents_only = false,
+  }
+}
+
+require("mason").setup(mason_settings)
 require("mason-null-ls").setup({
   ensure_installed = lint_servers,
   automatic_installation = true,
@@ -70,7 +84,8 @@ for _,server in pairs(lsp_servers) do
   require("lspconfig")[server].setup {
     on_attach = require("mason").on_attach,
     capabilities = capabilities,
-    handlers = handlers[server],
+    handlers = lsp_handlers[server],
+    settings = lsp_settings[server],
   }
 end
 
