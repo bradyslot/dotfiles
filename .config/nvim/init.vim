@@ -23,7 +23,6 @@ set smartindent
 set expandtab
 set autoindent
 set shiftwidth=2 tabstop=2 softtabstop=2
-set termguicolors
 set updatetime=50
 set timeoutlen=500
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -175,7 +174,7 @@ set completeopt=menu,menuone,noselect
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
-source ~/.config/nvim/plugins/treesitter.lua
+" source ~/.config/nvim/plugins/treesitter.lua
 
 lua require('gitsigns').setup()
 
@@ -233,11 +232,14 @@ let g:airline_theme='onedark'
 " match iterm2 theme bg color
 let g:onedark_config = {
 \ 'style': 'darker',
-\ 'colors': {
-\   'bg0': '#21252b',
-\ },
+"\ 'colors': {
+"\   'bg0': '#21252b',
+"\ },
 \}
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 colorscheme onedark
+set termguicolors
 
 " ===================================================================== AIRLINE
 
@@ -319,8 +321,8 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " comment line or visual selection
-nnoremap <silent><C-_> :Commentary<CR>
-vnoremap <silent><C-_> :Commentary<CR>
+nnoremap <silent><C-/> :Commentary<CR>
+vnoremap <silent><C-/> :Commentary<CR>
 
 " buffer navigation
 nnoremap <silent><C-h> :bprev <CR>

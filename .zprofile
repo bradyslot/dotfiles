@@ -1,10 +1,6 @@
-if [[ $(uname) = "Linux" ]]
-then
-  export XDG_CURRENT_DESKTOP=Hyprland
-  export XDG_SESSION_TYPE=wayland
-  export XDG_SESSION_DESKTOP=Hyprland
-
-  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec Hyprland
+if [ "$(tty)" = "/dev/tty1" ]; then
+  if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+    echo "Starting X on tty1"
+    exec startx /usr/bin/cinnamon-session
   fi
 fi

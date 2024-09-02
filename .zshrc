@@ -103,7 +103,7 @@ alias p="ps aux | head -1 && ps aux | grep -i"
 alias wiki="awman"
 alias virtualbox="GTK2_RC_FILES='' virtualbox"
 alias enablev4l2="sudo modprobe v4l2loopback exclusive_caps=1 max_buffers=2"
-alias startcam="sudo rmmod v4l2loopback; sudo modprobe v4l2loopback; gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0"
+alias startcam="gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0"
 alias qsim="java -jar TinyClient.jar 192.168.90.250 password"
 alias find-large-files='sudo su -c "find / -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r"'
 alias git-commit-previous='git commit --amend --no-edit'
