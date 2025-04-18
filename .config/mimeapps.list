@@ -143,6 +143,7 @@ x-scheme-handler/roblox-studio-auth=roblox-studio-auth.desktop
 x-scheme-handler/roblox=roblox-player.desktop
 application/x-roblox-rbxl=roblox-studio.desktop
 application/x-roblox-rbxlx=roblox-studio.desktop
+x-content/video-dvd=fr.handbrake.ghb.desktop
 
 [Added Associations]
 image/png=gimp.desktop;
@@ -162,3 +163,4 @@ x-scheme-handler/mailto=userapp-Thunderbird-WRIBF1.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-WRIBF1.desktop;
 x-scheme-handler/webcal=userapp-Thunderbird-NCRCF1.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-NCRCF1.desktop;
+x-content/video-dvd=fr.handbrake.ghb.desktop;
