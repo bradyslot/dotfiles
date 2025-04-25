@@ -88,6 +88,7 @@ alias fgrep='fgrep --color=auto'
 alias ip='ip --color=auto'
 alias ls='ls -lahv --color=auto --group-directories-first'
 alias tree='tree -C'
+alias less='less -R --mouse'
 
 # mine
 alias nvim='nvim'

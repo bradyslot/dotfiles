@@ -11,7 +11,7 @@ local lsp_servers = {
   "rust_analyzer",
   "stylelint_lsp",
   "taplo",
-  "tsserver",
+  "ts_ls",
   "yamlls",
   "omnisharp",
   -- "csharp_ls",

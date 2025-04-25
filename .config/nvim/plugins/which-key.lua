@@ -1,79 +1,36 @@
 local wk = require("which-key")
--- As an example, we will create the following mappings:
---  * <leader>ff find files
---  * <leader>fr show recent files
---  * <leader>fb Foobar
--- we'll document:
---  * <leader>fn new file
---  * <leader>fe edit file
--- and hide <leader>1
 
--- nmap <leader> <Plug>VimspectorContinue
--- nmap <leader> <Plug>VimspectorStop
--- nmap <leader> <Plug>VimpectorRestart
--- nmap <leader> <Plug>VimspectorPause
--- nmap <leader> <Plug>VimspectorBreakpoints
--- nmap <leader> <Plug>VimspectorToggleBreakpoint
--- nmap <leader> <Plug>VimspectorToggleConditionalBreakpoint
--- nmap <leader> <Plug>VimspectorAddFunctionBreakpoint
--- nmap <leader> <Plug>VimspectorGoToCurrentLine
--- nmap <leader> <Plug>VimspectorRunToCursor
--- nmap <leader> <Plug>VimspectorStepOver
--- nmap <leader> <Plug>VimspectorStepInto
--- nmap <leader> <Plug>VimspectorStepOut
--- nmap <leader> <Plug>VimspectorDisassemble
--- nmap <leader> <Plug>VimspectorUpFrame
--- nmap <leader> <Plug>VimspectorDownFrame
--- nmap <leader> <Plug>VimspectorJumpToNextBreakpoint
--- nmap <leader> <Plug>VimspectorJumpToPreviousBreakpoint
--- nmap <leader> <Plug>VimspectorJumpToProgramCounter
--- nmap <leader> <Plug>VimspectorBalloonEval
--- nmap <leader> <Plug>VimspectorWatch
--- nmap <leader> <Plug>VimspectorEval
--- nmap <Leader><F1> <Plug>:call vimspector#Reset()<CR>
--- nmap <Leader>di <Plug>VimspectorBalloonEval
--- xmap <Leader>di <Plug>VimspectorBalloonEval
+wk.add({
+  { "<leader>d", group = "debug" },
 
-local opts = { 
-  prefix = "<leader>",
-}
+  -- controls
+  name = "Controls",
+  { "<leader>dc", "<cmd>call vimspector#Continue()<cr>",             desc = " Start /  Continue" },
+  { "<leader>dp", "<cmd>call vimspector#Pause()<cr>",                desc = " Pause" },
+  { "<leader>dq", "<cmd>call vimspector#Reset()<cr>",                desc = " Quit" },
+  { "<leader>dr", "<cmd>call vimspector#Restart()<cr>",              desc = " Restart" },
+  { "<leader>ds", "<cmd>call vimspector#Stop()<cr>",                 desc = " Stop" },
 
-local mappings = {
-  d = {
-    name = "debug",
-    c = { "<cmd>call vimspector#Continue()<cr>", " Start /  Continue" },
-    s = { "<cmd>call vimspector#Stop()<cr>", " Stop" },
-    r = { "<cmd>call vimspector#Restart()<cr>", " Restart" },
-    q = { "<cmd>call vimspector#Reset()<cr>", "Quit" },
-    p = { "<cmd>call vimspector#Pause()<cr>", " Pause" },
+  -- breakpoints
+  name = "Breakpoints",
+  { "<leader>dN", "<cmd>call vimspector#JumpToPrevBreakpoint()<cr>", desc = "󰮹 Previous Breakpoint" },
+  { "<leader>db", "<cmd>call vimspector#ToggleBreakpoint()<cr>",     desc = " Toggle Breakpoint" },
+  { "<leader>dn", "<cmd>call vimspector#JumpToNextBreakpoint()<cr>", desc = "󰮺 Next Breakpoint" },
 
-    -- breakpoints
-    b = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", " Toggle Breakpoint" },
-    n = { "<cmd>call vimspector#JumpToNextBreakpoint()<cr>", "󰮺 Next Breakpoint" },
-    N = { "<cmd>call vimspector#JumpToPrevBreakpoint()<cr>", "󰮹 Previous Breakpoint" },
+  -- execution
+  name = "Execution",
+  { "<leader>dd", "<cmd>call vimspector#DownFrame()<cr>",            desc = "󰮷 Down Frame" },
+  { "<leader>df", "<cmd>call vimspector#RunToCursor()<cr>",          desc = " Run To Cursor" },
+  { "<leader>dg", "<cmd>call vimspector#GoToCurrentLine()<cr>",      desc = " Go To Current Line" },
+  { "<leader>di", "<cmd>call vimspector#StepInto()<cr>",             desc = " Step Into" },
+  { "<leader>dl", "<cmd>call vimspector#StepOver()<cr>",             desc = " Step Over" },
+  { "<leader>do", "<cmd>call vimspector#StepOut()<cr>",              desc = " Step Out" },
+  { "<leader>du", "<cmd>call vimspector#UpFrame()<cr>",              desc = "󰮽 Up Frame" },
 
-    -- execution
-    i = { "<cmd>call vimspector#StepInto()<cr>", " Step Into" },
-    o = { "<cmd>call vimspector#StepOut()<cr>", " Step Out" },
-    l = { "<cmd>call vimspector#StepOver()<cr>", " Step Over" },
-    u = { "<cmd>call vimspector#UpFrame()<cr>", "󰮽 Up Frame" },
-    d = { "<cmd>call vimspector#DownFrame()<cr>", "󰮷 Down Frame" },
-    g = { "<cmd>call vimspector#GoToCurrentLine()<cr>", " Go To Current Line" },
-    f = { "<cmd>call vimspector#RunToCursor()<cr>", " Run To Cursor" },
-
-    -- eval
-    x = { "<cmd>call vimspector#ShowDisassembly()<cr>", "Show Disassembly" },
-    k = { "<Plug>VimspectorBalloonEval<cr>", "Balloon Eval" },
-    w = { "<cmd>call vimspector#AddWatch()<cr>", "Watch" },
-    e = { "<cmd>call vimspector#Evaluate()<cr>", "Evaluate" },
-
-    -- f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-    -- r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false, buffer = 123 }, -- additional options for creating the keymap
-    -- n = { "New File" }, -- just a label. don't create any mapping
-    -- e = "Edit File", -- same as above
-    -- ["1"] = "which_key_ignore",  -- special label to hide it in the popup
-    -- b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
-  },
-}
-
-wk.register(mappings, opts)
+  -- eval
+  name = "Eval"
+  { "<leader>de", "<cmd>call vimspector#Evaluate()<cr>",             desc = " Eval" },
+  { "<leader>dk", "<cmd>call vimspector#ShowBalloonEval<cr>",        desc = "󰔣 Balloon Eval" },
+  { "<leader>dw", "<cmd>call vimspector#AddWatch()<cr>",             desc = "󰈈 Watch" },
+  { "<leader>dx", "<cmd>call vimspector#ShowDisassembly()<cr>",      desc = " Disassembly" },
+})

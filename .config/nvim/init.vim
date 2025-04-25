@@ -96,7 +96,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Linting
-Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jay-babu/mason-null-ls.nvim'
 
 " Debugging

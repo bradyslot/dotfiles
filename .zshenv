@@ -6,7 +6,8 @@ export VISUAL=nvim
 export EDITOR=nvim
 export TERMINAL=alacritty
 # export PAGER=bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="less -R --mouse"
+export PAGER=$MANPAGER
 
 # clean up home directory
 export XDG_CONFIG_HOME="$HOME"/.config
@@ -67,7 +68,6 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="base16"
 
 # Base16 Shell

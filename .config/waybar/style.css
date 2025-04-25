@@ -26,15 +26,15 @@
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Source Code Pro, Semibold;
-  font-size: 16px;
+  font-family: Terminus;
+  font-size: 14px;
   min-height: 0;
-  border-radius: 99;
+  border-radius: 0;
 }
 
 window#waybar {
   background-color: transparent;
-  color: #ffffff;
+  color: @base00;
 }
 
 button {
@@ -45,28 +45,41 @@ button {
 .modules-center,
 .modules-right {
   /* top, right, bottom, left */
-  background: @base00;
-  margin: 10 10 0 10;
+  margin: 2px 2px 0px 2px;
   color: transparent;
 }
 
+.modules-left button:hover,
+.modules-center button:hover,
+.modules-right button:hover {
+  background: @base00;
+  color: @base07;
+}
+
+
 #workspaces button {
-  margin: 10;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+  background-color: @base05;
+}
+
+#workspaces button.empty {
+  background-color: @base0B;
 }
 
 #workspaces button.active {
-  background-color: @base07;
-  color: transparent;
+  background-color: @base01;
+  color: @base07;
+  font-weight: bold;
 }
 
-#workspaces button:hover {
+#workspaces button.hover {
   background: @base00;
-  color: transparent;
+  color: @base07;
 }
 
 #workspaces button.focused {
-  background-color: @base05;
+  background-color: @base00;
 }
 
 #workspaces button.urgent {
@@ -82,29 +95,16 @@ button {
 #network,
 #pulseaudio,
 #tray {
-  margin: 10 0 10 5;
-  padding: 0 10 0 10;
-  color: @base00;
-  background-color: @base07;
+  /* top, right, bottom, left */
+  margin: 0px 0px 0px 0px;
+  padding: 0px 15px 0px 10px;
+  color: @base07;
+  background-color: @base00;
 }
 
-#tray {
-  margin-left: 10;
-}
-
-#clock {
-  margin-right: 10;
-}
-
-#pulseaudio.muted {
-  background-color: @base08;
-}
-
+#pulseaudio.muted,
+#temperature.critical,
 #network.disconnected {
-  background-color: @base08;
-}
-
-#temperature.critical {
   background-color: @base08;
 }
 
@@ -125,16 +125,7 @@ button {
 }
 
 label:focus {
-  background-color: #000000;
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: @base08;
+  background-color: @base00;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
