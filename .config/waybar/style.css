@@ -56,26 +56,24 @@ button {
   color: @base07;
 }
 
-
 #workspaces button {
-  margin: 0px;
+  margin-right: 4px;
   padding: 0px;
-  background-color: @base05;
+  background-color: transparent;
+  /*border-radius: 99px;*/
 }
 
 #workspaces button.empty {
-  background-color: @base0B;
+  background-color: transparent;
+  color: @base07;
 }
 
 #workspaces button.active {
-  background-color: @base01;
+  background-color: transparent;
+  border-style: solid;
+  border-bottom: 2 solid  @base07;
   color: @base07;
   font-weight: bold;
-}
-
-#workspaces button.hover {
-  background: @base00;
-  color: @base07;
 }
 
 #workspaces button.focused {
@@ -99,13 +97,28 @@ button {
   margin: 0px 0px 0px 0px;
   padding: 0px 15px 0px 10px;
   color: @base07;
-  background-color: @base00;
+  background-color: transparent;
 }
 
-#pulseaudio.muted,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio {
+  font-size: 18px;
+}
+
+#pulseaudio.output.muted,
+#pulseaudio.input.source-muted,
 #temperature.critical,
 #network.disconnected {
   background-color: @base08;
+}
+
+#clock {
+  background: transparent;
 }
 
 @keyframes blink {

@@ -5,7 +5,7 @@
     "spacing": 4,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+    "modules-right": ["pulseaudio#output", "pulseaudio#input", "network", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "warp-on-scroll": false,
@@ -77,32 +77,36 @@
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "on-click": "iwmenu --menu custom --menu-command 'wofi --show dmenu'",
     },
-    "pulseaudio": {
-        "format": "{icon} {format_source}",
-        "format-bluetooth": " {format_source}",
-        "format-bluetooth-muted": "󰂲 {format_source}",
-        "format-muted": "󰝟  {format_source}",
-        "format-source": "󰍬",
-        "format-source-muted": "󰍭",
+    "pulseaudio#output": {
+        "format": "{icon}",
+        "format-bluetooth": "",
+        "format-bluetooth-muted": "󰂲",
+        "format-muted": "󰝟",
         "tooltip": true,
-        "tooltip-format": "{desc} {volume}%",
+        "tooltip-format": "{volume}%",
         "format-icons": {
             "headphone": "󱡬",
             "default": [
-              "󰸈 ",
-              "󰕿 ",
-              "󰕿 ",
-              "󰕿 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰕾 ",
-              "󰕾 ",
-              "󰕾 "
+              "󰸈 ",
+              "󰕿 ",
+              "󰕿 ",
+              "󰕿 ",
+              "󰖀 ",
+              "󰖀 ",
+              "󰖀 ",
+              "󰖀 ",
+              "󰕾 ",
+              "󰕾 ",
+              "󰕾 "
             ]
         },
         "max-volume": 150,
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#input": {
+        "format": "{format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "󰍭",
         "on-click": "pavucontrol"
     }
 }
