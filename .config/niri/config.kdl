@@ -1,0 +1,209 @@
+input {
+    mod-key "Alt"
+
+    keyboard {
+        numlock
+        repeat-rate 35
+        repeat-delay 200
+        xkb {
+            options "caps:escape"
+        }
+    }
+
+    touchpad {
+        tap
+        // natural-scroll
+    }
+
+    mouse {
+        accel-speed -0.5
+        accel-profile "flat"
+    }
+
+    trackpoint {
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+debug {
+    render-drm-device "/dev/dri/card0"
+}
+
+output "eDP-1" {
+    mode "1920x1080@60"
+    scale 1
+    transform "normal"
+    position x=1440 y=1200
+}
+
+output "DP-5" {
+    mode "1600x1200@85"
+    scale 1
+    transform "normal"
+    position x=3200 y=0
+}
+
+
+output "DVI-I-1" {
+    mode "1600x1200@75"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+output "HDMI-A-2" {
+    modeline 161.00 1600 1712 1880 2160 1200 1203 1207 1245 "-hsync" "+vsync"
+    scale 1
+    transform "normal"
+    position x=1600 y=0
+}
+
+overview {
+    zoom 0.75
+}
+
+layout {
+    gaps 10
+    center-focused-column "never"
+
+    default-column-width { proportion 1.0; }
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    preset-window-heights {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    background-color "#4b5263"
+
+    focus-ring {
+        off
+
+        width 2
+        active-color "#abb2bf"
+        inactive-color "#282c34"
+    }
+
+    border {
+        on
+
+        width 3
+        active-color "#abb2bf"
+        inactive-color "#282c34"
+
+        urgent-color "#e06c75"
+    }
+
+    shadow {
+        off
+    }
+
+    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
+    // You can think of them as a kind of outer gaps. They are set in logical pixels.
+    // Left and right struts will cause the next window to the side to always be visible.
+    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
+    // layer-shell panels and regular gaps.
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}
+
+spawn-at-startup "waybar"
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+animations {
+    // off
+    // slowdown 3.0
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Space  hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute         allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay         allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop         allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev         allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext         allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set +10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl --class=backlight set 10%-"; }
+
+    Mod+Tab     repeat=false { toggle-overview; }
+    Mod+Escape  repeat=false { close-window; }
+
+    Mod+Down  { focus-workspace-down; }
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-workspace-up; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-workspace-down; }
+    Mod+K     { focus-workspace-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Shift+Down   { move-column-to-workspace-down; }
+    Mod+Shift+J      { move-column-to-workspace-down; }
+    Mod+Shift+K      { move-column-to-workspace-up; }
+    Mod+Shift+Up     { move-column-to-workspace-up; }
+
+    Mod+Shift+Ctrl+Down   { move-workspace-down; }
+    Mod+Shift+Ctrl+Up     { move-workspace-up; }
+    Mod+Shift+Ctrl+J      { move-workspace-down; }
+    Mod+Shift+Ctrl+K      { move-workspace-up; }
+
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+L     { move-column-right; }
+
+    Mod+Comma  { focus-monitor-left; }
+    Mod+Period { focus-monitor-right; }
+
+    Mod+Shift+Comma  { move-column-to-monitor-left; }
+    Mod+Shift+Period { move-column-to-monitor-right; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+BackSlash { switch-preset-column-width; }
+    Mod+Minus { switch-preset-window-height; }
+
+    Mod+F { fullscreen-window; }
+    Mod+Shift+F { maximize-window-to-edges; }
+    Mod+Shift+Ctrl+F { toggle-windowed-fullscreen; }
+
+    Mod+Grave       { toggle-window-floating; }
+    Mod+Shift+Grave { switch-focus-between-floating-and-tiling; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Ctrl+Alt+Delete { quit; }
+}

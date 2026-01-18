@@ -23,7 +23,12 @@ if [[ $OS = "Linux" ]]
 then
   export ZSH="/usr/share/oh-my-zsh"
   export ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
-  export PATH="$HOME/bin:$GOPATH/bin:$HOME/.gem/ruby/3.0.0/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
+
+  if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+  fi
+
+  export PATH="$HOME/bin:$GOPATH/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin:$PATH"
 fi
 
 # remove duplicates in paths
@@ -66,7 +71,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 zmodload zsh/complist
-compinit
+compinit -i
 _comp_options+=(globdots) # Include hidden files.
 
 # ======================================================================== WORK
@@ -104,7 +109,7 @@ alias p="ps aux | head -1 && ps aux | grep -i"
 alias wiki="awman"
 alias virtualbox="GTK2_RC_FILES='' virtualbox"
 alias enablev4l2="sudo modprobe v4l2loopback exclusive_caps=1 max_buffers=2"
-alias startcam="gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0"
+alias startcam="gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video2"
 alias qsim="java -jar TinyClient.jar 192.168.90.250 password"
 alias find-large-files='sudo su -c "find / -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r"'
 alias git-commit-previous='git commit --amend --no-edit'
@@ -114,7 +119,8 @@ alias screencast='/usr/lib/xdg-desktop-portal-wlr'
 # =================================================================== FUNCTIONS
 
 activate () {
-  source ~/venv/$1/bin/activate
+  VENV_DIR=`basename "$(pwd)"`
+  source ~/.venv/$VENV_DIR/bin/activate
 }
 
 ssh-pemgen () {

@@ -3,9 +3,10 @@
     "position": "top",
     "height": 0,
     "spacing": 4,
+    "output": "eDP-1",
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio#output", "pulseaudio#input", "network", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+    "modules-right": ["pulseaudio#output", "pulseaudio#input", "network", "temperature", "backlight", "battery", "tray"],
     "hyprland/workspaces": {
         "disable-scroll": true,
         "warp-on-scroll": false,
@@ -86,27 +87,16 @@
         "tooltip-format": "{volume}%",
         "format-icons": {
             "headphone": "󱡬",
-            "default": [
-              "󰸈 ",
-              "󰕿 ",
-              "󰕿 ",
-              "󰕿 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰖀 ",
-              "󰕾 ",
-              "󰕾 ",
-              "󰕾 "
-            ]
+            "default": [ "󰸈", "󰕿", "󰖀", "󰕾" ]
         },
         "max-volume": 150,
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol -t 3"
     },
     "pulseaudio#input": {
         "format": "{format_source}",
         "format-source": "󰍬",
         "format-source-muted": "󰍭",
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol -t 4",
+        "tooltip": false
     }
 }

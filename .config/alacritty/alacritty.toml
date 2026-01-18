@@ -27,3 +27,8 @@ import = [
   "~/.config/alacritty/one_dark.toml",
   "~/.config/alacritty/keybindings.toml",
 ]
+
+[[keyboard.bindings]]
+key = "Slash"
+mods = "Control"
+chars = "\u001f"

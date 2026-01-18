@@ -41,6 +41,7 @@ Plug 'navarasu/onedark.nvim'
 " Plug 'NvChad/nvim-colorizer.lua'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-mini/mini.icons'
 
 " quality of life improvements
 Plug 'tpope/vim-commentary'
@@ -97,12 +98,29 @@ Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Linting
 " Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'jay-babu/mason-null-ls.nvim'
+" Plug 'jay-babu/mason-null-ls.nvim'
+Plug 'WhoIsSethDaniel/mason-tool-installer.nvim'
 
 " Debugging
 Plug 'puremourning/vimspector'
 
+Plug 'goshujinsama/nvim-strudel', { 'do': 'cd server && npm install && npm run build' }
+
 call plug#end()
+
+" ===================================================================== STRUDLE
+
+source ~/.config/nvim/plugins/strudel.lua
+
+" vimscript keymaps (safe here)
+nnoremap <leader>sp :StrudelPlay<CR>
+nnoremap <leader>ss :StrudelStop<CR>
+nnoremap <leader>sh :StrudelHush<CR>
+nnoremap <leader>sc :StrudelConnect<CR>
+
+" Ctrl+Enter
+nnoremap <C-CR> :StrudelPlay<CR>
+inoremap <C-CR> <Esc>:StrudelPlay<CR>
 
 " ================================================================== TAB/BUFFER
 
@@ -174,8 +192,8 @@ set completeopt=menu,menuone,noselect
 source ~/.config/nvim/plugins/nvim-cmp.lua
 source ~/.config/nvim/plugins/nvim-lspconfig.lua
 source ~/.config/nvim/plugins/mason.lua
-" source ~/.config/nvim/plugins/treesitter.lua
 
+" lua require('treesitter').setup()
 lua require('gitsigns').setup()
 
 " ================================================================== INDENTLINE
@@ -226,16 +244,23 @@ let g:copilot_no_tab_map = v:true
 
 " ================================================================= COLORSCHEME
 
+" high contrast color overrides for better CRT viewing
+let g:onedark_config = {
+\ 'style': 'darker',
+\ 'colors': {
+\   'bg0': '#000000',
+\   'fg0': '#FFFFFF',
+\ },
+\}
+let g:fzf_colors =
+\ { "fg":      ["fg", "Normal"],
+\   "bg":      ["bg", "Normal"]}
+
 " lua require('colorizer').setup()
 " set background=dark
 let g:airline_theme='onedark'
 " match iterm2 theme bg color
-let g:onedark_config = {
-\ 'style': 'darker',
-"\ 'colors': {
-"\   'bg0': '#21252b',
-"\ },
-\}
+
 let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
 let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 colorscheme onedark

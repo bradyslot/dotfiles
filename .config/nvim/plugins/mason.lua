@@ -7,6 +7,7 @@ local lsp_servers = {
   "dockerls",
   "html",
   "jsonls",
+  "pylsp",
   "pyright",
   "rust_analyzer",
   "stylelint_lsp",
@@ -67,10 +68,9 @@ local lsp_settings = {
 }
 
 require("mason").setup(mason_settings)
-require("mason-null-ls").setup({
+require("mason-tool-installer").setup({
   ensure_installed = lint_servers,
-  automatic_installation = true,
-  handlers = {},
+  auto_update = true,
 })
 require("mason-lspconfig").setup({
   ensure_installed = lsp_servers,
@@ -80,12 +80,13 @@ require("mason-lspconfig").setup({
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-for _,server in pairs(lsp_servers) do
-  require("lspconfig")[server].setup {
+for _,server in ipairs(lsp_servers) do
+  --require("lspconfig")[server].setup {
+  vim.lsp.config(server, {
     on_attach = require("mason").on_attach,
     capabilities = capabilities,
     handlers = lsp_handlers[server],
     settings = lsp_settings[server],
-  }
+  })
 end
 

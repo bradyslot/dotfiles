@@ -28,7 +28,7 @@ wk.add({
   { "<leader>du", "<cmd>call vimspector#UpFrame()<cr>",              desc = "󰮽 Up Frame" },
 
   -- eval
-  name = "Eval"
+  name = "Eval",
   { "<leader>de", "<cmd>call vimspector#Evaluate()<cr>",             desc = " Eval" },
   { "<leader>dk", "<cmd>call vimspector#ShowBalloonEval<cr>",        desc = "󰔣 Balloon Eval" },
   { "<leader>dw", "<cmd>call vimspector#AddWatch()<cr>",             desc = "󰈈 Watch" },
