@@ -57,6 +57,7 @@ fi
 # export ZSH_CUSTOM=$HOME/.config/zsh/custom
 # export NVIM_LISTEN_ADDRESS=localhost:6666
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+export NIRI_SOCKET=$(ls /run/user/$(id -u)/niri*.sock)
 
 # colorize things
 export LESS=-R
