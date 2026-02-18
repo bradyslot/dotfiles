@@ -18,6 +18,7 @@ local lsp_servers = {
   -- "csharp_ls",
   "sqlls",
   "terraformls",
+  "qmlls",
 }
 local lint_servers = {
   "actionlint",
