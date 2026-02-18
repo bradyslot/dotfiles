@@ -1,0 +1,34 @@
+[window]
+startup_mode = "Fullscreen"      # Try this first; if glitchy on your Niri version, comment out and use Niri rule below
+decorations = "None"             # No titlebar for immersive look
+opacity = 1.0                    # Solid, no transparency
+
+[font]
+normal.family = "Terminus"
+normal.style = "Regular"
+size = 16.0                      # Adjust for your monitors/resolution; bitmap fonts like Terminus look best at integer sizes
+
+# Optional: Custom ANSI palette for cmatrix (overrides terminal defaults)
+[colors.primary]
+background = "#000000"
+foreground = "#00ff00"           # Classic green Matrix text
+
+[colors.normal]
+black   = "#000000"
+red     = "#ff0000"
+green   = "#00ff00"
+yellow  = "#ffff00"
+blue    = "#0000ff"
+magenta = "#ff00ff"
+cyan    = "#00ffff"
+white   = "#ffffff"
+
+[colors.bright]
+black   = "#555555"
+red     = "#ff5555"
+green   = "#55ff55"
+yellow  = "#ffff55"
+blue    = "#5555ff"
+magenta = "#ff55ff"
+cyan    = "#55ffff"
+white   = "#ffffff"
