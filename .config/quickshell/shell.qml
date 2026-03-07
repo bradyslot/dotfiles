@@ -30,6 +30,11 @@ Item {
     onFocusedWindowChanged: {
       console.log("Focused window changed:", niri.focusedWindow?.title)
     }
+
+    onWindowLayoutChanged: {
+      //console.log("WindowLayoutsChanged:", niri.focusedWindow?.layout.pos_in_scrolling_layout[0])
+      console.log("WindowLayoutsChanged:", JSON.stringify(niri.focusedWindow?.layout))
+    }
   }
 
   Repeater {
@@ -71,14 +76,14 @@ Item {
 
               color: model.isActive ? "white" : "grey"
 
-              Text {
-                  anchors.centerIn: parent
-                  text: model.id
-                  font.pixelSize: 10
-                  color: model.isActive ? "black" : "white"
-                  horizontalAlignment: Text.AlignHCenter
-                  verticalAlignment: Text.AlignVCenter
-              }
+              //Text {
+              //    anchors.centerIn: parent
+              //    text: model.id
+              //    font.pixelSize: 10
+              //    color: model.isActive ? "black" : "white"
+              //    horizontalAlignment: Text.AlignHCenter
+              //    verticalAlignment: Text.AlignVCenter
+              //}
 
               MouseArea {
                 anchors.fill: parent
@@ -129,14 +134,14 @@ Item {
 
                   color: model.isFocused ? "white" : "grey"
 
-                  Text {
-                      anchors.centerIn: parent
-                      text: model.id
-                      font.pixelSize: 10
-                      color: model.isFocused ? "black" : "white"
-                      horizontalAlignment: Text.AlignHCenter
-                      verticalAlignment: Text.AlignVCenter
-                  }
+                  //Text {
+                  //    anchors.centerIn: parent
+                  //    text: model.id
+                  //    font.pixelSize: 10
+                  //    color: model.isFocused ? "black" : "white"
+                  //    horizontalAlignment: Text.AlignHCenter
+                  //    verticalAlignment: Text.AlignVCenter
+                  //}
 
                   MouseArea {
                     anchors.fill: parent

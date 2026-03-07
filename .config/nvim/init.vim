@@ -73,9 +73,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'tiagovla/scope.nvim'
 
-" Dependencies
-Plug 'nvim-lua/plenary.nvim'
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
@@ -106,21 +103,30 @@ Plug 'puremourning/vimspector'
 
 Plug 'goshujinsama/nvim-strudel', { 'do': 'cd server && npm install && npm run build' }
 
+" OpenCode
+Plug 'sudo-tee/opencode.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
 call plug#end()
+
+" ==================================================================== OPENCODE
+
+lua require("opencode").setup({})
 
 " ===================================================================== STRUDLE
 
-source ~/.config/nvim/plugins/strudel.lua
-
-" vimscript keymaps (safe here)
-nnoremap <leader>sp :StrudelPlay<CR>
-nnoremap <leader>ss :StrudelStop<CR>
-nnoremap <leader>sh :StrudelHush<CR>
-nnoremap <leader>sc :StrudelConnect<CR>
-
-" Ctrl+Enter
-nnoremap <C-CR> :StrudelPlay<CR>
-inoremap <C-CR> <Esc>:StrudelPlay<CR>
+"source ~/.config/nvim/plugins/strudel.lua
+"
+"" vimscript keymaps (safe here)
+"nnoremap <leader>sp :StrudelPlay<CR>
+"nnoremap <leader>ss :StrudelStop<CR>
+"nnoremap <leader>sh :StrudelHush<CR>
+"nnoremap <leader>sc :StrudelConnect<CR>
+"
+"" Ctrl+Enter
+"nnoremap <C-CR> :StrudelPlay<CR>
+"inoremap <C-CR> <Esc>:StrudelPlay<CR>
 
 " ================================================================== TAB/BUFFER
 
